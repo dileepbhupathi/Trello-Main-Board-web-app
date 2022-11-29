@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Button, Card } from "antd";
+import { Button, Card,Modal } from "antd";
 import { X } from "react-feather";
 import "./cards.scss";
 import { Draggable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
 // import { dummyListData } from "../../fixtures/dummyListData";
-
+import SelectedListItem from "../SelectedListItem/SelectedListItem";
 export const CardsContainer = ({ listItem }) => {
   const [addOption, showAddOption] = useState(false);
   const [inputValue, setInputValue] = useState();
@@ -14,14 +14,16 @@ export const CardsContainer = ({ listItem }) => {
     e.preventDefault();
     let newCard = { id: uuidv4(), content: `${inputValue}` };
     //  newCard =! undefined ? listItem.task.push(newCard)
-    if(inputValue !== undefined){
-      listItem.task.push(newCard)
+    if (inputValue !== undefined) {
+      listItem.task.push(newCard);
     }
     showAddOption(false);
   }
 
-
   // drag and drop
+
+  // MODAL MAIN POP_UP SANDEEP
+  const [resetModal, setResetModal] = useState(false);
 
   return (
     <div>
@@ -32,25 +34,42 @@ export const CardsContainer = ({ listItem }) => {
           <Draggable key={item.id} draggableId={item.id} index={i}>
             {(provided, snapshot) => {
               return (
-                <Card
-                  className="inserted-card"
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                  style={{
-                    userSelect: "none",
-                    padding: 16,
-                    margin: "0 0 8px 0",
-                    minHeight: "50px",
-                    backgroundColor: snapshot.isDragging
-                      ? "#ffffff"
-                      : "#ffffff",
-                    color: "#2B3A55",
-                    ...provided.draggableProps.style,
-                  }}
-                >
-                  <p draggable={true}>{item.content}</p>
-                </Card>
+                <>
+                  <Card
+                    onClick={() => setResetModal(!resetModal)}
+                    className="inserted-card"
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    style={{
+                      userSelect: "none",
+                      padding: 16,
+                      margin: "0 0 8px 0",
+                      minHeight: "50px",
+                      backgroundColor: snapshot.isDragging
+                        ? "#ffffff"
+                        : "#ffffff",
+                      color: "#2B3A55",
+                      ...provided.draggableProps.style,
+                    }}
+                  >
+                    <p draggable={true}>{item.content}</p>
+                  </Card>
+                  <Modal
+                    centered
+                    width={800}
+                    footer={null}
+                    open={resetModal}
+                    onOk={() => setResetModal(false)}
+                    onCancel={() => setResetModal(false)}
+                    style={{
+                      top: 50,
+                      borderRadius: "0px",
+                    }}
+                  >
+                    <SelectedListItem />
+                  </Modal>
+                </>
               );
             }}
           </Draggable>
@@ -68,7 +87,7 @@ export const CardsContainer = ({ listItem }) => {
               <Button htmlType="submit" className="add-inner-card">
                 Add Card
               </Button>
-              <X onClick={() => showAddOption(false)} className='cancelIcon'/>
+              <X onClick={() => showAddOption(false)} className="cancelIcon" />
             </div>
           </form>
         ) : (
