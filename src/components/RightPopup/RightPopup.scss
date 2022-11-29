@@ -1,0 +1,183 @@
+.right-top-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 5%;
+}
+.right-container-button{
+    width: 100%;
+    margin-bottom: 5%;
+    text-align: left;
+}
+.right-top-popover-container{
+    width: 300px;
+    padding:3% 0%;
+}
+.labels-list-container{
+    width: 100%;
+    margin-right: 15px;
+}
+.labels-list-item{
+    display: inline-block;
+    // flex-direction: row;
+    align-items: center;
+    width: 300px;
+//   text-align: center;
+}
+
+.labels-list-item-checkbox{
+    width: 100%;
+    justify-self: center;
+}
+.labels-list-item-checkbox-left-container{
+    border-radius: 3%;
+    // background-color: lightblue;
+    margin: 0%;
+    // width: 200px;
+    padding: 0%;
+    // border: none;
+    display: flex;
+    // height: 50px;
+}
+
+.labels-list-item-checkbox-inner-container{
+    border-radius: 40px;
+    width:20px;
+    height: 20px;
+    border: 0;
+    margin: 7px;
+    align-self: center;
+}
+.edit-icon{
+    text-align: center;
+}
+.label-card-bgcolor{
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    // margin:1px;
+    padding:0px 2px;
+    text-align: -webkit-match-parent;
+    box-sizing: border-box;
+}
+hr{
+    border: 0px;
+    border-top:0.2px solid;
+}
+
+.ant-modal-header {
+    display: flex;
+    justify-content:center;
+  }
+.bottom-btn{
+    width: 100%;
+    margin-top: 2%;
+    background-color: #0000003d;
+    border: 0;
+}
+.cards-list{
+    // display: flex;
+    width: 100%;
+    list-style-type: none;
+  text-align: -webkit-match-parent;
+
+}
+.label-card-list{
+    // margin-right:15px ;
+    padding: 3%;
+}
+div.ant-list-item{
+    padding-left: 0px;
+}
+// .match{
+//     text-align: -webkit-match-parent;
+// }
+// div.ant-list-item{
+//     padding-left: 0%;
+// }
+li.ant-list-item.ant-list-item{
+    border-block-end-width:0;
+    // margin: 2% 0 2% 2%;
+    // margin-right: 0%;
+    padding: 0%;
+    margin-top: 1%;
+    width: 100%;
+    font-size: 20px;
+}
+.label-edit-bottom-btn-con{
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    button{
+        width: 30%;
+    }
+}
+.label-edit-top-con{
+    // width: 100%;
+    background-color: #F4F5F7;
+    padding: 8%;
+
+    // text-align: center;
+}
+.label-edit-bg-container{
+    width: 100%;
+    border-radius: 2%;
+}
+.label-edit-card{
+    width: 20px;
+    height: 20px;
+    border: 2 solid black;
+    // margin: 7px;
+    align-self: center;
+    border-radius: 50%;
+}
+
+.labels .ant-modal .ant-modal-content {
+    padding: 20px 0px;
+}
+
+a{
+    color: black;
+    // text-decoration: underline;
+}
+.attach-bottom-btn{
+    width: 30%;
+    margin-top: 4%;
+    margin-bottom: 2%;
+    font-size: 13px;
+    background-color: #0000003d;
+}
+.attachment-input{
+    margin-top: 3%;
+}
+.cover-skeleton-container{
+    display: flex;
+    width: 100%;
+    // justify-content: space-around;
+}
+.cover-upload-btn{
+    width: 260px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: 13px;
+    background-color: #0000003d;
+}
+.cover-images{
+    width: 60px;
+    border-radius: 5%;
+    height: 40px;
+}
+.cover-skeleton{
+    border: 1px solid;
+    border-radius: 20px;
+    margin-right: 4px;
+    width: 50%;
+}
+// .date-picker{
+//     height: 300px;
+//     // position: relative;
+// }
+
+button.react-calender_tile.react-calender_month-view_days_day{
+    background-color: white;
+}

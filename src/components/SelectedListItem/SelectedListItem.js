@@ -38,6 +38,7 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 // import moment from "moment";
 import moment from "moment-timezone";
 import TextArea from "antd/es/input/TextArea";
+import RightPopup from '../../components/RightPopup/RightPopup'
 
 // Let us open our database
 // const request = window.indexedDB.open("Database", 1);
@@ -667,7 +668,9 @@ const SelectedListItem = () => {
             ) : null}
           </section>
 
-          <section className="pop-up-right-section">right</section>
+          <section className="pop-up-right-section">
+            <RightPopup/>
+          </section>
         </section>
       </section>
     </>
