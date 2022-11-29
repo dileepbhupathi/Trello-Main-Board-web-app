@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./listContainer.scss";
 import { Button } from "antd";
-import { dummyListData } from "../../fixtures/dummyListData";
+import {dummyListData} from '../../Constants/dummyListData'
 import { CardsContainer } from "../CardsContainer/cardsContainer";
 import { X } from "react-feather";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export const ListContainer = () => {
   const [columns, setcolumns] = useState(dummyListData);
-
+  
   const [addBoard, setAddBoard] = useState(false);
   const [boardTitle, setBoardTitle] = useState();
   function addList() {
@@ -77,12 +77,15 @@ export const ListContainer = () => {
     <div className="list-container-bg">
       <h1 className="project-heading">Project Management</h1>
       <DragDropContext
-        onDragEnd={(result) => onDragEnd(result, columns, setcolumns)}
+        onDragEnd={(result) => onDragEnd(result ,columns, setcolumns)}
       >
         <div className="list-items">
           {Object.entries(columns).map(([columnId, column], index) => (
+            // console.log(column)
+          
             <Droppable droppableId={columnId} key={columnId}>
               {(provided, snapshot) => {
+                
                 return (
                   <div
                     {...provided.droppableProps}

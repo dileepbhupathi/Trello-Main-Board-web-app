@@ -1,17 +1,19 @@
 .list-container-bg{
     
-    min-height: 100vh;
-    min-width: 400vw;
-    background-image: linear-gradient(to right, #3B185F,#863A6F);
+    height: 90.1vh;
+    width: 100%;
+    background: linear-gradient(to right, rgb(1, 1, 115),rgb(192, 24, 153));
     color: white;
-    padding: 10px;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 .project-heading{
     color: #ffff;
     font-family: 'Bree-serif';
     font-size: 27px;
     font-weight: bold;
-    
+    box-sizing: border-box;
 }
 
 .list-items{
