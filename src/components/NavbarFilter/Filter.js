@@ -45,6 +45,7 @@ export const FilterComponent = () => {
         Filter
       </Button>
       <Modal
+        mask={false}
         title="Filter"
         open={isModalOpen}
         onOk={handleOk}

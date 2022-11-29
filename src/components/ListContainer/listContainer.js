@@ -6,7 +6,7 @@ import { CardsContainer } from "../CardsContainer/cardsContainer";
 import { X } from "react-feather";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
-// import Column from "antd/es/table/Column";
+
 
 export const ListContainer = () => {
   const [columns, setcolumns] = useState(dummyListData);
@@ -14,16 +14,7 @@ export const ListContainer = () => {
   const [addBoard, setAddBoard] = useState(false);
   const [boardTitle, setBoardTitle] = useState();
   function addList() {
-    // let newList = {
-    //   [uuidv4()]:{
-    //     name: boardTitle,
-    //     task:[]
-    //   }
-    // }
-    console.log("function called");
-
-    // Object.entries(add).newList(([key,value]) => { dummyListData[key] = value })
-    // dummyListData.push(newList);
+   
 
     if(boardTitle !== undefined) {
       dummyListData[uuidv4()] = { name: boardTitle, task: [] };
@@ -75,13 +66,13 @@ export const ListContainer = () => {
   };
   return (
     <div className="list-container-bg">
-      <h1 className="project-heading">Project Management</h1>
+     
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result ,columns, setcolumns)}
       >
         <div className="list-items">
           {Object.entries(columns).map(([columnId, column], index) => (
-            // console.log(column)
+          
           
             <Droppable droppableId={columnId} key={columnId}>
               {(provided, snapshot) => {
