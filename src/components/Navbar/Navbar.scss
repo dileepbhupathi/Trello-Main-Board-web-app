@@ -1,0 +1,145 @@
+.navbar {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.header-container {
+    background: linear-gradient(to right, rgb(1, 1, 115),rgb(192, 24, 153));
+    padding: 1% 0% 1% 0.5%;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.star-icon{
+    color: yellow;
+    font-size: 1.5em;
+}
+
+.star-icon1 {
+    color: white;
+    font-size: 1.25em;
+}
+
+.button{
+    background-color: #ffffff33;
+    border-color: transparent;
+    margin-left: 1%;
+
+}
+
+
+.line-container {
+    color: grey;
+    display: inline-block;
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
+.title-container{
+    width: 19%;
+    margin-right: 0.5%;
+}
+
+.title {
+    color: white;
+    font-weight: 700;
+    font-size: 1.125em;
+}
+
+.workspace-container {
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+}
+
+.workspace-button {
+    background-color: #ffffff33;
+    border-color: transparent;
+    color: white;
+}
+
+.workspace-icon {
+    color: white;
+    font-size: 1.25em;
+    margin-right: 5%;
+
+}
+
+.board-container {
+    margin-left: 0.5%;
+    width: 42%;
+}
+
+.board-icon {
+    font-size: 1.125em;
+    margin-right: 10%;
+}
+
+.board-button {
+    border-color: transparent;
+}
+
+.angle-down-icon {
+    font-size: 1.25em;
+    color: white;
+}
+
+.calender-button {
+    margin-left: 1%;
+    background-color: #ffffff33;
+    color: white;
+    padding:0% 1.5%;
+}
+
+.calender-icon {
+    color: white;
+    font-size: 1.125em;
+    margin-right: 5%;
+}
+
+.avtar {
+    background-color: rgb(31, 31, 178);
+    padding: 0.5%;
+    border-radius: 50%;
+    color: white;
+    margin-left: 0.5%;
+    position: relative;
+}
+
+.double-arrow-icon{
+    position: absolute;
+    font-size: 0.75em;
+    top: 65%;
+    left: 65%;
+}
+
+.avtar1 {
+    background-color: rgb(71, 230, 89);
+    padding: 0.5% 0.75%;
+    border-radius: 50%;
+    color: white;
+    margin-left: 0.25%;
+    margin-right: 0.25%;
+
+}
+
+.share-button {
+    padding: 0% 15%;
+    margin-left: 0.5%;
+}
+
+.person-icon {
+    margin-right: 8%;
+}
+
+
+
+.more-option-button {
+    margin-left: 1%;
+    background-color: #ffffff33;
+    color: white;
+    font-size: 1.1em;
+    margin-right: 1%;
+}
+
