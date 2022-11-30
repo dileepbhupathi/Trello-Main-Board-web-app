@@ -1,0 +1,94 @@
+.activity-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+p {
+    padding: 0%;
+    margin: 0%;
+}
+
+.activity-icon-container {
+    width: 8%;
+
+}
+
+.activity-title-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.activity-input-section {
+    display: flex;
+}
+
+.ant-form {
+    width: 98%;
+    margin-left: 2%;
+}
+
+.activity-submit-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ant-list-items {
+    padding: 0%;
+    margin: 0%;
+}
+
+.ant-list-item {
+
+    padding: 0% 0%;
+    margin: 0%;
+}
+
+.ant-list-item.activity-status {
+
+    display: flex;
+    align-items: flex-start;
+    padding: 0%;
+
+
+
+    .activity-status-content {
+
+        padding-left: 1%;
+        flex-grow: 1;
+
+        .activity-status-matter {
+
+            border-radius: 5px;
+            min-height: 30px;
+            background-color: white;
+
+        }
+
+        .activity-status-options-section {
+
+            display: flex;
+            text-align: center;
+            align-items: center;
+
+            .activity-status-options-icons {
+                font-size: 11px;
+            }
+
+            p {
+                font-size: 11px;
+                padding-left: 2%;
+            }
+        }
+    }
+}
+
+.member {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    font-size: 15px;
+    color: white;
+    text-align: center;
+    background: rgb(3, 94, 3)
+}

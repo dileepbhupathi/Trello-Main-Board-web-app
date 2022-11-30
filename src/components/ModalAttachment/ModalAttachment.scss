@@ -1,0 +1,45 @@
+.attachment-icon-section{
+width: 8%;
+}
+.attachment-section{
+    display: flex;
+    align-items: flex-start;
+}
+.attachment-content-section {
+    flex-grow: 1;
+
+    .link-section {
+        display: flex;
+
+        .link-image {
+            color: #dbdcdf;
+            background-color: #5e6c84;
+            width: 115px;
+            height: 75px;
+            line-height: 70px;
+            font-size: 15px;
+            text-align: center;
+
+        }
+
+        .link-matter {
+            padding-left: 2%;
+            padding-top: 2%;
+
+            .attachment-link {
+                font-weight: bold;
+                color: #172b4d;
+            }
+
+            a {
+                text-decoration: underline;
+                color: #5e6c84;
+            }
+        }
+    }
+
+    .ant-btn {
+        margin-top: 0.8%;
+        padding: 0% 0.6%;
+    }
+}
