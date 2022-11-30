@@ -5,7 +5,8 @@ import "./cards.scss";
 import { Draggable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
 // import { dummyListData } from "../../fixtures/dummyListData";
-import SelectedListItem from "../SelectedListItem/SelectedListItem";
+// import SelectedListItem from "../SelectedListItem/SelectedListItem";
+import ModalPage from "../ModalPage/ModalPage";
 export const CardsContainer = ({ listItem }) => {
   const [addOption, showAddOption] = useState(false);
   const [inputValue, setInputValue] = useState();
@@ -67,7 +68,7 @@ export const CardsContainer = ({ listItem }) => {
                       borderRadius: "0px",
                     }}
                   >
-                    <SelectedListItem />
+                    <ModalPage />
                   </Modal>
                 </>
               );
