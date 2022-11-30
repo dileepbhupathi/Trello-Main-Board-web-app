@@ -73,7 +73,7 @@ export const Labels = () => {
     };
    
     const labelEdit=(
-        <div  className="right-top-popover-container">
+        <div className="right-top-popover-label-container">
         <hr/>
         <div className="label-edit-top-con">
           <div
