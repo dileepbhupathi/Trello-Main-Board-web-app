@@ -39,7 +39,6 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 import moment from "moment-timezone";
 import TextArea from "antd/es/input/TextArea";
 import RightPopup from '../../components/RightPopup/RightPopup'
-
 // Let us open our database
 // const request = window.indexedDB.open("Database", 1);
 

@@ -25,6 +25,7 @@ import {
 import Calendar from 'react-calendar';
 import { dummyData, labelBgColorsData ,coverCardsBgColor,coverImages} from "../../Constants/RightPopupData/data";
 import { GrAttachment } from "react-icons/gr";
+import {ContentComponent} from '../ContentComponents/Content'
 
 
 function RightPopup() {
@@ -455,6 +456,7 @@ function RightPopup() {
         Cover
       </Button>
       </Popover>
+      <ContentComponent/>
     </div>
   );
 }
