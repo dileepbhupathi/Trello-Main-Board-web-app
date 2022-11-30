@@ -1,10 +1,11 @@
 import "./ModalAttachment.scss";
 import React, { useState } from "react";
-import { Typography,Button,Modal } from "antd";
+import PropTypes from "prop-types";
+import { Typography, Button, Modal } from "antd";
 import { SwitcherOutlined } from "@ant-design/icons";
-import {TfiArrowTopRight} from 'react-icons/tfi'
-const ModalAttachment = () => {
-    const {Title} = Typography;
+import { TfiArrowTopRight } from "react-icons/tfi";
+const ModalAttachment = ({ label }) => {
+  const { Title } = Typography;
   const [attachmentModal, setAttachmentModal] = useState(false);
   return (
     <>
@@ -13,7 +14,7 @@ const ModalAttachment = () => {
           <SwitcherOutlined style={{ fontSize: "30px" }} />
         </div>
         <section className="attachment-content-section">
-          <Title level={4}>Attachments</Title>
+          <Title level={4}>{label}</Title>
           <section className="link-section">
             <section className="link-image">LINK</section>
             <section className="link-matter">
@@ -53,3 +54,10 @@ const ModalAttachment = () => {
 };
 
 export default ModalAttachment;
+
+ModalAttachment.propTypes = {
+  label: PropTypes.string.isRequired,
+};
+ModalAttachment.defaultProps = {
+  label: "Attachments",
+};

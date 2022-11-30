@@ -1,9 +1,10 @@
 import "./ModalDescription.scss";
 import React,{useState} from 'react';
+import PropTypes from "prop-types";
 import { Space, Typography, Button, Form } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { AlignLeftOutlined } from "@ant-design/icons";
-const ModalDescription = ({ description }) => {
+const ModalDescription = ({ description,label,EditButtonLabel,CancleButtonLabel }) => {
   const [enableEditMode, setEnableEditMode] = useState(false);
   const [descriptionData, setDescriptionData] = useState(description);
   const [btndisabled, setbtndisabled] = useState(true);
@@ -31,11 +32,11 @@ const ModalDescription = ({ description }) => {
         </section>
         <Space direction="vertical">
           <Space>
-            <Title level={4}>Description</Title>
+            <Title level={4}>{label}</Title>
             {descriptionData !== "" ? (
               <Button type="text" onClick={descriptionEditMode}>
                 {" "}
-                Edit{" "}
+                {EditButtonLabel}{" "}
               </Button>
             ) : null}
           </Space>
@@ -70,7 +71,7 @@ const ModalDescription = ({ description }) => {
                       Save
                     </Button>
                     <Button type="text" onClick={descriptionEditMode}>
-                      Cancle
+                      {CancleButtonLabel}
                     </Button>
                   </Space>
                 </Form.Item>
@@ -84,3 +85,14 @@ const ModalDescription = ({ description }) => {
 };
 
 export default ModalDescription;
+ModalDescription.propTypes = {
+  label: PropTypes.string.isRequired,
+  EditButtonLabel:PropTypes.string.isRequired,
+  CancleButtonLabel:PropTypes.string.isRequired,
+
+}
+ModalDescription.defaultProps = {
+  label: "Description",
+  EditButtonLabel:"Edit",
+  CancleButtonLabel:"Cancle"
+};
