@@ -1,7 +1,11 @@
 .content-container {
     // background-image: radial-gradient(rgb(34, 255, 0),rgb(17, 17, 116));
     align-self: center;
+    width: 100%;
+    margin-top: 5%;
 }
+
+
 
 .power-ups-title {
     display: block;
@@ -13,8 +17,11 @@
     background-color: transparent;
     color: #172b4d;
     border: 0px;
-    margin: 0.5% 0% 1% 0%;
+    margin: 15% 5% 15% 5%;
+    width: 95%;
+    text-align: left;
 }
+
 
 
 .add-power-ups-button:hover {
@@ -25,12 +32,10 @@
 
 .create-button-list-container {
     width: 300px;
-    // height: 50vh;
-    // overflow-y: scroll;
 }
 
 .add-buttons-list-container {
-    width: 70%;
+    width: 100%;
 }
 
 .crate-buttons-list {
@@ -79,11 +84,11 @@
 }
 
 .action-button-list {
-    background-color: #abb5c7;
+    background-color: #e0e5ef;
     color: #172b4d;
     border: 0px;
-    margin: 0.5% 0% 1% 0%;
-    width: 12%;
+    margin: 2% 0% 2% 0%;
+    width: 100%;
     text-align: left;
 }
 
@@ -95,8 +100,9 @@
     width: 100%;
     margin-top: 2%;
     border: 0px;
-    background-color: rgb(201, 230, 242);
+    background-color: rgb(242, 248, 252);
     color: #5e6c84;
+    box-shadow: none;
 }
 
 .move-card-1 {
@@ -104,8 +110,10 @@
     width: 70%;
     margin-top: 2%;
     border: 0px;
-    background-color: rgb(201, 230, 242);
+    background-color: rgb(242, 248, 252);
     color: #5e6c84;
+    box-shadow: none;
+
 }
 
 .move-card-2 {
@@ -113,8 +121,10 @@
     width: 30%;
     margin-top: 2%;
     border: 0px;
-    background-color: rgb(201, 230, 242);
+    background-color: rgb(242, 248, 252);
     color: #5e6c84;
+    box-shadow: none;
+
 }
 
 .move-card-title {
@@ -128,7 +138,7 @@
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
     width: 100%;
     height: 32px;
-    background-color: rgb(201, 230, 242);
+    background-color: rgb(242, 248, 252);
     border: 0px;
 }
 
@@ -179,8 +189,8 @@
 .delete-button {
     display: block;
     border: 0px;
-    margin: 0.5% 0% 1% 0%;
-    width: 12%;
+    margin: 3% 0% 5% 0%;
+    width: 100%;
     text-align: left;
 }
 
@@ -190,11 +200,11 @@
 }
 
 .action-share-button-list {
-    background-color: #abb5c7;
+    background-color: #e0e5ef;
     color: #172b4d;
     border: 0px;
-    margin: 0.5% 0% 1% 0%;
-    width: 12%;
+    margin: 2% 0% 0% 0%;
+    width: 100%;
     text-align: left;
     display: block;
 }

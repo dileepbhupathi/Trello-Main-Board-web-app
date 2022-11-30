@@ -1,14 +1,15 @@
-import { Button, Card, Checkbox, Popover, Select } from "antd";
+import { Button, Card, Popover } from "antd";
 import React, { useState } from "react";
 import "./Content.scss";
 import { Typography } from "antd";
 import { AiOutlinePlus } from "react-icons/ai";
-import { BsPersonFill, BsShare,  BsFillTagFill, BsArrowRight } from "react-icons/bs";
-import { MdContentCopy } from "react-icons/md";
-import { CgTemplate } from "react-icons/cg";
-import { FiEye } from "react-icons/fi";
-import { TiArchive } from "react-icons/ti";
-import TextArea from "antd/es/input/TextArea";
+import {
+  BsPersonFill,
+  BsShare,
+  BsFillTagFill,
+} from "react-icons/bs";
+// import { CgTemplate } from "react-icons/cg";
+// import { FiEye } from "react-icons/fi";
 import {
   BiTimeFive,
   BiRightArrowAlt,
@@ -16,14 +17,14 @@ import {
   BiSortDown,
 } from "react-icons/bi";
 import { FaCopy } from "react-icons/fa";
-import {
-  MoveBoardData,
-  MoveBoardListData,
-  MoveBoardPositionData,
-} from "../../Constants/MoveBoardOptions/MoveBoardData";
-import { TiTick } from "react-icons/ti";
-import { SlReload } from "react-icons/sl";
-import { AiOutlineMinus } from "react-icons/ai";
+
+// import { TiTick } from "react-icons/ti";
+
+import { TemplateButton } from "../TemplateButton/TemplateButton";
+import { WatchButton } from "../WatchButton/WatchButton";
+import { ArchiveButton } from "../ArchiveButton/ArchiveButton";
+import { Move } from "../MoveButton/Move";
+import { Copy } from "../CopyButton/Copy";
 
 export const ContentComponent = () => {
   const { Text } = Typography;
@@ -74,130 +75,20 @@ export const ContentComponent = () => {
     </div>
   );
 
-  const MoveBoardOptions = [];
-  for (let i = 0; i < MoveBoardData.length; i++) {
-    MoveBoardOptions.push({ value: MoveBoardData[i], label: MoveBoardData[i] });
-  }
-
-  const moveBoardListOptions = [];
-  for (let i = 0; i < MoveBoardListData.length; i++) {
-    moveBoardListOptions.push({
-      value: MoveBoardListData[i],
-      label: MoveBoardListData[i],
-    });
-  }
-
-  const moveBoardPositionOptions = [];
-  for (let i = 0; i < MoveBoardPositionData.length; i++) {
-    moveBoardPositionOptions.push({
-      value: MoveBoardPositionData[i],
-      label: MoveBoardPositionData[i],
-    });
-  }
-
-  const moveCardContent = (
-    <div className="move-card-popover">
-      <hr />
-      <Text className="move-board-card-title">Select destination</Text>
-      <div className="move-board-cards-container">
-        <Card className="move-card">
-          <Text className="move-card-title">Board</Text>
-          <Select
-            defaultValue={MoveBoardOptions[2]}
-            options={MoveBoardOptions}
-            className="move-card-select-options"
-          />
-        </Card>
-        <div className="move-card-list-position-container">
-          <Card className=" move-card-1">
-            <Text className="move-card-title">List</Text>
-            <Select
-              defaultValue={moveBoardListOptions[3]}
-              options={moveBoardListOptions}
-              className="move-card-select-options"
-            />
-          </Card>
-          <Card className=" move-card-2">
-            <Text className="move-card-title">position</Text>
-            <Select
-              defaultValue={moveBoardPositionOptions[3]}
-              options={moveBoardPositionOptions}
-              className="move-card-select-options"
-            />
-          </Card>
-        </div>
-      </div>
-      <Button type="primary"> Move </Button>
-    </div>
-  );
-
-  const copyCardContent = (
-    <div className="move-card-popover">
-      <hr />
-      <Text className="move-card-title">Title</Text>
-      <TextArea
-        autoSize={{ minRows: 2, maxRows: 4 }}
-        defaultValue={
-          "Trello Tip: This is where assigned tasks live so that your team can see who's working on what and when it's due."
-        }
-      />
-      <div className="keep-label">
-        <Text className="move-card-title">Keep...</Text>
-        <Checkbox className="label-checkbox">
-          <Text>Label (1)</Text>
-        </Checkbox>
-      </div>
-      <div className="keep-label">
-        <Text>Copy to...</Text>
-        <div className="move-board-cards-container">
-          <Card className="move-card">
-            <Text className="move-card-title">Board</Text>
-            <Select
-              defaultValue={MoveBoardOptions[2]}
-              options={MoveBoardOptions}
-              className="move-card-select-options"
-            />
-          </Card>
-          <div className="move-card-list-position-container">
-            <Card className=" move-card-1">
-              <Text className="move-card-title">List</Text>
-              <Select
-                defaultValue={moveBoardListOptions[3]}
-                options={moveBoardListOptions}
-                className="move-card-select-options"
-              />
-            </Card>
-            <Card className=" move-card-2">
-              <Text className="move-card-title">position</Text>
-              <Select
-                defaultValue={moveBoardPositionOptions[3]}
-                options={moveBoardPositionOptions}
-                className="move-card-select-options"
-              />
-            </Card>
-          </div>
-        </div>
-        <Button type="primary"> Create card </Button>
-      </div>
-    </div>
-  );
-
   const [isTemplate, setIsTemplate] = useState(false);
 
   const changesToTemplate = () => {
     setIsTemplate(true);
     setIsHideFromList(true);
     setIsDelete(true);
-    setIsArchive(true)
-
+    setIsArchive(true);
   };
 
   const removesTemplate = () => {
     setIsTemplate(false);
     setIsHideFromList(false);
     setIsDelete(false);
-    setIsArchive(false)
-
+    setIsArchive(false);
   };
 
   const [isWatch, setIsWatch] = useState(false);
@@ -217,10 +108,6 @@ export const ContentComponent = () => {
     setIsShowInList(true);
   };
 
-  // const showInList = () => {
-  //   setIsHideFromList(false)
-  // }
-
   const [isShowInList, setIsShowInList] = useState(false);
 
   const showInList = () => {
@@ -230,22 +117,21 @@ export const ContentComponent = () => {
 
   const [isDelete, setIsDelete] = useState(false);
 
-  const [isArchive, setIsArchive] = useState(false)
+  const [isArchive, setIsArchive] = useState(false);
 
-  const [isSendToBoard, setIsSendToBoard] = useState(false)
+  const [isSendToBoard, setIsSendToBoard] = useState(false);
 
   const sendToBoard = () => {
-    setIsSendToBoard(true)
-    setIsArchive(true)
-    setIsDelete(true)
-  }
+    setIsSendToBoard(true);
+    setIsArchive(true);
+    setIsDelete(true);
+  };
 
   const sendToArchive = () => {
-    setIsSendToBoard(false)
-    setIsArchive(false)
-    setIsDelete(false)
-  }
-
+    setIsSendToBoard(false);
+    setIsArchive(false);
+    setIsDelete(false);
+  };
 
   return (
     <div className="content-container">
@@ -253,7 +139,7 @@ export const ContentComponent = () => {
         <Text className="power-ups-title">Power-Ups</Text>
         <div>
           <Button className="add-power-ups-button">
-            <AiOutlinePlus />
+            <AiOutlinePlus  className="button-list-icons"/>
             Add Power-Ups
           </Button>
         </div>
@@ -263,87 +149,46 @@ export const ContentComponent = () => {
         <div className="add-buttons-list-container">
           <Popover content={content} title="add button" trigger="click">
             <Button className="add-power-ups-button">
-              <AiOutlinePlus />
+              <AiOutlinePlus  className="button-list-icons"/>
               Add Button
             </Button>
           </Popover>
         </div>
       </div>
       <div>
-        <Text>Actions</Text>
+        <Text className="power-ups-title">Actions</Text>
         <div className="action-button-list-container">
-          <Popover content={moveCardContent} trigger="click" title="Move card">
-            <Button className="action-button-list">
-              <BsArrowRight className="button-list-icons" /> Move
-            </Button>
-          </Popover>
-          <Popover trigger="click" title="Copy Card" content={copyCardContent}>
-            <Button className="action-button-list">
-              <MdContentCopy className="button-list-icons" /> Copy
-            </Button>
-          </Popover>
-          {isTemplate ? (
-            <Button className="action-button-list" onClick={removesTemplate}>
-              <CgTemplate className="button-list-icons" /> Template
-              <span className="tick-icon-container">
-                <TiTick className="tick-icon" />
-              </span>
-            </Button>
-          ) : (
-            <Button className="action-button-list" onClick={changesToTemplate}>
-              <CgTemplate className="button-list-icons" /> Make template
-            </Button>
-          )}
-          {isWatch ? (
-            <Button className="action-button-list" onClick={removeWatch}>
-              <FiEye className="button-list-icons" /> Watch{" "}
-              <span className="tick-icon-container">
-                <TiTick className="tick-icon" />
-              </span>
-            </Button>
-          ) : (
-            <Button className="action-button-list" onClick={changesToWatch}>
-              <FiEye className="button-list-icons" /> Watch
-            </Button>
-          )}
+          <Move/>
+          <Copy/>
+          <TemplateButton
+            isTemplate={isTemplate}
+            changesToTemplate={changesToTemplate}
+            removesTemplate={removesTemplate}
+          />
+          <WatchButton
+            isWatch={isWatch}
+            changesToWatch={changesToWatch}
+            removeWatch={removeWatch}
+          />
         </div>
       </div>
       <hr />
       <div>
-        {isArchive ? null : (
-          <Button className="action-button-list" onClick={sendToBoard}>
-            <TiArchive className="button-list-icons" />
-            Archive
-          </Button>
-        )}
-        {isSendToBoard ? (
-          <Button className="action-button-list" onClick={sendToArchive}>
-            <span>
-              <SlReload className="button-list-icons" /> Send to Board
-            </span>
-          </Button>
-        ) : null}
-        {isHideFromList ? (
-          <Button className="action-button-list" onClick={hideFromList}>
-            <span>
-              <TiArchive className="button-list-icons" /> Hide from List
-            </span>
-          </Button>
-        ) : null}
-        {isShowInList ? (
-          <Button className="action-button-list" onClick={showInList}>
-            <span>
-              <SlReload className="button-list-icons" /> Show in List
-            </span>
-          </Button>
-        ) : null}
-        {isDelete ? (
-          <Button type="primary" danger className="delete-button">
-            <AiOutlineMinus className="delete-icon" />
-            Delete
-          </Button>
-        ) : null}
-        <Button  className="action-share-button-list"> <BsShare className="button-list-icons"/> Share</Button>
+        <ArchiveButton
+          isHideFromList={isHideFromList}
+          hideFromList={hideFromList}
+          isShowInList={isShowInList}
+          showInList={showInList}
+          isDelete={isDelete}
+          isArchive={isArchive}
+          isSendToBoard={isSendToBoard}
+          sendToBoard={sendToBoard}
+          sendToArchive={sendToArchive}
+        />
+        <Button className="action-share-button-list">
+          {" "}
+          <BsShare className="button-list-icons" /> Share
+        </Button>
       </div>
     </div>
   );
