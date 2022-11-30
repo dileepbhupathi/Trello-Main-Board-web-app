@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import "./RightPopup.scss";
-<<<<<<< HEAD
 import {ContentComponent} from '../ContentComponents/Content'
 import {Members} from '../Members/members';
-=======
-import { ContentComponent } from "../ContentComponents/Content";
-import { Members } from "../Members/members";
->>>>>>> 9dbeeb8ee326b017a346aa1f12b6569839305d58
 import { Labels } from "../Labels/labels";
 import { Checklist } from "../Checklist/checklist";
 import { Dates } from "../Dates/dates";
@@ -16,7 +11,6 @@ import { Button, Modal} from "antd";
 import {PicCenterOutlined} from "@ant-design/icons";
 
 function RightPopup() {
-<<<<<<< HEAD
    const [isModalOpen, setIsModalOpen] = useState(false);
    const showModal = () => {
       setIsModalOpen(true);
@@ -66,28 +60,10 @@ function RightPopup() {
         </div>
         </Modal>
       <ContentComponent/>
-=======
-  return (
-    <>
-      <div className="right-top-container">
-        <h3>Add to card</h3>
-        <Members />
-        <Labels />
-        <Checklist />
-        <Dates />
-        <Attachment />
-        <Cover />
-        <ContentComponent />
->>>>>>> 9dbeeb8ee326b017a346aa1f12b6569839305d58
+  
       </div>
     </>
   );
 }
 export default RightPopup;
-<<<<<<< HEAD
 
-
-
- 
-=======
->>>>>>> 9dbeeb8ee326b017a346aa1f12b6569839305d58
