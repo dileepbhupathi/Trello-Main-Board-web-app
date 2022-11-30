@@ -12,10 +12,11 @@ import {
   Modal,
   
 } from "antd";
+import PropTypes from "prop-types"; 
 import "./ModalCheckbox.scss";
 import { CheckSquareOutlined} from "@ant-design/icons";
 import TextArea from "antd/es/input/TextArea";
-const ModalCheckbox = () => {
+const ModalCheckbox = ({label}) => {
   const { Title,Text } = Typography;
   const [checklistform] = Form.useForm();
   const [checkList, setCheckList] = useState(false);
@@ -82,7 +83,7 @@ const ModalCheckbox = () => {
         <Space direction="vertical">
           <section className="checkbox-title-section">
             <section>
-              <Title level={4}>Checkbox</Title>
+              <Title level={4}>{label}</Title>
             </section>
             <section>
               {check ? (
@@ -207,3 +208,14 @@ const ModalCheckbox = () => {
 };
 
 export default ModalCheckbox;
+
+
+
+ModalCheckbox.propTypes = {
+  label: PropTypes.string.isRequired,
+
+  
+};
+ModalCheckbox.defaultProps = {
+  label:"Checkbox"
+};

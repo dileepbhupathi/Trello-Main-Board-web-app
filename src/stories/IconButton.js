@@ -14,7 +14,7 @@ export const IconButton = ({ primary, backgroundColor, size, label, ...props }) 
       style={backgroundColor && { backgroundColor }}
       {...props}
     >
-        {icons}
+        {/* {icons} */}
       {label}
     </button>
   );
