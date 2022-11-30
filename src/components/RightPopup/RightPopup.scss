@@ -15,6 +15,7 @@
     width: 100%;
     margin-bottom: 5%;
     text-align: left;
+    border: 0;
 }
 .top-popover-container{
     width: 300px;
@@ -180,11 +181,28 @@ a{
     margin-right: 4px;
     width: 50%;
 }
-// .date-picker{
-//     height: 300px;
-//     // position: relative;
-// }
-
-button.react-calender_tile.react-calender_month-view_days_day{
-    background-color: white;
+.trail-button{
+    background-color: violet;
+    width: 50%;
+    font-size: 13px;
+    padding: 0px;
+}
+.trail-container{
+    text-align: center;
+}
+.trail-container-list{
+    text-align: start;
+    margin-left: 8%;
+}
+.trail-container-list-item{
+    list-style-type: disc;
+}
+.trail-container-button{
+    width: 100%;
+    background-color: #0079bf;
+    border:0;
+    padding: 2%;
+    color:#ffffff;
+    border-radius: 5px;
+    margin-bottom: 2%;
 }

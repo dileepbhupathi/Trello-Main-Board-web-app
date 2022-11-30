@@ -7,9 +7,11 @@ import {
     CloseOutlined,
   } from "@ant-design/icons";
 import {dummyData,labelBgColorsData} from "../../Constants/RightPopupData/data";
+// import { useHistory } from 'react-router-dom';
 
 
 export const Labels = () => {
+  // const history=useHistory();
   const [data, setData] = useState([]);
   const [eachData, setEachData] = useState({});
   const [inputValue,setInputValue]=useState({});
@@ -46,23 +48,27 @@ export const Labels = () => {
     dummyData.push(newObj);
     console.log(inputValue);
     console.log(dummyData);
+    // window.location.goBack(-1);
   };
   const addEditedLabelData=()=>{
     const editObj={
       name:inputValue,
-      bgColor:edit.bgColor,
+      bgColor:edit.backgroundColor,
     }
-    dummyData[edit.id]=editObj;
+    dummyData[index]=editObj;
+    // window.location.goBack(-1);
   }
  
-    const [edit,setEdit]=useState("");
+    const [edit,setEdit]=useState({});
     const [add,setAdd]=useState(true);
-    const editLabel=(item)=>{
+    const [index,setA]=useState("")
+    const editLabel=(item,i)=>{
       setEdit(item);
+      setA(i);
       setAdd(false);
     };
     const clearEditData=()=>{
-      setEdit("");
+      setEdit({});
       setAdd(true)
     };
    
@@ -137,7 +143,7 @@ export const Labels = () => {
                 className="labels-list-container"
                 itemLayout="vertical"
                 dataSource={filteredData}
-                renderItem={(item) => (
+                renderItem={(item,i) => (
                   <List.Item className="labels-list-item">
                     <Row>
                       <Col span={22}>
@@ -156,7 +162,7 @@ export const Labels = () => {
                       </Col>
                       <Col span={1}>
                         <Popover trigger="click" title="Edit Label" content={labelEdit}>
-                          <EditOutlined className="edit-icon" onClick={()=>editLabel(item)} />
+                          <EditOutlined className="edit-icon" onClick={()=>editLabel(item,i)} />
                         </Popover>
                       </Col>
                     </Row>
