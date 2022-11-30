@@ -7,13 +7,12 @@ const ModalDescription = ({ description }) => {
   const [enableEditMode, setEnableEditMode] = useState(false);
   const [descriptionData, setDescriptionData] = useState(description);
   const [btndisabled, setbtndisabled] = useState(true);
-  const onValuesChange = (changedValues, allValues) => {
+  const onValuesChange = (allValues) => {
     if (allValues.data !== undefined && allValues.data !== "") {
       setbtndisabled(false);
     } else {
       setbtndisabled(true);
     }
-    // console.log(allValues);
   };
   const onFinishDescriptionHandler = (values) => {
     setDescriptionData(values.data);
@@ -54,7 +53,7 @@ const ModalDescription = ({ description }) => {
                 <Form.Item name="data">
                   <TextArea
                     autoSize={{
-                      minRows: 3,
+                      minRows: 2,
                       maxRows: 6,
                     }}
                     defaultValue={descriptionData !== "" ? descriptionData : null}
