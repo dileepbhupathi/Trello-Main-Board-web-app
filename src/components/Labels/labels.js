@@ -12,7 +12,7 @@ import {dummyData,labelBgColorsData} from "../../Constants/RightPopupData/data";
 export const Labels = () => {
   const [data, setData] = useState([]);
   const [eachData, setEachData] = useState({});
-  const [inputValue,setInputValue]=useState("");
+  const [inputValue,setInputValue]=useState({});
   const [addCardColor,setAddCardColor]=useState();
   const [filteredData, setFilteredData] = useState([]);
   const [input, setInput] = useState("");
@@ -46,19 +46,29 @@ export const Labels = () => {
     dummyData.push(newObj);
     console.log(inputValue);
     console.log(dummyData);
+  };
+  const addEditedLabelData=()=>{
+    const editObj={
+      name:inputValue,
+      bgColor:edit.bgColor,
+    }
+    dummyData[edit.id]=editObj;
   }
  
     const [edit,setEdit]=useState("");
+    const [add,setAdd]=useState(true);
     const editLabel=(item)=>{
       setEdit(item);
+      setAdd(false);
     };
     const clearEditData=()=>{
       setEdit("");
+      setAdd(true)
     };
    
     const labelEdit=(
         <div  className="right-top-popover-container">
-        <hr />
+        <hr/>
         <div className="label-edit-top-con">
           <div
             style={{ backgroundColor: eachData.bgColor }}
@@ -100,8 +110,14 @@ export const Labels = () => {
         <hr />
         <div className="label-edit-bottom-btn-con">
           {/* <Popover content={labels} title="Labels" > */}
-          <Button type="primary" onClick={()=>addLabelData()}>Save</Button>
+          {/* if (edit === ""){
+            <Button type="primary" onClick={()=>addLabelData()}>Save</Button>
+          } else {
+            <Button type="primary" onClick={()=>addEditedLabelData()}>Save</Button>
+          } */}
           {/* </Popover> */}
+            
+          {add? <Button type="primary" onClick={()=>addLabelData()}>Save</Button>:<Button type="primary" onClick={()=>addEditedLabelData()}>Save</Button>}
           <Button type="primary" danger>
             Delete
           </Button>
