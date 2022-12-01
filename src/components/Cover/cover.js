@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../RightPopup/RightPopup.scss';
-import { Popover,Button, Skeleton, Upload, message, List, Card} from 'antd';
+import { Popover,Button, Upload, message, List, Card} from 'antd';
 import {coverCardsBgColor,coverImages} from "../../Constants/RightPopupData/data";
 import {
     UserOutlined
@@ -30,33 +30,34 @@ export const Cover = () => {
         },
       };
     const cover=(
-        <div className="right-top-popover-container">
+        <div className="right-top-popover-label-container">
         <hr />
-              <p>Size</p>
+              <h4>Size</h4>
               <div className="cover-skeleton-container">    
                 <div className="cover-skeleton" >
-                  <div  style={{ backgroundColor: coverData.bgColor }}>
-                    hi
+                  <div className="skeleton-top-container" style={{ backgroundColor: coverData.bgColor }}>
+                    
                   </div>
-                  <Skeleton
+                  {/* <Skeleton
                       avatar
                       paragraph={{
                         rows: 4,
                       }}
-                  />
+                    //   style={{height:"200px"}}
+                  /> */}
                 </div>
-              
-              <Skeleton
-              style={{ backgroundColor: coverData.bgColor }} 
-    
-              className="cover-skeleton"
-                paragraph={{
-                  rows: 3,
-                }}
-                avatar
-              />
+              <div className="cover-skeleton" style={{ backgroundColor: coverData.bgColor }}>
+                {/* <Skeleton
+                style={{ backgroundColor: coverData.bgColor }} 
+                    paragraph={{
+                    rows: 3,
+                    }}
+                    avatar
+                /> */}
               </div>
-              <p>Colors</p>
+             
+              </div>
+              <h4>Colors</h4>
               <List
                   width="100%"
                   grid={{ column: 5 }}
@@ -66,17 +67,18 @@ export const Cover = () => {
                   <Card onClick={()=>sendBgColorCover(item)}
                     className="label-card-bgcolor"
                     style={{ backgroundColor: item.bgColor }}
+                    
                   ></Card>
                 </List.Item>
               )}/>
-              <p>Attachments</p>
+              <h4>Attachments</h4>
               <Upload {...props}>
                 <Button className="cover-upload-btn" >Upload a cover page</Button>
               </Upload>
               <p>Tip: Drag an image on to the card to upload it.</p>
-              <p>Photos from Unsplash</p>
+              <h4>Photos from Unsplash</h4>
               <List
-                  grid={{ column: 3 }}
+                 grid={{ column: 3 }}
                 dataSource={coverImages}
                 renderItem={(item)=>(
                   <List.Item >

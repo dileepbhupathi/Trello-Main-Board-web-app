@@ -7,6 +7,13 @@
 }
 .right-top-popover-container{
     width: 300px;
+    padding:0% 3% 0% 1%;
+    // height: 80vh;
+    // overflow-y: scroll;
+    // overflow-x: hidden;
+}
+.right-top-popover-label-container{
+    width: 300px;
     padding:3% 0%;
     height: 80vh;
     overflow-y: scroll;
@@ -62,12 +69,13 @@
 }
 .label-card-bgcolor{
     width: 50px;
-    height: 30px;
+    height: 40px;
     border-radius: 5px;
     // margin:1px;
     padding:0px 2px;
-    text-align: -webkit-match-parent;
+    // text-align: -webkit-match-parent;
     box-sizing: border-box;
+    box-shadow: none;
 }
 hr{
     border: 0px;
@@ -141,9 +149,9 @@ li.ant-list-item.ant-list-item{
     border-radius: 50%;
 }
 
-.labels .ant-modal .ant-modal-content {
-    padding: 20px 0px;
-}
+// .labels .ant-modal .ant-modal-content {
+//     padding: 20px 0px;
+// }
 
 a{
     color: black;
@@ -172,15 +180,22 @@ a{
     background-color: #0000003d;
 }
 .cover-images{
-    width: 60px;
+    width: 75px;
     border-radius: 5%;
-    height: 40px;
+    height: 50px;
 }
 .cover-skeleton{
     border: 1px solid;
     border-radius: 20px;
     margin-right: 4px;
     width: 50%;
+    height: 100px;
+}
+.skeleton-top-container{
+    height: 50px;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+
 }
 .trail-button{
     background-color: violet;

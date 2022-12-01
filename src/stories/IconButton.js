@@ -5,7 +5,7 @@ import './button.css';
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
+export const IconButton = ({ primary, backgroundColor, size, label, ...props }) => {
   const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
   return (
     <button
@@ -14,12 +14,13 @@ export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
       style={backgroundColor && { backgroundColor }}
       {...props}
     >
+        {/* {icons} */}
       {label}
     </button>
   );
 };
 
-Button.propTypes = {
+IconButton.propTypes = {
   /**
    * Is this the principal call to action on the page?
    */
@@ -42,7 +43,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
 };
 
-Button.defaultProps = {
+IconButton.defaultProps = {
   backgroundColor: null,
   primary: false,
   size: 'medium',
