@@ -1,4 +1,5 @@
 import "./ModalPage.scss";
+
 import ModalTitle from "../../components/ModalTitle/ModalTitle";
 import ModalDescription from "../../components/ModalDescription/ModalDescription";
 import ModalActivity from "../../components/ModalActivity/ModalActivity";
