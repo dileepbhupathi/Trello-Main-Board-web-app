@@ -13,7 +13,6 @@ const ModalActivity = ({ label }) => {
   const [activityForm] = Form.useForm();
   const [activity, setActivity] = useState(false);
   const [activityData, setActivityData] = useState([]);
-
   const activitySubmitHandler = (e) => {
     let now = moment(new Date());
     let timestamps = now.tz("Asia/Kolkata").format("hh:mm A");
@@ -59,12 +58,10 @@ const ModalActivity = ({ label }) => {
           </Space>
         </Space>
       </div>
-
       <div className="activity-input-section">
         <div className="activity-icon-container">
           <div className="member">s</div>
         </div>
-
         <Form form={activityForm} onFinish={(e) => activitySubmitHandler(e)}>
           <Form.Item name="activityInputData">
             <Input
