@@ -9,8 +9,10 @@ import { Button, Checkbox, Col, Modal, Row, Select, Typography } from "antd";
 // import { SlCalender } from "react-icons/sl";
 // import {TiTag} from 'react-icons/ti'
 import { Label } from "../NavbarLabel/Label";
+import PropTypes from "prop-types";
 
-export const FilterComponent = () => {
+
+export const FilterComponent = ({label,backgroundColor}) => {
   const { Text } = Typography;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,7 +44,7 @@ export const FilterComponent = () => {
         <IoFilterOutline
           className={isModalOpen ? "filter-icon" : "calender-icon"}
         />
-        Filter
+        {label}
       </Button>
       <Modal
         mask={false}
@@ -234,3 +236,12 @@ export const FilterComponent = () => {
     </>
   );
 };
+
+
+FilterComponent.propTypes = {
+  label : PropTypes.string.isRequired
+}
+
+FilterComponent.defaultProps = {
+  label : "Filter",
+}
