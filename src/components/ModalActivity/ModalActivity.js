@@ -8,8 +8,8 @@ import { v4 as uuid } from "uuid";
 import "./ModalActivity.scss";
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { Space, Typography, Button, Form, Input, List } from "antd";
-const ModalActivity = ({ label}) => {
-  const { Title ,Text} = Typography;
+const ModalActivity = ({ label }) => {
+  const { Title, Text } = Typography;
   const [activityForm] = Form.useForm();
   const [activity, setActivity] = useState(false);
   const [activityData, setActivityData] = useState([]);
@@ -39,7 +39,7 @@ const ModalActivity = ({ label}) => {
     });
   };
   return (
-    <>
+    <div className="activity">
       <div className="activity-container">
         <div className="activity-icon-container">
           <UnorderedListOutlined style={{ fontSize: "30px" }} />
@@ -61,7 +61,9 @@ const ModalActivity = ({ label}) => {
       </div>
 
       <div className="activity-input-section">
-        <div className="member">sp</div>
+        <div className="activity-icon-container">
+          <div className="member">s</div>
+        </div>
 
         <Form form={activityForm} onFinish={(e) => activitySubmitHandler(e)}>
           <Form.Item name="activityInputData">
@@ -100,17 +102,29 @@ const ModalActivity = ({ label}) => {
 
       {activity ? (
         <List
+          className="activity-list"
           dataSource={activityData}
           renderItem={(item) => (
             <List.Item className="activity-status">
-              <div className="member">s</div>
+              <div className="activity-icon-container">
+                <div className="member">s</div>
+              </div>
+
               <div className="activity-status-content">
-                <Title type='secondary' level={5}>spandala today at {item.timestamps}</Title>
-                <Text type='secondary' className="activity-status-matter">{item.activity}</Text>
+                <Text level={5}>spandala</Text>
+                <Text type="secondary" level={5}>
+                  {" "}
+                  today at {item.timestamps}
+                </Text>
+                <br />
+                <Text type="secondary" level={5}>
+                  {item.activity}
+                </Text>
                 <div className="activity-status-options-section">
                   <BsEmojiSmile className="activity-status-options-icons" />
                   <Text type="secondary"> - Edit - </Text>
-                  <Text type="secondary"
+                  <Text
+                    type="secondary"
                     onClick={() => {
                       deleteActivityStatus(item);
                     }}
@@ -123,7 +137,7 @@ const ModalActivity = ({ label}) => {
           )}
         />
       ) : null}
-    </>
+    </div>
   );
 };
 
@@ -131,9 +145,7 @@ export default ModalActivity;
 
 ModalActivity.propTypes = {
   label: PropTypes.string.isRequired,
-  
 };
 ModalActivity.defaultProps = {
   label: "Activity",
- 
 };
