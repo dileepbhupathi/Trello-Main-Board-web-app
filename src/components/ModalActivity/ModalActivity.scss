@@ -3,10 +3,10 @@
     align-items: flex-start;
 }
 
-p {
-    padding: 0%;
-    margin: 0%;
-}
+// p {
+//     padding: 0%;
+//     margin: 0%;
+// }
 
 .activity-icon-container {
     width: 8%;
@@ -32,22 +32,11 @@ p {
     justify-content: space-between;
 }
 
-.ant-list-items {
-    padding: 0%;
-    margin: 0%;
-}
-
-.ant-list-item {
-
-    padding: 0% 0%;
-    margin: 0%;
-}
-
 .ant-list-item.activity-status {
 
     display: flex;
     align-items: flex-start;
-    padding: 0%;
+    // padding: 0%;
 
 
 
@@ -74,10 +63,10 @@ p {
                 font-size: 11px;
             }
 
-            p {
-                font-size: 11px;
-                padding-left: 2%;
-            }
+            // p {
+            //     font-size: 11px;
+            //     padding-left: 2%;
+            // }
         }
     }
 }

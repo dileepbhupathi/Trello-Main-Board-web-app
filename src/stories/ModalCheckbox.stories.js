@@ -11,5 +11,7 @@ const ModalCheckboxComponent = (args) => <ModalCheckbox {...args} />;
 export const ModalCheckboxLabels = ModalCheckboxComponent.bind({});
 ModalCheckboxLabels.args = {
   label: "Checkbox",
+  DeleteButtonLabel:"Delete",
+  AddCheckLabel:"Add an item"
 
 };

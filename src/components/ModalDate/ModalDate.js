@@ -1,10 +1,12 @@
 import "./ModalDate.scss";
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+
 import { Checkbox, Typography, DatePicker } from "antd";
 import dayjs from "dayjs";
 import moment from "moment-timezone";
-const ModalDate = () => {
-  const { Text } = Typography;
+const ModalDate = ({label}) => {
+  const { Title } = Typography;
   const [dateChecked, setDateChecked] = useState(false);
   const [duration, setDuration] = useState();
   const [timeLeft, setTimeLeft] = useState(0);
@@ -37,8 +39,8 @@ const ModalDate = () => {
 
   return (
     <>
-      <section className="date-section">
-        <Text type="secondary">due date</Text>
+      <div className="date-section">
+        <Title level={5} type="secondary">{label}</Title>
         <Checkbox onChange={onChangeDateCheckBox}>
           <DatePicker onChange={onChangeDatePicker}>
             {dayjs(duration)}
@@ -59,9 +61,15 @@ const ModalDate = () => {
             ) : null}
           </span>
         </Checkbox>
-      </section>
+      </div>
     </>
   );
 };
 
 export default ModalDate;
+ModalDate.propTypes = {
+  label: PropTypes.string.isRequired,
+};
+ModalDate.defaultProps = {
+  label:'Due date'
+};
