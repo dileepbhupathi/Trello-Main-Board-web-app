@@ -1,10 +1,8 @@
 import "./ModalMember.scss";
 import React from "react";
 import PropTypes from "prop-types";
-
 import { Space, Typography } from "antd";
-import { PlusCircleOutlined } from "@ant-design/icons";
-const ModalMember = ({ label1, label2, label3 }) => {
+const ModalMember = ({ label1, label2, label3 ,icon}) => {
   const { Title } = Typography;
   return (
     <>
@@ -26,7 +24,7 @@ const ModalMember = ({ label1, label2, label3 }) => {
           >
             {label3}
           </div>
-          <PlusCircleOutlined style={{ fontSize: "30px" }} />
+          <span style={{ fontSize: "30px" }} >{icon}</span>
         </Space>
       </Space>
     </>
@@ -39,11 +37,5 @@ ModalMember.propTypes = {
   label1: PropTypes.string.isRequired,
   label2: PropTypes.string.isRequired,
   label3: PropTypes.string.isRequired,
-  
-};
-ModalMember.defaultProps = {
-  label1: "S",
-  label2: "P",
-  label3: "D",
-  
+  icon:PropTypes.object.isRequired,
 };

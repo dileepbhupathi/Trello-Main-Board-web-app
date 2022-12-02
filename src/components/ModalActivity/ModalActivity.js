@@ -8,7 +8,7 @@ import { v4 as uuid } from "uuid";
 import "./ModalActivity.scss";
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { Space, Typography, Button, Form, Input, List } from "antd";
-const ModalActivity = ({ label }) => {
+const ModalActivity = ({ label,smileIcon }) => {
   const { Title, Text } = Typography;
   const [activityForm] = Form.useForm();
   const [activity, setActivity] = useState(false);
@@ -118,7 +118,7 @@ const ModalActivity = ({ label }) => {
                   {item.activity}
                 </Text>
                 <div className="activity-status-options-section">
-                  <BsEmojiSmile className="activity-status-options-icons" />
+                  <span className="activity-status-options-icons">{smileIcon}</span>
                   <Text type="secondary"> - Edit - </Text>
                   <Text
                     type="secondary"
@@ -142,6 +142,7 @@ export default ModalActivity;
 
 ModalActivity.propTypes = {
   label: PropTypes.string.isRequired,
+  smileIcon:PropTypes.object.isRequired
 };
 ModalActivity.defaultProps = {
   label: "Activity",
