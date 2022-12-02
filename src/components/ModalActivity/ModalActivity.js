@@ -3,6 +3,7 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { GrAttachment } from "react-icons/gr";
 import { FaRegAddressCard } from "react-icons/fa";
 import PropTypes from "prop-types";
+import {RiBearSmileLine} from 'react-icons/ri'
 import moment from "moment";
 import { v4 as uuid } from "uuid";
 import "./ModalActivity.scss";
@@ -146,4 +147,5 @@ ModalActivity.propTypes = {
 };
 ModalActivity.defaultProps = {
   label: "Activity",
+  smileIcon: <RiBearSmileLine/>
 };
