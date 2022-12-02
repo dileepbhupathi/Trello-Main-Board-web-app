@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import '../RightPopup/RightPopup.scss';
 import { Popover,Button, Checkbox, Input, Select} from 'antd';
 import Calendar from 'react-calendar';
+import moment from "moment";
+import 'react-calendar/dist/Calendar.css';
 import {
     FieldTimeOutlined,
   } from "@ant-design/icons";
 
 export const Dates = () => {
-  const [value, calender] = useState(new Date());
-
+  const [date, setDate] = useState();
+  const [isChecked, setIsChecked] = useState(false);
+  let eachDate=moment(date).format("MM/DD/YYYY");
     const onChange = (value) => {
         console.log(`selected ${value}`);
       };
@@ -17,15 +20,15 @@ export const Dates = () => {
       };
     const dates=(
         <div  className="right-top-popover-container">
-              <Calendar onChange={calender} value={value} />
-              <div className="date-picker">
-                
+          <hr/>
+              <Calendar onChange={setDate} />
+              <div className="date-picker">   
               </div>
               <br/>
               <label>Start date</label>
               <br />
-              <Checkbox>
-                <Input placeholder="M/D/YYYY"></Input>
+              <Checkbox onChange={(e) => setIsChecked(e.target.checked)}>
+                <Input disabled={!isChecked} placeholder="M/D/YYYY"  value={eachDate}></Input>
               </Checkbox>
               <br />
               <label>Set due date reminder</label>

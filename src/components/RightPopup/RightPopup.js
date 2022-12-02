@@ -68,8 +68,7 @@ function RightPopup() {
             </a>
           </div>
         </Modal>
-        <ContentComponent />
-  
+        <ContentComponent/>
       </div>
     </>
   );
