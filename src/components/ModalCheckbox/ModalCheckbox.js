@@ -16,7 +16,7 @@ import PropTypes from "prop-types";
 import "./ModalCheckbox.scss";
 import { CheckSquareOutlined} from "@ant-design/icons";
 import TextArea from "antd/es/input/TextArea";
-const ModalCheckbox = ({label}) => {
+const ModalCheckbox = ({label,DeleteButtonLabel,AddCheckLabel}) => {
   const { Title,Text } = Typography;
   const [checklistform] = Form.useForm();
   const [checkList, setCheckList] = useState(false);
@@ -76,16 +76,16 @@ const ModalCheckbox = ({label}) => {
   };
   return (
     <>
-      <section className="checkbox-section">
-        <section className="checkbox-icon-container">
+      <div className="checkbox-section">
+        <div className="checkbox-icon-container">
           <CheckSquareOutlined style={{ fontSize: "30px" }} />
-        </section>
+        </div>
         <Space direction="vertical">
-          <section className="checkbox-title-section">
-            <section>
+          <div className="checkbox-title-section">
+            <div>
               <Title level={4}>{label}</Title>
-            </section>
-            <section>
+            </div>
+            <div>
               {check ? (
                 <Button type="text" onClick={hideCheckedItemsHandler}>
                   Hide Checked Items
@@ -97,9 +97,9 @@ const ModalCheckbox = ({label}) => {
                 </Button>
               ) : null}
               <Button type="text" onClick={() => setChecklistDeleteModal(true)}>
-                Delete
+                {DeleteButtonLabel}
               </Button>
-            </section>
+            </div>
             <Modal
               centered
               title="Delete Checklist"
@@ -117,7 +117,7 @@ const ModalCheckbox = ({label}) => {
                 Delete CheckList
               </Button>
             </Modal>
-          </section>
+          </div>
           <Progress percent={percent} />
 
           {checkboxData.length > 0 ? (
@@ -149,7 +149,7 @@ const ModalCheckbox = ({label}) => {
           ) : null}
           {checkAdd ? (
             <Button type="text" onClick={checklistHandler}>
-              Add an Item
+              {AddCheckLabel}
             </Button>
           ) : null}
           {checkList ? (
@@ -170,7 +170,7 @@ const ModalCheckbox = ({label}) => {
                 />
               </Form.Item>
               <Form.Item>
-                <section className="checklist-submit-section">
+                <div className="checklist-submit-section">
                   <Space>
                     <Button
                       type="primary"
@@ -185,7 +185,7 @@ const ModalCheckbox = ({label}) => {
                     </Button>
                   </Space>
 
-                  <section>
+                  <div>
                     <Space>
                       <Button type="text">
                         @<a href="/">Assign</a>
@@ -196,13 +196,13 @@ const ModalCheckbox = ({label}) => {
                       <Button type="text">@</Button>
                       <Button type="text">@</Button>
                     </Space>
-                  </section>
-                </section>
+                  </div>
+                </div>
               </Form.Item>
             </Form>
           ) : null}
         </Space>
-      </section>
+      </div>
     </>
   );
 };
@@ -213,9 +213,12 @@ export default ModalCheckbox;
 
 ModalCheckbox.propTypes = {
   label: PropTypes.string.isRequired,
-
+  DeleteButtonLabel:PropTypes.string.isRequired,
+  AddCheckLabel:PropTypes.string.isRequired
   
 };
 ModalCheckbox.defaultProps = {
-  label:"Checkbox"
+  label:"Checkbox",
+  DeleteButtonLabel:"Delete",
+  AddCheckLabel:"Add an item"
 };

@@ -9,15 +9,15 @@ const ModalAttachment = ({ label }) => {
   const [attachmentModal, setAttachmentModal] = useState(false);
   return (
     <>
-      <section className="attachment-section">
+      <div className="attachment-section">
         <div className="attachment-icon-section">
           <SwitcherOutlined style={{ fontSize: "30px" }} />
         </div>
-        <section className="attachment-content-section">
+        <div className="attachment-content-section">
           <Title level={4}>{label}</Title>
-          <section className="link-section">
-            <section className="link-image">LINK</section>
-            <section className="link-matter">
+          <div className="link-section">
+            <div className="link-image">LINK</div>
+            <div className="link-matter">
               <p className="attachment-link">
                 link http://antd_wesite
                 <span>
@@ -29,8 +29,8 @@ const ModalAttachment = ({ label }) => {
                 Added 43 minutes go - <a href="/">Comment</a> -{" "}
                 <a href="/">Remove</a> - <a href="/">Edit</a>
               </p>
-            </section>
-          </section>
+            </div>
+          </div>
           <Button
             type="text"
             onClick={() => {
@@ -47,8 +47,8 @@ const ModalAttachment = ({ label }) => {
             onOk={() => setAttachmentModal(false)}
             onCancel={() => setAttachmentModal(false)}
           ></Modal>
-        </section>
-      </section>
+        </div>
+      </div>
     </>
   );
 };

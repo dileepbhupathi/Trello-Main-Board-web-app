@@ -1,12 +1,19 @@
 import "./ModalLabel.scss";
+import PropTypes from "prop-types";
 import { Typography } from "antd";
-const ModalLabel = () => {
-  const {Text} =Typography;
+const ModalLabel = ({label}) => {
+  const {Title} =Typography;
   return (
     <>
-      <Text type="secondary">labels</Text>
+      <Title level={5} type="secondary">{label}</Title>
     </>
   );
 };
 
 export default ModalLabel;
+ModalLabel.propTypes = {
+  label:PropTypes.string.isRequired
+}
+ModalLabel.defaultProps = {
+  label:"Labels"
+}

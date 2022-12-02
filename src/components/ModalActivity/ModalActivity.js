@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import { BsEmojiSmile } from "react-icons/bs";
 import { GrAttachment } from "react-icons/gr";
 import { FaRegAddressCard } from "react-icons/fa";
+import PropTypes from "prop-types";
+import {RiBearSmileLine} from 'react-icons/ri'
 import moment from "moment";
 import { v4 as uuid } from "uuid";
 import "./ModalActivity.scss";
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { Space, Typography, Button, Form, Input, List } from "antd";
-const ModalActivity = () => {
-  const { Title } = Typography;
+const ModalActivity = ({ label,smileIcon }) => {
+  const { Title, Text } = Typography;
   const [activityForm] = Form.useForm();
   const [activity, setActivity] = useState(false);
   const [activityData, setActivityData] = useState([]);
-
   const activitySubmitHandler = (e) => {
     let now = moment(new Date());
     let timestamps = now.tz("Asia/Kolkata").format("hh:mm A");
@@ -38,14 +39,14 @@ const ModalActivity = () => {
     });
   };
   return (
-    <>
-      <section className="activity-container">
-        <section className="activity-icon-container">
+    <div className="activity">
+      <div className="activity-container">
+        <div className="activity-icon-container">
           <UnorderedListOutlined style={{ fontSize: "30px" }} />
-        </section>
+        </div>
         <Space direction="vertical">
           <Space className="activity-title-container">
-            <Title level={4}>Activity</Title>
+            <Title level={4}>{label}</Title>
             <Button
               type="text"
               onClick={() => {
@@ -57,11 +58,11 @@ const ModalActivity = () => {
             </Button>
           </Space>
         </Space>
-      </section>
-
-      <section className="activity-input-section">
-        <section className="member">sp</section>
-
+      </div>
+      <div className="activity-input-section">
+        <div className="activity-icon-container">
+          <div className="member">s</div>
+        </div>
         <Form form={activityForm} onFinish={(e) => activitySubmitHandler(e)}>
           <Form.Item name="activityInputData">
             <Input
@@ -70,8 +71,8 @@ const ModalActivity = () => {
             />
           </Form.Item>
           <Form.Item>
-            <section className="activity-submit-section">
-              <section>
+            <div className="activity-submit-section">
+              <div>
                 <Button
                   type="primary"
                   className="btn-primary"
@@ -79,8 +80,8 @@ const ModalActivity = () => {
                 >
                   Save
                 </Button>
-              </section>
-              <section>
+              </div>
+              <div>
                 <Button type="text">
                   <GrAttachment />
                 </Button>
@@ -91,39 +92,60 @@ const ModalActivity = () => {
                 <Button type="text">
                   <FaRegAddressCard />
                 </Button>
-              </section>
-            </section>
+              </div>
+            </div>
           </Form.Item>
         </Form>
-      </section>
+      </div>
 
       {activity ? (
         <List
+          className="activity-list"
           dataSource={activityData}
           renderItem={(item) => (
             <List.Item className="activity-status">
-              <section className="member">s</section>
-              <section className="activity-status-content">
-                <p>spandala today at {item.timestamps}</p>
-                <div className="activity-status-matter">{item.activity}</div>
+              <div className="activity-icon-container">
+                <div className="member">s</div>
+              </div>
+
+              <div className="activity-status-content">
+                <Text level={5}>spandala</Text>
+                <Text type="secondary" level={5}>
+                  {" "}
+                  today at {item.timestamps}
+                </Text>
+                <br />
+                <Text type="secondary" level={5}>
+                  {item.activity}
+                </Text>
                 <div className="activity-status-options-section">
-                  <BsEmojiSmile className="activity-status-options-icons" />
-                  <p>Edit </p>
-                  <p
+                  <span className="activity-status-options-icons">{smileIcon}</span>
+                  <Text type="secondary"> - Edit - </Text>
+                  <Text
+                    type="secondary"
                     onClick={() => {
                       deleteActivityStatus(item);
                     }}
                   >
                     Delete
-                  </p>
+                  </Text>
                 </div>
-              </section>
+              </div>
             </List.Item>
           )}
         />
       ) : null}
-    </>
+    </div>
   );
 };
 
 export default ModalActivity;
+
+ModalActivity.propTypes = {
+  label: PropTypes.string.isRequired,
+  smileIcon:PropTypes.object.isRequired
+};
+ModalActivity.defaultProps = {
+  label: "Activity",
+  smileIcon: <RiBearSmileLine/>
+};

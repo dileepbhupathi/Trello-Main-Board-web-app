@@ -1,94 +1,92 @@
-.activity-container {
-    display: flex;
-    align-items: flex-start;
-}
+.activity {
 
-p {
-    padding: 0%;
-    margin: 0%;
-}
+    .activity-container {
+        display: flex;
+        align-items: flex-start;
 
-.activity-icon-container {
-    width: 8%;
-
-}
-
-.activity-title-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.activity-input-section {
-    display: flex;
-}
-
-.ant-form {
-    width: 98%;
-    margin-left: 2%;
-}
-
-.activity-submit-section {
-    display: flex;
-    justify-content: space-between;
-}
-
-.ant-list-items {
-    padding: 0%;
-    margin: 0%;
-}
-
-.ant-list-item {
-
-    padding: 0% 0%;
-    margin: 0%;
-}
-
-.ant-list-item.activity-status {
-
-    display: flex;
-    align-items: flex-start;
-    padding: 0%;
-
-
-
-    .activity-status-content {
-
-        padding-left: 1%;
-        flex-grow: 1;
-
-        .activity-status-matter {
-
-            border-radius: 5px;
-            min-height: 30px;
-            background-color: white;
-
+        .activity-icon-container {
+            width: 7%;
         }
 
-        .activity-status-options-section {
+    }
 
+
+    .activity-title-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .activity-input-section {
+        display: flex;
+
+        .activity-icon-container {
+            width: 6%;
+
+            .member {
+                width: 30px;
+                height: 30px;
+                line-height: 25px;
+                border-radius: 50%;
+                font-size: 20px;
+                color: white;
+                text-align: center;
+                background: rgb(3, 94, 3)
+            }
+        }
+
+    }
+
+    .ant-form {
+        width: 98%;
+        margin-left: 1%;
+    }
+
+    .activity-submit-section {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .activity-list {
+        .ant-typography {
+            margin: 0%;
+            // font-size: 15px;
+            line-height: 5px;
+        }
+
+        .activity-status {
             display: flex;
-            text-align: center;
-            align-items: center;
+            justify-content: flex-start;
+            align-items: flex-start;
 
-            .activity-status-options-icons {
-                font-size: 11px;
+            .activity-icon-container {
+                width: 6%;
+
+                .member {
+                    width: 30px;
+                    height: 30px;
+                    line-height: 25px;
+                    border-radius: 50%;
+                    font-size: 20px;
+                    color: white;
+                    text-align: center;
+                    background: rgb(3, 94, 3)
+                }
             }
 
-            p {
-                font-size: 11px;
-                padding-left: 2%;
+            .activity-status-content {
+                padding: 0% 0% 0% 1%;
+                flex-grow: 1;
+
+                .activity-status-options-section {
+                    display: flex;
+                    text-align: center;
+                    align-items: center;
+
+                    .activity-status-options-icons {
+                        font-size: 11px;
+                    }
+                }
             }
         }
     }
-}
-
-.member {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 50%;
-    font-size: 15px;
-    color: white;
-    text-align: center;
-    background: rgb(3, 94, 3)
 }

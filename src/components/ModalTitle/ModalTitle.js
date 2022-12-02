@@ -1,12 +1,13 @@
 import "./ModalTitle.scss";
 import ModalMember from "../../components/ModalMember/ModalMember";
+import PropTypes from "prop-types";
 
 import { Space, Typography } from "antd";
 import { PicCenterOutlined } from "@ant-design/icons";
 import ModalDate from "../ModalDate/ModalDate";
 import ModalLabel from "../ModalLabel/ModalLabel";
 
-const ModalTitle = ({ modaltitle, modaldescription }) => {
+const ModalTitle = ({ modaltitle, modaldescription,label}) => {
   const { Title, Text, Link } = Typography;
   return (
     <Space align="top" direction="horizontal">
@@ -15,7 +16,7 @@ const ModalTitle = ({ modaltitle, modaldescription }) => {
         <Space direction="vertical" className="space">
           <Title level={3}>{modaltitle}</Title>
           <Text type="secondary">
-            in list{" "}
+            {label}{" "}
             <Link href="/" target="/">
               <Text type="secondary" underline>{modaldescription}</Text>
             </Link>
@@ -34,3 +35,11 @@ const ModalTitle = ({ modaltitle, modaldescription }) => {
 };
 
 export default ModalTitle;
+ModalTitle.propTypes = {
+  label: PropTypes.string.isRequired,
+
+};
+
+ModalTitle.defaultProps = {
+  label: "in list "
+};

@@ -26,10 +26,10 @@ const ModalDescription = ({ description,label,EditButtonLabel,CancleButtonLabel 
   const { Title } = Typography;
   return (
     <>
-      <section className="description-container">
-        <section className="description-icon-container">
+      <div className="description-container">
+        <div className="description-icon-container">
           <AlignLeftOutlined style={{ fontSize: "30px" }} />
-        </section>
+        </div>
         <Space direction="vertical">
           <Space>
             <Title level={4}>{label}</Title>
@@ -43,7 +43,7 @@ const ModalDescription = ({ description,label,EditButtonLabel,CancleButtonLabel 
           {enableEditMode ? (
             <p className="description-paragraph">{descriptionData}</p>
           ) : (
-            <section>
+            <div>
               <Form
                 onFinish={(data) => onFinishDescriptionHandler(data)}
                 onFinishFailed={(error) => {
@@ -76,10 +76,10 @@ const ModalDescription = ({ description,label,EditButtonLabel,CancleButtonLabel 
                   </Space>
                 </Form.Item>
               </Form>
-            </section>
+            </div>
           )}
         </Space>
-      </section>
+      </div>
     </>
   );
 };
