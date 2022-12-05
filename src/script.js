@@ -44,7 +44,7 @@ request.onupgradeneeded = function (event) {
   }
 };
 
-export function read() {
+function read() {
   var transaction = db.transaction(["employee"]);
   var objectStore = transaction.objectStore("employee");
   var request = objectStore.get("00-03");
@@ -70,7 +70,7 @@ export function read() {
   };
 }
 
-export function readAll() {
+function readAll() {
   var objectStore = db.transaction("employee").objectStore("employee");
 
   objectStore.openCursor().onsuccess = function (event) {
@@ -94,7 +94,7 @@ export function readAll() {
   };
 }
 
-export function add() {
+function add() {
   var request = db
     .transaction(["employee"], "readwrite")
     .objectStore("employee")
@@ -111,7 +111,7 @@ export function add() {
   };
 }
 
-export function remove() {
+function remove() {
   var request = db
     .transaction(["employee"], "readwrite")
     .objectStore("employee")
@@ -121,5 +121,7 @@ export function remove() {
     console.log("Kenny's entry has been removed from your database.");
   };
 }
-
-read();
+read()
+readAll()
+add()
+remove()
