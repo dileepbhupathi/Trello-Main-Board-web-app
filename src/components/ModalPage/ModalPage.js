@@ -5,13 +5,14 @@ import ModalActivity from "../../components/ModalActivity/ModalActivity";
 import ModalCheckbox from "../../components/ModalCheckbox/ModalCheckbox";
 import ModalAttachment from "../../components/ModalAttachment/ModalAttachment";
 import RightPopup from "../RightPopup/RightPopup";
+
 const modaltitle = "This is the description of the clicked card";
 const modaldescription = "This is the title of the cliked card listitem";
 const description = 'This will be the existing description'
 const ModalPage = () => {
   return (
     <div className="modal-main">
-      <div className="modal-page">
+      <div className="modal-page-left">
         <ModalTitle
           modaltitle={modaltitle}
           modaldescription={modaldescription}
@@ -21,7 +22,7 @@ const ModalPage = () => {
         <ModalCheckbox />
         <ModalActivity />
       </div>
-      <div className="modal-right">
+      <div className="modal-page-right">
         <RightPopup />
         </div>
     </div>

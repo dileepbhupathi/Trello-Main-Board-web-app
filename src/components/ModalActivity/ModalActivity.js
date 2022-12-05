@@ -3,12 +3,13 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { GrAttachment } from "react-icons/gr";
 import { FaRegAddressCard } from "react-icons/fa";
 import PropTypes from "prop-types";
+import {RiBearSmileLine} from 'react-icons/ri'
 import moment from "moment";
 import { v4 as uuid } from "uuid";
 import "./ModalActivity.scss";
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { Space, Typography, Button, Form, Input, List } from "antd";
-const ModalActivity = ({ label }) => {
+const ModalActivity = ({ label,smileIcon }) => {
   const { Title, Text } = Typography;
   const [activityForm] = Form.useForm();
   const [activity, setActivity] = useState(false);
@@ -32,7 +33,6 @@ const ModalActivity = ({ label }) => {
     activityData.forEach((i) => {
       if (i.id === id) {
         setActivityData(activityData.filter((activity) => activity.id !== id));
-        // console.log("activity deleted succesful");
       } else {
         console.log("no such id found");
       }
@@ -53,18 +53,16 @@ const ModalActivity = ({ label }) => {
                 setActivity(!activity);
               }}
             >
-              {" "}
+              
               {activity ? "Hide details" : "Show details"}
             </Button>
           </Space>
         </Space>
       </div>
-
       <div className="activity-input-section">
         <div className="activity-icon-container">
           <div className="member">s</div>
         </div>
-
         <Form form={activityForm} onFinish={(e) => activitySubmitHandler(e)}>
           <Form.Item name="activityInputData">
             <Input
@@ -121,7 +119,7 @@ const ModalActivity = ({ label }) => {
                   {item.activity}
                 </Text>
                 <div className="activity-status-options-section">
-                  <BsEmojiSmile className="activity-status-options-icons" />
+                  <span className="activity-status-options-icons">{smileIcon}</span>
                   <Text type="secondary"> - Edit - </Text>
                   <Text
                     type="secondary"
@@ -145,7 +143,9 @@ export default ModalActivity;
 
 ModalActivity.propTypes = {
   label: PropTypes.string.isRequired,
+  smileIcon:PropTypes.object.isRequired
 };
 ModalActivity.defaultProps = {
   label: "Activity",
+  smileIcon: <RiBearSmileLine/>
 };

@@ -63,6 +63,7 @@ export const CardsContainer = ({ listItem }) => {
                     open={resetModal}
                     onOk={() => setResetModal(false)}
                     onCancel={() => setResetModal(false)}
+                    className="modalpage"
                     style={{
                       top: 50,
                       borderRadius: "0px",
