@@ -6,7 +6,6 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 
 const ModalMember = ({ label1, label2, label3 ,icon}) => {
 
-const ModalMember = ({ label1, label2, label3, backgroundColor }) => {
 
   const { Title } = Typography;
   return (
@@ -38,7 +37,7 @@ const ModalMember = ({ label1, label2, label3, backgroundColor }) => {
   );
 };
 
-export default ModalMember;
+export default ModalMember
 
 ModalMember.propTypes = {
   label1: PropTypes.string.isRequired,
