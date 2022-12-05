@@ -8,7 +8,8 @@ import RightPopup from "../RightPopup/RightPopup";
 
 const modaltitle = "This is the description of the clicked card";
 const modaldescription = "This is the title of the cliked card listitem";
-const description = 'This will be the existing description'
+const description = 'This will be the existing description';
+
 const ModalPage = () => {
   return (
     <div className="modal-main">
