@@ -8,9 +8,10 @@ import {
   } from "@ant-design/icons";
 import {dummyData,labelBgColorsData} from "../../Constants/RightPopupData/data";
 // import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 
-export const Labels = () => {
+export const Labels = ({label}) => {
   // const history=useHistory();
   const [data, setData] = useState([]);
   const [eachData, setEachData] = useState({});
@@ -180,11 +181,18 @@ export const Labels = () => {
         </div>
       );
   return (
-    <Popover content={labels} trigger='click' title="labels">
+    <Popover content={labels} trigger='click' title={label}>
       <Button className="right-container-button">
         <TagOutlined />
-        Labels
+        {label}
       </Button>
     </Popover>
   )
+}
+Labels.propTypes = {
+  label : PropTypes.string.isRequired
+  // icon : PropTypes.object.isRequired
+  }
+Labels.defaultProps = {
+label : "Labels",
 }

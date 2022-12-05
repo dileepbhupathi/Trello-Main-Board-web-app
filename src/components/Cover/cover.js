@@ -3,7 +3,7 @@ import '../RightPopup/RightPopup.scss';
 import { Popover,Button, Upload, message, List, Card} from 'antd';
 import {coverCardsBgColor,coverImages} from "../../Constants/RightPopupData/data";
 import {
-    UserOutlined
+    LaptopOutlined 
   } from "@ant-design/icons";
 
 
@@ -92,7 +92,7 @@ export const Cover = () => {
   return (
     <Popover content={cover} trigger="click" title="Cover">
     <Button className="right-container-button">
-      <UserOutlined />
+    <LaptopOutlined />
       Cover
     </Button>
     </Popover>

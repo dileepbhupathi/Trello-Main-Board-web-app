@@ -8,7 +8,7 @@ import { Dates } from "../Dates/dates";
 import { Attachment } from "../Attachment/attachment";
 import { Cover } from "../Cover/cover";
 import { Button, Modal } from "antd";
-import { PicCenterOutlined } from "@ant-design/icons";
+import { PicCenterOutlined,ShopOutlined} from "@ant-design/icons";
 
 function RightPopup() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,6 +35,7 @@ function RightPopup() {
       </Button>
       <p>Add dropdowns, text fields, dates and more to your cards.</p>
       <Button className="trail-button" onClick={showModal}>
+      <ShopOutlined />
         Start free trail
       </Button>
       <Modal

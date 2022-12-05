@@ -1,7 +1,8 @@
 import React from 'react';
 import '../RightPopup/RightPopup.scss';
 import { Popover,Button, Input, Upload, message } from 'antd';
-import { GrAttachment } from "react-icons/gr";
+// import { GrAttachment } from "react-icons/gr";
+import {PaperClipOutlined } from "@ant-design/icons"
 
 export const Attachment = () => {
     const props = {
@@ -48,7 +49,7 @@ export const Attachment = () => {
   return (
     <Popover content={attachment} trigger="click" title="Attachment">
       <Button className="right-container-button">
-        <GrAttachment />
+        <PaperClipOutlined /> 
         Attachment
       </Button> 
       </Popover>

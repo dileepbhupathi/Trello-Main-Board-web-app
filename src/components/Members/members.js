@@ -2,12 +2,13 @@ import React from 'react';
 import '../RightPopup/RightPopup.scss';
 import { Button,Input,Popover } from 'antd';
 import PropTypes from 'prop-types';
+// import {BsPerson} from "react-icons/bs";
 
 import {
     UserOutlined,
   } from "@ant-design/icons";
 
-export const Members = ({label,icon}) => {
+export const Members = ({label1}) => {
     const members=(
         <div className="right-top-popover-container">
             <hr/>
@@ -16,22 +17,23 @@ export const Members = ({label,icon}) => {
         </div>
     );
   return (
-        <Popover content={members} trigger="click" title="Members">
-            <Button className="right-container-button">
-                {/* <UserOutlined /> */}
-                {/* Members */}
-                {icon}
-                {label}
+        <Popover content={members} trigger="click" title={label1}>
+            <Button className='right-container-button' icon={<UserOutlined/>}>
+              {/* <span className='icon'><BsPerson/> </span>  
+              <span className='label'>{label1}</span>   */}
+              {label1}
+                {/* {icon}
+                {label} */}
             </Button>
         </Popover> 
     
   );
 }
 Members.propTypes = {
-    label : PropTypes.string.isRequired,
-    icon : PropTypes.object.isRequired
+    label1 : PropTypes.string.isRequired
+    // icon : PropTypes.object.isRequired
     }
     
-  Members.defaultProps = {
-    label : "Members",
-  }
+Members.defaultProps = {
+  label1 : "Members",
+}
