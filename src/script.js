@@ -14,7 +14,9 @@ window.IDBKeyRange =
   window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
 
 if (!window.indexedDB) {
-  window.console.log("Your browser doesn't support a stable version of IndexedDB.");
+  window.console.log(
+    "Your browser doesn't support a stable version of IndexedDB."
+  );
 }
 
 const employeeData = [
@@ -42,7 +44,7 @@ request.onupgradeneeded = function (event) {
   }
 };
 
-export function read() {
+function read() {
   var transaction = db.transaction(["employee"]);
   var objectStore = transaction.objectStore("employee");
   var request = objectStore.get("00-03");
@@ -68,7 +70,7 @@ export function read() {
   };
 }
 
-export function readAll() {
+function readAll() {
   var objectStore = db.transaction("employee").objectStore("employee");
 
   objectStore.openCursor().onsuccess = function (event) {
@@ -92,7 +94,7 @@ export function readAll() {
   };
 }
 
-export function add() {
+function add() {
   var request = db
     .transaction(["employee"], "readwrite")
     .objectStore("employee")
@@ -103,11 +105,13 @@ export function add() {
   };
 
   request.onerror = function (event) {
-    console.log("Unable to add data\r\nKenny is aready exist in your database! ");
+    console.log(
+      "Unable to add data\r\nKenny is aready exist in your database! "
+    );
   };
 }
 
-export function remove() {
+function remove() {
   var request = db
     .transaction(["employee"], "readwrite")
     .objectStore("employee")
@@ -118,4 +122,8 @@ export function remove() {
   };
 }
 
+
 read()
+readAll()
+add()
+remove()
