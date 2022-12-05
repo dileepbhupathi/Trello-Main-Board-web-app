@@ -10,13 +10,13 @@ import {IoColorFilterOutline} from 'react-icons/io5'
 
 
 const iconsMap = {
-  Filter : <BsFilterLeft/>,
-  Filter1: <AiFillFilter />,
-  Filter2: <FcFilledFilter />,
-  Filter3: <FaFilter />,
-  Filter4: <MdFilterHdr />,
-  Filter5 : <IoColorFilterOutline/>,
-  Filter6 : <MdOutlineFilter/>
+  BsFilterLeft : <BsFilterLeft/>,
+  AiFillFilter: <AiFillFilter />,
+  FcFilledFilter: <FcFilledFilter />,
+  FaFilter: <FaFilter />,
+  MdFilterHdr: <MdFilterHdr />,
+  IoColorFilterOutline : <IoColorFilterOutline/>,
+  MdOutlineFilter : <MdOutlineFilter/>
 };
 
 export default {
