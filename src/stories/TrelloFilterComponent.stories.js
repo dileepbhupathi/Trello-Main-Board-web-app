@@ -1,19 +1,22 @@
 import React from "react";
 
 import { FilterComponent } from "../components/NavbarFilter/Filter";
+import {AiFillFilter} from 'react-icons/ai'
+import {FcFilledFilter} from 'react-icons/fc'
+import {FaFilter} from 'react-icons/fa'
+import {BsFilterLeft} from 'react-icons/bs'
+import {MdFilterHdr,MdOutlineFilter} from 'react-icons/md'
+import {IoColorFilterOutline} from 'react-icons/io5'
 
-import {
-  StepForwardOutlined,
-  FastForwardOutlined,
-  FilterOutlined,
-  CloseOutlined,
-} from "@ant-design/icons";
 
 const iconsMap = {
-  Filter: <FilterOutlined />,
-  StepForward: <StepForwardOutlined />,
-  FastForward: <FastForwardOutlined />,
-  CloseOutline: <CloseOutlined />
+  BsFilterLeft : <BsFilterLeft/>,
+  AiFillFilter: <AiFillFilter />,
+  FcFilledFilter: <FcFilledFilter />,
+  FaFilter: <FaFilter />,
+  MdFilterHdr: <MdFilterHdr />,
+  IoColorFilterOutline : <IoColorFilterOutline/>,
+  MdOutlineFilter : <MdOutlineFilter/>
 };
 
 export default {
@@ -35,5 +38,5 @@ export const Filter = (args) => <FilterComponent {...args} />;
 export const filterButtonComponent = Filter.bind({});
 filterButtonComponent.args = {
   label: "Filter",
-  icon: <FilterOutlined />,
+  icon: <BsFilterLeft />,
 };
