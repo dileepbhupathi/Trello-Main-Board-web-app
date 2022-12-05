@@ -59,7 +59,7 @@ export const FilterComponent = ({label,icon}) => {
         className="filter-popup"
         footer={null}
       >
-        <section>
+        <div>
           <hr />
           <Text>Keyword</Text>
           <Search
@@ -70,8 +70,8 @@ export const FilterComponent = ({label,icon}) => {
             }}
           />
           <Text>Search cards, members, labels, and more.</Text>
-        </section>
-        <section>
+        </div>
+        <div>
           <Text>Members</Text>
           <ul className="members-container">
             <li>
@@ -99,8 +99,8 @@ export const FilterComponent = ({label,icon}) => {
               </Row>
             </li>
           </ul>
-        </section>
-        <section>
+        </div>
+        <div>
           <Text>Due date</Text>
           <ul>
             <li>
@@ -182,8 +182,8 @@ export const FilterComponent = ({label,icon}) => {
               </Row>
             </li>
           </ul>
-        </section>
-        <section>
+        </div>
+        <div>
           <Text>labels</Text>
           <ul>
             <li>
@@ -206,9 +206,9 @@ export const FilterComponent = ({label,icon}) => {
               </Row>
             </li>
           </ul>
-        </section>
+        </div>
         <hr/>
-        <section>
+        <div>
         <Select
       defaultValue="Any match"
       style={{
@@ -235,7 +235,7 @@ export const FilterComponent = ({label,icon}) => {
         <Text>Matches any label and any memeber</Text>
       </Select.Option>
     </Select>
-        </section>
+        </div>
       </Modal>
     </>
   );
