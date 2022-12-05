@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Filter.scss";
-import { IoFilterOutline } from "react-icons/io5";
+// import { IoFilterOutline } from "react-icons/io5";
 // import { ImPower } from "react-icons/im";
 // import { BsPerson } from "react-icons/bs";
 import Search from "antd/es/transfer/search";
@@ -10,9 +10,10 @@ import { Button, Checkbox, Col, Modal, Row, Select, Typography } from "antd";
 // import {TiTag} from 'react-icons/ti'
 import { Label } from "../NavbarLabel/Label";
 import PropTypes from "prop-types";
+import {FilterOutlined} from '@ant-design/icons'
 
 
-export const FilterComponent = ({label,backgroundColor}) => {
+export const FilterComponent = ({label,icon}) => {
   const { Text } = Typography;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,9 +42,12 @@ export const FilterComponent = ({label,backgroundColor}) => {
         className={isModalOpen ? "filter-button" : "no-filter-button"}
         onClick={showModal}
       >
-        <IoFilterOutline
+        {/* <IoFilterOutline
           className={isModalOpen ? "filter-icon" : "calender-icon"}
-        />
+        /> */}
+        <span className="costumized-icon">
+        {icon}
+        </span>
         {label}
       </Button>
       <Modal
@@ -239,9 +243,11 @@ export const FilterComponent = ({label,backgroundColor}) => {
 
 
 FilterComponent.propTypes = {
-  label : PropTypes.string.isRequired
+  label : PropTypes.string.isRequired,
+  icon : PropTypes.object.isRequired
 }
 
 FilterComponent.defaultProps = {
   label : "Filter",
+  icon : <FilterOutlined />
 }
