@@ -14,7 +14,9 @@ window.IDBKeyRange =
   window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
 
 if (!window.indexedDB) {
-  window.console.log("Your browser doesn't support a stable version of IndexedDB.");
+  window.console.log(
+    "Your browser doesn't support a stable version of IndexedDB."
+  );
 }
 
 const employeeData = [
@@ -103,7 +105,9 @@ export function add() {
   };
 
   request.onerror = function (event) {
-    console.log("Unable to add data\r\nKenny is aready exist in your database! ");
+    console.log(
+      "Unable to add data\r\nKenny is aready exist in your database! "
+    );
   };
 }
 
@@ -118,4 +122,4 @@ export function remove() {
   };
 }
 
-read()
+read();
