@@ -10,7 +10,7 @@ import { Button, Checkbox, Col, Modal, Row, Select, Typography } from "antd";
 // import {TiTag} from 'react-icons/ti'
 import { Label } from "../NavbarLabel/Label";
 import PropTypes from "prop-types";
-import {FilterOutlined} from '@ant-design/icons'
+import {BsFilterLeft} from 'react-icons/bs'
 
 
 export const FilterComponent = ({label,icon}) => {
@@ -249,5 +249,5 @@ FilterComponent.propTypes = {
 
 FilterComponent.defaultProps = {
   label : "Filter",
-  icon : <FilterOutlined />
+  icon : <BsFilterLeft />
 }
