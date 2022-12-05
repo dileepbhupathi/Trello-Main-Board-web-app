@@ -14,6 +14,7 @@ const ModalActivity = ({ label,smileIcon }) => {
   const [activityForm] = Form.useForm();
   const [activity, setActivity] = useState(false);
   const [activityData, setActivityData] = useState([]);
+
   const activitySubmitHandler = (e) => {
     let now = moment(new Date());
     let timestamps = now.tz("Asia/Kolkata").format("hh:mm A");
@@ -32,7 +33,6 @@ const ModalActivity = ({ label,smileIcon }) => {
     activityData.forEach((i) => {
       if (i.id === id) {
         setActivityData(activityData.filter((activity) => activity.id !== id));
-        // console.log("activity deleted succesful");
       } else {
         console.log("no such id found");
       }
@@ -53,7 +53,7 @@ const ModalActivity = ({ label,smileIcon }) => {
                 setActivity(!activity);
               }}
             >
-              {" "}
+              
               {activity ? "Hide details" : "Show details"}
             </Button>
           </Space>

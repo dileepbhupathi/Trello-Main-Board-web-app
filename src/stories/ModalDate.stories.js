@@ -4,9 +4,6 @@ import ModalDate from "../components/ModalDate/ModalDate";
 export default {
   title: "ModalDate",
   component: ModalDate,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
 };
 
 const ModalDateComponent = (args) => <ModalDate {...args} />;

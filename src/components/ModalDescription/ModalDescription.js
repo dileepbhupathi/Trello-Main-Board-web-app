@@ -1,4 +1,5 @@
 import "./ModalDescription.scss";
+// import {read,readAll,add,remove} from '../../script';
 import React,{useState} from 'react';
 import PropTypes from "prop-types";
 import { Space, Typography, Button, Form } from "antd";
@@ -18,6 +19,7 @@ const ModalDescription = ({ description,label,EditButtonLabel,CancleButtonLabel 
   const onFinishDescriptionHandler = (values) => {
     setDescriptionData(values.data);
     setEnableEditMode(!enableEditMode);
+    
   };
   const descriptionEditMode = () => {
     setEnableEditMode(!enableEditMode);
