@@ -26,6 +26,7 @@ const ModalPage = ({
   sendToBoard,
   sendToArchive,
 }) => {
+
   return (
     <div className="modal-main">
       <div className="modal-page-left">
