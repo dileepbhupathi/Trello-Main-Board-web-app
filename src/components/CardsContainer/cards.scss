@@ -1,8 +1,8 @@
 .list-bg{
     background-color: #EAEAEA;
     padding: 10px;
-    border-radius: 10px;
-    width: 200px;
+    border-radius: 0.25em;
+    width: 300px;
     list-style-type: none;
     
 }
@@ -50,9 +50,149 @@
 }
 .inserted-card{
     margin-top: 15px;
-   
+    color: #172b4d;
+    box-shadow: none;
+    border-color: transparent;
+    border-bottom: 1.5px solid rgb(196, 193, 193);
 }
+
+.inserted-card:hover {
+    background-color: rgba(177, 157, 157, 0.094);
+}
+
+.inserted-card:hover .card-edit-button {
+    visibility: visible;
+}
+
+
 .cancelIcon{
     color: black;
 }
+
+
+.modalpage{
+    .ant-modal .ant-modal-content{
+        background-color: rgb(243, 243, 243);
+    }
+    
+}
+
+
+.card-label-edit-container {
+    display: flex;
+    height: 2vh;
+    justify-content: space-between;
+}
+
+// .card-label-container {
+//     width: 100%;
+// }
+
+.card-edit-button {
+    border: 0px solid;
+    box-shadow: none;
+    color: grey;
+    visibility: hidden;
+    background-color: transparent;
+    transition: 0ms;
+}
+
+.card-edit-button:hover {
+    background-color: rgba(243, 248, 249, 0.932);
+}
+
+.card-template-container {
+    background-color: #e4f0f6;
+    color: #172b4d;
+    padding: 2%;
+    border-radius: 0.25em;
+    margin-right: 5%;
+    font-weight: 400;
+}
+
+.card-description {
+    margin: 8% 0% 0%;
+}
+
+.card-icons {
+    color: grey;
+    margin-right: 7%;
+    margin-top: 5%;
+}
+
+.card-template-icon {
+    color: #172b4d;
+    margin-right: 2%;
+}
+
+.card-checkbox-container {
+    color: grey;
+}
+
+.card-checkbox-icon {
+    margin-right: 3%;
+    color: grey;
+    margin-top: 7%;
+}
+
+.add-card-btn {
+    color: grey;
+    background-color: transparent;
+    border: 0px;
+    box-shadow: none;
+    text-align: left;
+    margin: 2% 0%;
+    width: 90%;
+}
+
+// .add-card-btn:hover {
+//     background-color: rgb(213, 222, 224);
+// }
+
+.list-item-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-item-menu-button {
+    background-color: transparent;
+    border: 0px;
+    box-shadow: none;
+    color: gray;
+}
+
+hr {
+    color: grey;
+}
+
+.list-item-menu-popover-container {
+    width: 250px;
+    overflow-y: auto;
+    height: 90vh;
+    
+}
+
+.list-item-menu-button:hover {
+    background-color: rgba(243, 248, 249, 0.932);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d0d4d9; 
+    border-radius: 5px;
+}
+
+
+.menu-content {
+    color: rgb(103, 103, 103);
+}
+
+.menu-title {
+    color: grey;
+    font-weight: 500;
+}
+
 

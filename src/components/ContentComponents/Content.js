@@ -1,13 +1,9 @@
 import { Button, Card, Popover } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import "./Content.scss";
 import { Typography } from "antd";
 import { AiOutlinePlus } from "react-icons/ai";
-import {
-  BsPersonFill,
-  BsShare,
-  BsFillTagFill,
-} from "react-icons/bs";
+import { BsPersonFill, BsShare, BsFillTagFill } from "react-icons/bs";
 // import { CgTemplate } from "react-icons/cg";
 // import { FiEye } from "react-icons/fi";
 import {
@@ -26,7 +22,23 @@ import { ArchiveButton } from "../ArchiveButton/ArchiveButton";
 import { Move } from "../MoveButton/Move";
 import { Copy } from "../CopyButton/Copy";
 
-export const ContentComponent = () => {
+export const ContentComponent = ({
+  isWatch,
+  changesToWatch,
+  removeWatch,
+  isTemplate,
+  removesTemplate,
+  changesToTemplate,
+  isHideFromList,
+  isShowInList,
+  hideFromList,
+  showInList,
+  isDelete,
+  isArchive,
+  isSendToBoard,
+  sendToBoard,
+  sendToArchive,
+}) => {
   const { Text } = Typography;
 
   const content = (
@@ -75,71 +87,13 @@ export const ContentComponent = () => {
     </div>
   );
 
-  const [isTemplate, setIsTemplate] = useState(false);
-
-  const changesToTemplate = () => {
-    setIsTemplate(true);
-    setIsHideFromList(true);
-    setIsDelete(true);
-    setIsArchive(true);
-  };
-
-  const removesTemplate = () => {
-    setIsTemplate(false);
-    setIsHideFromList(false);
-    setIsDelete(false);
-    setIsArchive(false);
-  };
-
-  const [isWatch, setIsWatch] = useState(false);
-
-  const changesToWatch = () => {
-    setIsWatch(true);
-  };
-
-  const removeWatch = () => {
-    setIsWatch(false);
-  };
-
-  const [isHideFromList, setIsHideFromList] = useState();
-
-  const hideFromList = () => {
-    setIsHideFromList(false);
-    setIsShowInList(true);
-  };
-
-  const [isShowInList, setIsShowInList] = useState(false);
-
-  const showInList = () => {
-    setIsShowInList(false);
-    setIsHideFromList(true);
-  };
-
-  const [isDelete, setIsDelete] = useState(false);
-
-  const [isArchive, setIsArchive] = useState(false);
-
-  const [isSendToBoard, setIsSendToBoard] = useState(false);
-
-  const sendToBoard = () => {
-    setIsSendToBoard(true);
-    setIsArchive(true);
-    setIsDelete(true);
-  };
-
-  const sendToArchive = () => {
-    setIsSendToBoard(false);
-    setIsArchive(false);
-    setIsDelete(false);
-  };
-
   return (
     <div className="content-container">
       <div>
         <Text className="power-ups-title">Power-Ups</Text>
         <div>
           <Button className="add-power-ups-button">
-            <AiOutlinePlus  className="button-list-icons"/>
+            <AiOutlinePlus className="button-list-icons" />
             Add Power-Ups
           </Button>
         </div>
@@ -149,7 +103,7 @@ export const ContentComponent = () => {
         <div className="add-buttons-list-container">
           <Popover content={content} title="add button" trigger="click">
             <Button className="add-power-ups-button">
-              <AiOutlinePlus  className="button-list-icons"/>
+              <AiOutlinePlus className="button-list-icons" />
               Add Button
             </Button>
           </Popover>
@@ -158,8 +112,8 @@ export const ContentComponent = () => {
       <div>
         <Text className="power-ups-title">Actions</Text>
         <div className="action-button-list-container">
-          <Move/>
-          <Copy/>
+          <Move />
+          <Copy />
           <TemplateButton
             isTemplate={isTemplate}
             changesToTemplate={changesToTemplate}
