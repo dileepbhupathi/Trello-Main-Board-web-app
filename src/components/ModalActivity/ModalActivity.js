@@ -9,12 +9,15 @@ import { v4 as uuid } from "uuid";
 import "./ModalActivity.scss";
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { Space, Typography, Button, Form, Input, List } from "antd";
+
+
+
 const ModalActivity = ({ label,smileIcon }) => {
   const { Title, Text } = Typography;
   const [activityForm] = Form.useForm();
   const [activity, setActivity] = useState(false);
   const [activityData, setActivityData] = useState([]);
-
+// NEW STATUS SUBMIT FORM
   const activitySubmitHandler = (e) => {
     let now = moment(new Date());
     let timestamps = now.tz("Asia/Kolkata").format("hh:mm A");
@@ -28,6 +31,7 @@ const ModalActivity = ({ label,smileIcon }) => {
     activityForm.resetFields();
     setActivity(true);
   };
+  // DELETE A SIGNLE STATUS
   const deleteActivityStatus = (item) => {
     let id = item.id;
     activityData.forEach((i) => {
