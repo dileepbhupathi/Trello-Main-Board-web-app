@@ -3,9 +3,9 @@ import '../RightPopup/RightPopup.scss';
 import { Button,Input,Popover } from 'antd';
 import PropTypes from 'prop-types';
 
-import {
-    UserOutlined,
-  } from "@ant-design/icons";
+// import {
+//     UserOutlined,
+//   } from "@ant-design/icons";
 
 export const Members = ({label,icon}) => {
     const members=(

@@ -10,7 +10,23 @@ import { Cover } from "../Cover/cover";
 import { Button, Modal } from "antd";
 import { PicCenterOutlined } from "@ant-design/icons";
 
-function RightPopup() {
+function RightPopup({
+  isWatch,
+  changesToWatch,
+  removeWatch,
+  isTemplate,
+  changesToTemplate,
+  removesTemplate,
+  isHideFromList,
+  hideFromList,
+  isSendToBoard,
+  isShowInList,
+  isArchive,
+  isDelete,
+  sendToArchive,
+  sendToBoard,
+  showInList,
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -21,23 +37,23 @@ function RightPopup() {
 
   return (
     <>
-    <div className="right-top-container">
-      <h3>Add to card</h3>
-      <Members/>
-      <Labels/>   
-      <Checklist/>     
-      <Dates/>
-      <Attachment/>
-      <Cover/>
-      <Button className="right-container-button" disabled={true}>
-        <PicCenterOutlined />
+      <div className="right-top-container">
+        <h3>Add to card</h3>
+        <Members />
+        <Labels />
+        <Checklist />
+        <Dates />
+        <Attachment />
+        <Cover />
+        <Button className="right-container-button" disabled={true}>
+          <PicCenterOutlined />
           Custom Fields
-      </Button>
-      <p>Add dropdowns, text fields, dates and more to your cards.</p>
-      <Button className="trail-button" onClick={showModal}>
-        Start free trail
-      </Button>
-      <Modal
+        </Button>
+        <p>Add dropdowns, text fields, dates and more to your cards.</p>
+        <Button className="trail-button" onClick={showModal}>
+          Start free trail
+        </Button>
+        <Modal
           mask={false}
           width={500}
           open={isModalOpen}
@@ -68,7 +84,23 @@ function RightPopup() {
             </a>
           </div>
         </Modal>
-        <ContentComponent/>
+        <ContentComponent
+          isWatch={isWatch}
+          changesToWatch={changesToWatch}
+          removeWatch={removeWatch}
+          isTemplate={isTemplate}
+          changesToTemplate={changesToTemplate}
+          removesTemplate={removesTemplate}
+          isHideFromList={isHideFromList}
+          hideFromList={hideFromList}
+          isShowInList={isShowInList}
+          showInList={showInList}
+          isDelete={isDelete}
+          isArchive={isArchive}
+          isSendToBoard={isSendToBoard}
+          sendToBoard={sendToBoard}
+          sendToArchive={sendToArchive}
+        />
       </div>
     </>
   );
