@@ -1,12 +1,16 @@
 import "./ModalDescription.scss";
-// import {read,readAll,add,remove} from '../../script';
-import React,{useState} from 'react';
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Space, Typography, Button, Form } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { AlignLeftOutlined } from "@ant-design/icons";
 
-const ModalDescription = ({ description,label,EditButtonLabel,CancleButtonLabel }) => {
+const ModalDescription = ({
+  description,
+  label,
+  EditButtonLabel,
+  CancleButtonLabel,
+}) => {
   const [enableEditMode, setEnableEditMode] = useState(false);
   const [descriptionData, setDescriptionData] = useState(description);
   const [btndisabled, setbtndisabled] = useState(true);
@@ -17,12 +21,12 @@ const ModalDescription = ({ description,label,EditButtonLabel,CancleButtonLabel 
       setbtndisabled(true);
     }
   };
-  
-  const onFinishDescriptionHandler = (values) => {
-    setDescriptionData(values.data);
+
+  const onFinishDescriptionHandler = (e) => {
+    setDescriptionData(e.data);
     setEnableEditMode(!enableEditMode);
-    
-    
+
+  
   };
   const descriptionEditMode = () => {
     setEnableEditMode(!enableEditMode);
@@ -40,8 +44,7 @@ const ModalDescription = ({ description,label,EditButtonLabel,CancleButtonLabel 
             <Title level={4}>{label}</Title>
             {descriptionData !== "" ? (
               <Button type="text" onClick={descriptionEditMode}>
-                {" "}
-                {EditButtonLabel}{" "}
+                {EditButtonLabel}
               </Button>
             ) : null}
           </Space>
@@ -62,7 +65,9 @@ const ModalDescription = ({ description,label,EditButtonLabel,CancleButtonLabel 
                       minRows: 2,
                       maxRows: 6,
                     }}
-                    defaultValue={descriptionData !== "" ? descriptionData : null}
+                    defaultValue={
+                      descriptionData !== "" ? descriptionData : null
+                    }
                     placeholder="Add a more detailed description..."
                   />
                 </Form.Item>
@@ -92,12 +97,16 @@ const ModalDescription = ({ description,label,EditButtonLabel,CancleButtonLabel 
 export default ModalDescription;
 ModalDescription.propTypes = {
   label: PropTypes.string.isRequired,
-  EditButtonLabel:PropTypes.string.isRequired,
-  CancleButtonLabel:PropTypes.string.isRequired,
-
-}
+  EditButtonLabel: PropTypes.string.isRequired,
+  CancleButtonLabel: PropTypes.string.isRequired,
+};
 ModalDescription.defaultProps = {
   label: "Description",
-  EditButtonLabel:"Edit",
-  CancleButtonLabel:"Cancle"
+  EditButtonLabel: "Edit",
+  CancleButtonLabel: "Cancle",
 };
+
+
+
+
+

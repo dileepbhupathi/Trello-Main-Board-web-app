@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
-
 import {
   Space,
   Typography,
@@ -10,15 +9,16 @@ import {
   List,
   Checkbox,
   Modal,
-  
 } from "antd";
-import PropTypes from "prop-types"; 
+import PropTypes from "prop-types";
 import "./ModalCheckbox.scss";
-import { CheckSquareOutlined} from "@ant-design/icons";
+import { CheckSquareOutlined } from "@ant-design/icons";
 import TextArea from "antd/es/input/TextArea";
-const ModalCheckbox = ({label,DeleteButtonLabel,AddCheckLabel}) => {
-  const { Title,Text } = Typography;
+
+const ModalCheckbox = ({ label, DeleteButtonLabel, AddCheckLabel }) => {
+  const { Title, Text } = Typography;
   const [checklistform] = Form.useForm();
+
   const [checkList, setCheckList] = useState(false);
   const [checkAdd, setCheckAdd] = useState(true);
   const [checkboxData, setCheckboxData] = useState([]);
@@ -27,11 +27,14 @@ const ModalCheckbox = ({label,DeleteButtonLabel,AddCheckLabel}) => {
   const [checklistDeleteModal, setChecklistDeleteModal] = useState(false);
   const [hide, setHide] = useState(false);
   const [allData, setAllData] = useState([]);
-
+  
+  //TO SHOW OR HIDE
   const checklistHandler = () => {
     setCheckList(!checkList);
     setCheckAdd(!checkAdd);
   };
+
+  // SUBMIT NEW CHECKLIST ITEM
   const checklistSubmitHandler = (e) => {
     const newcheckboxdata = [...checkboxData];
     newcheckboxdata.push({
@@ -42,7 +45,7 @@ const ModalCheckbox = ({label,DeleteButtonLabel,AddCheckLabel}) => {
     checklistform.resetFields();
     setCheckboxData(newcheckboxdata);
   };
-
+  // CHECKLIST STATUS CHANGE
   const onChangeCheck = (item, e) => {
     if (e.target.checked) {
       setCheck(e.target.checked);
@@ -54,12 +57,16 @@ const ModalCheckbox = ({label,DeleteButtonLabel,AddCheckLabel}) => {
       setPercent(percent - 100 / checkboxData.length);
     }
   };
+
+  // DELETE ENTIRE CHECKLIST
   const deleteEntireCheckData = () => {
     setCheckboxData([]);
     setPercent(0);
     setChecklistDeleteModal(false);
     // console.log("checkbox data deleted successful");
   };
+
+  // HIDE & SHOW CHECKED ITEMS FROM CHECKLIST
   const hideCheckedItemsHandler = () => {
     setAllData(checkboxData);
     const filtered = checkboxData.filter((item) => {
@@ -139,8 +146,7 @@ const ModalCheckbox = ({label,DeleteButtonLabel,AddCheckLabel}) => {
                     }
                   >
                     <Space block="true" className="checklist-item-container">
-                      <Text type='secondary'>{item.checkItem}</Text>
-                      
+                      <Text type="secondary">{item.checkItem}</Text>
                     </Space>
                   </Checkbox>
                 </List.Item>
@@ -209,16 +215,13 @@ const ModalCheckbox = ({label,DeleteButtonLabel,AddCheckLabel}) => {
 
 export default ModalCheckbox;
 
-
-
 ModalCheckbox.propTypes = {
   label: PropTypes.string.isRequired,
-  DeleteButtonLabel:PropTypes.string.isRequired,
-  AddCheckLabel:PropTypes.string.isRequired
-  
+  DeleteButtonLabel: PropTypes.string.isRequired,
+  AddCheckLabel: PropTypes.string.isRequired,
 };
 ModalCheckbox.defaultProps = {
-  label:"Checkbox",
-  DeleteButtonLabel:"Delete",
-  AddCheckLabel:"Add an item"
+  label: "Checkbox",
+  DeleteButtonLabel: "Delete",
+  AddCheckLabel: "Add an item",
 };
