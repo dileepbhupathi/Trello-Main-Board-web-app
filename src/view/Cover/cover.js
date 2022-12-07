@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import '../RightPopup/RightPopup.scss';
+import '../../components/RightPopup/RightPopup.scss';
 import { Popover,Button, Upload, message, List, Card} from 'antd';
 import {coverCardsBgColor,coverImages} from "../../Constants/RightPopupData/data";
 import {
-    UserOutlined
+    LaptopOutlined 
   } from "@ant-design/icons";
+  import PropTypes from 'prop-types';
 
 
-export const Cover = () => {
+export const Cover = ({label}) => {
     const [coverData, setCoverData] = useState({});
     const sendBgColorCover=(item)=>{
       setCoverData(item);
@@ -92,9 +93,17 @@ export const Cover = () => {
   return (
     <Popover content={cover} trigger="click" title="Cover">
     <Button className="right-container-button">
-      <UserOutlined />
-      Cover
+    <LaptopOutlined />
+      {label}
     </Button>
     </Popover>
   )
+}
+Cover.propTypes = {
+  label : PropTypes.string.isRequired
+  // icon : PropTypes.object.isRequired
+  }
+  
+  Cover.defaultProps = {
+label : "Cover",
 }

@@ -24,6 +24,11 @@
     margin-bottom: 5%;
     text-align: left;
     border: 0;
+    background-color: #E0E5EF;
+    // display: flex;
+    // align-items: center;
+    align-self: center;
+    // justify-content: space-around;
 }
 .top-popover-container{
     width: 300px;
@@ -53,6 +58,7 @@
     padding: 0%;
     // border: none;
     display: flex;
+    width: 90%;
     // height: 50px;
 }
 
@@ -186,20 +192,21 @@ a{
 }
 .cover-skeleton{
     border: 1px solid;
-    border-radius: 20px;
+    border-radius: 10px;
     margin-right: 4px;
     width: 50%;
     height: 100px;
 }
 .skeleton-top-container{
     height: 50px;
-    border-top-right-radius: 25px;
-    border-top-left-radius: 25px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    margin: 1px;
 
 }
 .trail-button{
-    background-color: violet;
-    width: 50%;
+    background-color: #eddbf4;
+    width: 60%;
     font-size: 13px;
     padding: 0px;
 }
@@ -225,4 +232,25 @@ a{
 .e-calendar {
     background-color: peachpuff;
     border: 0;
+}
+.icon{
+    align-self: center;
+}
+.label{
+    align-items: center;
+}
+.board-members-container{
+    display: flex;
+    width: 100%;
+    // justify-content: space-around;
+}
+.board-members-avtar{
+    border-radius: 50%;
+    text-align: center;
+    background-color: #0079bf;
+    width: 18%;
+    justify-content:center;
+    // height: auto;
+    margin-right: 4%;
+    font-size: 24px;
 }
