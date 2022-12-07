@@ -18,6 +18,7 @@ export const Labels = () => {
   const [addCardColor,setAddCardColor]=useState();
   const [filteredData, setFilteredData] = useState([]);
   const [input, setInput] = useState("");
+  
   useEffect(() => {
     setData(dummyData);
     setFilteredData(dummyData);
