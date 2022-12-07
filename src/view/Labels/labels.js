@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../RightPopup/RightPopup.scss';
+import '../../components/RightPopup/RightPopup.scss';
 import { Popover,Button, Input, List,Row, Col, Checkbox } from 'antd';
 import {
     EditOutlined,
@@ -8,9 +8,11 @@ import {
   } from "@ant-design/icons";
 import {dummyData,labelBgColorsData} from "../../Constants/RightPopupData/data";
 // import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { LabelListItem } from '../../components/LabelListItem/LabelListItem';
 
 
-export const Labels = () => {
+export const Labels = ({label}) => {
   // const history=useHistory();
   const [data, setData] = useState([]);
   const [eachData, setEachData] = useState({});
@@ -148,16 +150,7 @@ export const Labels = () => {
                     <Row>
                       <Col span={22}>
                         <Checkbox className="labels-list-item-checkbox" value={item.id}>
-                          <div
-                            style={{ backgroundColor: item.bgColor }}
-                            className="labels-list-item-checkbox-left-container"
-                          >
-                            <div
-                              style={{ backgroundColor: item.cardBgColor }}
-                              className="labels-list-item-checkbox-inner-container"
-                            ></div>
-                            <p>{item.name}</p>
-                          </div>
+                          <LabelListItem item={item}/>
                         </Checkbox>
                       </Col>
                       <Col span={1}>
@@ -180,11 +173,18 @@ export const Labels = () => {
         </div>
       );
   return (
-    <Popover content={labels} trigger='click' title="labels">
+    <Popover content={labels} trigger='click' title={label}>
       <Button className="right-container-button">
         <TagOutlined />
-        Labels
+        {label}
       </Button>
     </Popover>
   )
+}
+Labels.propTypes = {
+  label : PropTypes.string.isRequired
+  // icon : PropTypes.object.isRequired
+  }
+Labels.defaultProps = {
+label : "Labels",
 }

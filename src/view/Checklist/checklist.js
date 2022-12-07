@@ -1,8 +1,11 @@
 import React from 'react';
+import '../../components/RightPopup/RightPopup.scss';
 import { Button, Popover, Input,Select } from 'antd';
 import {CheckSquareOutlined} from "@ant-design/icons";
+import PropTypes from 'prop-types';
 
-export const Checklist = () => {
+
+export const Checklist = ({label}) => {
     const onChange = (value) => {
         console.log(`selected ${value}`);
       };
@@ -45,8 +48,16 @@ export const Checklist = () => {
     <Popover content={checkList} trigger="click" title="Check List">
       <Button className="right-container-button">
         <CheckSquareOutlined />
-        Checklist
+        {label}
       </Button>
       </Popover>
   )
+}
+Checklist.propTypes = {
+  label : PropTypes.string.isRequired
+  // icon : PropTypes.object.isRequired
+  }
+  
+Checklist.defaultProps = {
+label : "Checklist",
 }
