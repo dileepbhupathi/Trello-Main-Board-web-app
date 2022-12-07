@@ -1,6 +1,5 @@
 import React from "react";
-// import "../components/RightPopup/RightPopup.scss";
-import { Members } from "../components/Members/members";
+import { Members } from "../view/Members/members";
 
 
 export default {

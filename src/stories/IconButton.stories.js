@@ -42,15 +42,15 @@
 import React from "react";
 
 
-// import {
-//   StepForwardOutlined,
-//   FastForwardOutlined,
-//   FilterOutlined,
-//   CloseOutlined,
-// } from "@ant-design/icons";
-import { GrAttachment } from "react-icons/gr";
-import { BsCheck2Square } from "react-icons/bs";
-import { AiOutlineFieldTime } from "react-icons/ai";
+import {
+  TagOutlined,
+  UserOutlined,
+  PicCenterOutlined,
+  CloseOutlined,
+} from "@ant-design/icons";
+// import { GrAttachment } from "react-icons/gr";
+// import { BsCheck2Square } from "react-icons/bs";
+// import { AiOutlineFieldTime } from "react-icons/ai";
 // import { IoPersonOutline } from "react-icons/io";
 
 
@@ -61,18 +61,18 @@ import { AiOutlineFieldTime } from "react-icons/ai";
 import { IconButton } from "./IconButton";
 
 const iconsMap = {
-// Filter: <FilterOutlined />,
-//  StepForward: <StepForwardOutlined />,
-//  FastForward: <FastForwardOutlined />,
-//  CloseOutline: <CloseOutlined />,
- GrAttachment:<GrAttachment/>,
- BsCheck2Square:<BsCheck2Square/>,
- AiOutlineFieldTime:<AiOutlineFieldTime/>,
+  PicCenterOutlined: <PicCenterOutlined />,
+TagOutlined: <TagOutlined />,
+UserOutlined: <UserOutlined />,
+ CloseOutline: <CloseOutlined />,
+//  GrAttachment:<GrAttachment/>,
+//  BsCheck2Square:<BsCheck2Square/>,
+//  AiOutlineFieldTime:<AiOutlineFieldTime/>,
 //  IoPersonOutline:<IoPersonOutline/>
 };
 
 export default {
-  title: "Trello Filter",
+  title: "IconButton",
   component: IconButton,
   argTypes: {
   icon: {
@@ -85,7 +85,7 @@ export default {
    },
 };
 
-export const Icon = (args) => <IconButton {...args} />;
+ const Icon = (args) => <IconButton {...args} />;
 
 export const IconButtonComp = Icon.bind({});
 IconButtonComp.args = {

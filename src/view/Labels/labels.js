@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../RightPopup/RightPopup.scss';
+import '../../components/RightPopup/RightPopup.scss';
 import { Popover,Button, Input, List,Row, Col, Checkbox } from 'antd';
 import {
     EditOutlined,
@@ -9,6 +9,7 @@ import {
 import {dummyData,labelBgColorsData} from "../../Constants/RightPopupData/data";
 // import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { LabelListItem } from '../../components/LabelListItem/LabelListItem';
 
 
 export const Labels = ({label}) => {
@@ -149,16 +150,7 @@ export const Labels = ({label}) => {
                     <Row>
                       <Col span={22}>
                         <Checkbox className="labels-list-item-checkbox" value={item.id}>
-                          <div
-                            style={{ backgroundColor: item.bgColor }}
-                            className="labels-list-item-checkbox-left-container"
-                          >
-                            <div
-                              style={{ backgroundColor: item.cardBgColor }}
-                              className="labels-list-item-checkbox-inner-container"
-                            ></div>
-                            <p>{item.name}</p>
-                          </div>
+                          <LabelListItem item={item}/>
                         </Checkbox>
                       </Col>
                       <Col span={1}>

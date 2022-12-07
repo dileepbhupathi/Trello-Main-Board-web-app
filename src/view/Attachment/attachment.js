@@ -1,10 +1,13 @@
 import React from 'react';
-import '../RightPopup/RightPopup.scss';
+// import '../components/RightPopup/RightPopup.scss';
+import '../../components/RightPopup/RightPopup.scss';
 import { Popover,Button, Input, Upload, message } from 'antd';
 // import { GrAttachment } from "react-icons/gr";
-import {PaperClipOutlined } from "@ant-design/icons"
+import {PaperClipOutlined } from "@ant-design/icons";
+import PropTypes from 'prop-types';
 
-export const Attachment = () => {
+
+export const Attachment = ({label}) => {
     const props = {
         name: "file",
         action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
@@ -50,8 +53,15 @@ export const Attachment = () => {
     <Popover content={attachment} trigger="click" title="Attachment">
       <Button className="right-container-button">
         <PaperClipOutlined /> 
-        Attachment
+        {label}
       </Button> 
       </Popover>
   )
+}
+Attachment.propTypes = {
+  label : PropTypes.string.isRequired
+  // icon : PropTypes.object.isRequired
+  }
+Attachment.defaultProps = {
+label : "Attachment",
 }

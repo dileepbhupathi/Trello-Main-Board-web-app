@@ -58,6 +58,7 @@
     padding: 0%;
     // border: none;
     display: flex;
+    width: 90%;
     // height: 50px;
 }
 
@@ -237,4 +238,19 @@ a{
 }
 .label{
     align-items: center;
+}
+.board-members-container{
+    display: flex;
+    width: 100%;
+    // justify-content: space-around;
+}
+.board-members-avtar{
+    border-radius: 50%;
+    text-align: center;
+    background-color: #0079bf;
+    width: 18%;
+    justify-content:center;
+    // height: auto;
+    margin-right: 4%;
+    font-size: 24px;
 }

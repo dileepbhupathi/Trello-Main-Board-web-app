@@ -1,5 +1,6 @@
 import React from "react";
-import { Labels } from "../components/Labels/labels";
+import { Labels } from "../view/Labels/labels";
+// import { Labels } from "../components/Labels/labels";
 
 
 

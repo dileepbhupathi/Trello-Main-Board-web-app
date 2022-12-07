@@ -1,5 +1,5 @@
 import React from 'react';
-import '../RightPopup/RightPopup.scss';
+import '../../components/RightPopup/RightPopup.scss';
 import { Button,Input,Popover } from 'antd';
 import PropTypes from 'prop-types';
 // import {BsPerson} from "react-icons/bs";
@@ -13,6 +13,11 @@ export const Members = ({label1}) => {
         <div className="right-top-popover-container">
             <hr/>
             <Input placeholder="Search members" />
+            <h4>Board members</h4>
+            <div className='board-members-container'>
+              <span className='board-members-avtar'>D</span>
+              <p>dbunga (dbunga1)</p>
+            </div>
             <Button className="bottom-btn">Show other workspace members</Button>
         </div>
     );
