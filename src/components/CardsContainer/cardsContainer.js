@@ -14,7 +14,10 @@ import { CgTemplate } from "react-icons/cg";
 import { FiCheckSquare } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
-import { ListItemMenuData, MenuAutomationData } from "../../Constants/MenuData/MenuData";
+import {
+  ListItemMenuData,
+  MenuAutomationData,
+} from "../../Constants/MenuData/MenuData";
 
 export const CardsContainer = ({ listItem }) => {
   const [addOption, showAddOption] = useState(false);
@@ -95,35 +98,36 @@ export const CardsContainer = ({ listItem }) => {
 
   const listItemMenuPopOver = (
     <div className="list-item-menu-popover-container">
-      <hr/>
-      {
-        ListItemMenuData.map(item => (
-          <p className="menu-content">{item}</p>
-        ))
-      }
-      <hr/>
+      <hr />
+      {ListItemMenuData.map((item) => (
+        <p className="menu-content">{item}</p>
+      ))}
+      <hr />
       <p className="menu-content">Sort by...</p>
-      <hr/>
+      <hr />
       <h4 className="menu-title">Automation</h4>
-      {
-        MenuAutomationData.map(item => (
-          <p className="menu-content">{item}</p>
-        ))
-      }
-      <hr/>
+      {MenuAutomationData.map((item) => (
+        <p className="menu-content">{item}</p>
+      ))}
+      <hr />
       <p className="menu-content">Move all cards in this list </p>
       <p className="menu-content">Archivr all cards in this list...</p>
-      <hr/>
+      <hr />
       <p className="menu-content">Archive this list</p>
     </div>
-  )
+  );
 
   return (
     <div>
       <li className="list-bg">
         <div className="list-item-header">
           <h1 className="project-title">{listItem.name}</h1>
-          <Popover content={listItemMenuPopOver} title='List actions' trigger='click' placement = 'rightTop'>
+          <Popover
+            content={listItemMenuPopOver}
+            title="List actions"
+            trigger="click"
+            placement="rightTop"
+          >
             <Button className="list-item-menu-button">
               <BsThreeDots />
             </Button>
