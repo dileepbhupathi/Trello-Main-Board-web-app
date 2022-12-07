@@ -46,6 +46,6 @@ export const IconButtons = (args) => <IconButton {...args} />;
 
 export const IconButtonComponent = IconButtons.bind({});
 IconButtons.args = {
-  label: "Icon Button",
+  ButtonContext: "Icon Button",
   icon: <BsFilterLeft />,
 };

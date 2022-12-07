@@ -4,23 +4,23 @@ import PropTypes from "prop-types";
 import { BsFilterLeft } from "react-icons/bs";
 import "./IconButton.scss";
 
-export const IconButton = ({ label, icon }) => {
+export const IconButton = ({ ButtonContext, icon }) => {
   return (
     <div>
       <Button type="primary" size="large">
         <span className="button-icon-container">{icon}</span>
-        {label}
+        {ButtonContext}
       </Button>
     </div>
   );
 };
 
 IconButton.propTypes = {
-  label: PropTypes.string.isRequired,
+  ButtonContext: PropTypes.string.isRequired,
   icon: PropTypes.object.isRequired,
 };
 
 IconButton.defaultProps = {
-  label: "Icon Button",
+  ButtonContext: "Icon Button",
   icon: <BsFilterLeft />,
 };
