@@ -7,7 +7,7 @@
     background: linear-gradient(to right, rgb(1, 1, 115),rgb(192, 24, 153));
     padding: 1% 0% 1% 0.5%;
     display: flex;
-    width: 100%;
+    min-width: 100%;
     box-sizing: border-box;
 }
 
@@ -89,7 +89,7 @@
     margin-left: 1%;
     background-color: #ffffff33;
     color: white;
-    padding:0% 1.5%;
+    padding:0% 1.5% 0% 1%;
 }
 
 .calender-icon {

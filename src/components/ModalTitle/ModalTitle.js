@@ -1,11 +1,11 @@
 import "./ModalTitle.scss";
 import ModalMember from "../../components/ModalMember/ModalMember";
 import PropTypes from "prop-types";
-
 import { Space, Typography } from "antd";
 import { PicCenterOutlined } from "@ant-design/icons";
 import ModalDate from "../ModalDate/ModalDate";
 import ModalLabel from "../ModalLabel/ModalLabel";
+
 
 const ModalTitle = ({ modaltitle, modaldescription,label}) => {
   const { Title, Text, Link } = Typography;
@@ -22,10 +22,10 @@ const ModalTitle = ({ modaltitle, modaldescription,label}) => {
             </Link>
           </Text>
         </Space>
-        <Space>
+        <div className="modal-member-label">
           <ModalMember />
           <ModalLabel/>
-        </Space>
+        </div>
         <Space direction="vertical">
           <ModalDate />
         </Space>

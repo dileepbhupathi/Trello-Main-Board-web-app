@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Filter.scss";
-import { IoFilterOutline } from "react-icons/io5";
+// import { IoFilterOutline } from "react-icons/io5";
 // import { ImPower } from "react-icons/im";
 // import { BsPerson } from "react-icons/bs";
 import Search from "antd/es/transfer/search";
@@ -9,8 +9,11 @@ import { Button, Checkbox, Col, Modal, Row, Select, Typography } from "antd";
 // import { SlCalender } from "react-icons/sl";
 // import {TiTag} from 'react-icons/ti'
 import { Label } from "../NavbarLabel/Label";
+import PropTypes from "prop-types";
+import {BsFilterLeft} from 'react-icons/bs'
 
-export const FilterComponent = () => {
+
+export const FilterComponent = ({label,icon}) => {
   const { Text } = Typography;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,10 +42,13 @@ export const FilterComponent = () => {
         className={isModalOpen ? "filter-button" : "no-filter-button"}
         onClick={showModal}
       >
-        <IoFilterOutline
+        {/* <IoFilterOutline
           className={isModalOpen ? "filter-icon" : "calender-icon"}
-        />
-        Filter
+        /> */}
+        <span className="costumized-icon">
+        {icon}
+        </span>
+        {label}
       </Button>
       <Modal
         mask={false}
@@ -53,7 +59,7 @@ export const FilterComponent = () => {
         className="filter-popup"
         footer={null}
       >
-        <section>
+        <div>
           <hr />
           <Text>Keyword</Text>
           <Search
@@ -64,8 +70,8 @@ export const FilterComponent = () => {
             }}
           />
           <Text>Search cards, members, labels, and more.</Text>
-        </section>
-        <section>
+        </div>
+        <div>
           <Text>Members</Text>
           <ul className="members-container">
             <li>
@@ -93,8 +99,8 @@ export const FilterComponent = () => {
               </Row>
             </li>
           </ul>
-        </section>
-        <section>
+        </div>
+        <div>
           <Text>Due date</Text>
           <ul>
             <li>
@@ -176,8 +182,8 @@ export const FilterComponent = () => {
               </Row>
             </li>
           </ul>
-        </section>
-        <section>
+        </div>
+        <div>
           <Text>labels</Text>
           <ul>
             <li>
@@ -200,9 +206,9 @@ export const FilterComponent = () => {
               </Row>
             </li>
           </ul>
-        </section>
+        </div>
         <hr/>
-        <section>
+        <div>
         <Select
       defaultValue="Any match"
       style={{
@@ -229,8 +235,19 @@ export const FilterComponent = () => {
         <Text>Matches any label and any memeber</Text>
       </Select.Option>
     </Select>
-        </section>
+        </div>
       </Modal>
     </>
   );
 };
+
+
+FilterComponent.propTypes = {
+  label : PropTypes.string.isRequired,
+  icon : PropTypes.object.isRequired
+}
+
+FilterComponent.defaultProps = {
+  label : "Filter",
+  icon : <BsFilterLeft />
+}

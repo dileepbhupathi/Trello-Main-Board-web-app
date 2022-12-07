@@ -3,17 +3,16 @@
     display: flex;
     justify-content: space-between;
     
-
+    
 }
 .ant-modal .ant-modal-content{
     background-color: rgb(243, 243, 243);
 }
-
-.modal-page{
+.modal-page-left{
     overflow: hidden;
     width: 73%;
 }
 
-.modal-right{
+.modal-page-right{
     width: 25%;
 }

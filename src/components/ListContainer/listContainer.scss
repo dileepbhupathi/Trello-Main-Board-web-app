@@ -1,12 +1,12 @@
 .list-container-bg{
     background-size: cover;
-    height: 90.1vh;
+    height: auto;
     width: 100%;
     background: linear-gradient(to right, rgb(1, 1, 115),rgb(192, 24, 153));
     color: white;
     padding: 0px 10px;
     box-sizing: border-box;
-    overflow: hidden;
+    // overflow: scroll;
 }
 .project-heading{
     color: #ffff;
@@ -17,9 +17,14 @@
 }
 
 .list-items{
-    
     display: flex;
+    width: 100%;
 }
+
+.list-item {
+    width: 100%;
+}
+
 .cancel-icon{
     color: black;
 }

@@ -84,7 +84,7 @@ export const ListContainer = () => {
                     style={{
                       background: snapshot.isDraggingOver ? "" : "",
                       padding: 4,
-                      width: 250,
+                      width: 330,
                       minHeight: 500,
                     }}
                   >

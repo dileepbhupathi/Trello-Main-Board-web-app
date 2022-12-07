@@ -5,13 +5,31 @@ import ModalActivity from "../../components/ModalActivity/ModalActivity";
 import ModalCheckbox from "../../components/ModalCheckbox/ModalCheckbox";
 import ModalAttachment from "../../components/ModalAttachment/ModalAttachment";
 import RightPopup from "../RightPopup/RightPopup";
+
 const modaltitle = "This is the description of the clicked card";
 const modaldescription = "This is the title of the cliked card listitem";
-const description = 'This will be the existing description'
-const ModalPage = () => {
+const description = "This will be the existing description";
+const ModalPage = ({
+  isWatch,
+  changesToWatch,
+  removeWatch,
+  isTemplate,
+  changesToTemplate,
+  removesTemplate,
+  isHideFromList,
+  isShowInList,
+  hideFromList,
+  showInList,
+  isDelete,
+  isArchive,
+  isSendToBoard,
+  sendToBoard,
+  sendToArchive,
+}) => {
+
   return (
     <div className="modal-main">
-      <div className="modal-page">
+      <div className="modal-page-left">
         <ModalTitle
           modaltitle={modaltitle}
           modaldescription={modaldescription}
@@ -21,9 +39,25 @@ const ModalPage = () => {
         <ModalCheckbox />
         <ModalActivity />
       </div>
-      <div className="modal-right">
-        <RightPopup />
-        </div>
+      <div className="modal-page-right">
+        <RightPopup
+          isWatch={isWatch}
+          changesToWatch={changesToWatch}
+          removeWatch={removeWatch}
+          isTemplate={isTemplate}
+          changesToTemplate={changesToTemplate}
+          removesTemplate={removesTemplate}
+          isHideFromList={isHideFromList}
+          hideFromList={hideFromList}
+          isShowInList={isShowInList}
+          showInList={showInList}
+          isDelete={isDelete}
+          isArchive={isArchive}
+          isSendToBoard={isSendToBoard}
+          sendToBoard={sendToBoard}
+          sendToArchive={sendToArchive}
+        />
+      </div>
     </div>
   );
 };
