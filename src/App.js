@@ -1,18 +1,15 @@
-import './App.scss';
-import { Navbar } from './components/Navbar/Navbar';
-import {ProjBoardContainer} from '../src/components/ProjBoardContainer/projBoardCotainer'
-
-
+import React from "react";
+import "./App.scss";
+import { ListContainer } from "./components/ListContainer/listContainer";
+import { PrjHeader } from "./components/PrjHeaderComponent/PrjHeader";
 
 
 
 function App() {
   return (
     <div className="App">
-
-      <Navbar/>
-
-      <ProjBoardContainer />
+      <PrjHeader />
+      <ListContainer />
     </div>
   );
 }

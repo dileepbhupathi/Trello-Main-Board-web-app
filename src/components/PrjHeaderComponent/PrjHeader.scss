@@ -12,12 +12,12 @@
 }
 
 
-.star-icon{
+.star-yellow{
     color: yellow;
-    font-size: 1.5em;
+    font-size: 1.25em;
 }
 
-.star-icon1 {
+.star-white {
     color: white;
     font-size: 1.25em;
 }
@@ -36,6 +36,17 @@
     font-size: 1.5em;
     font-weight: 100;
 }
+
+.line-container::after {
+    content: "|";
+}
+
+.ant-btn-default:not(:disabled):hover {
+    border-color: transparent;
+    // background-color: #ffffff52;  
+    color: white;
+}
+
 
 .title-container{
     width: 19%;
@@ -58,6 +69,10 @@
     border-color: transparent;
     color: white;
 }
+
+// .workspace-button:hover {
+//     color: white;
+// }
 
 .workspace-icon {
     color: white;

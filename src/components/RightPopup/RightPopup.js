@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./RightPopup.scss";
 import { ContentComponent } from "../ContentComponents/Content";
 import { Members } from "../../view/Members/members";
@@ -7,8 +7,6 @@ import { Checklist } from "../../view/Checklist/checklist";
 import { Dates } from "../../view/Dates/dates";
 import { Attachment } from "../../view/Attachment/attachment";
 import { Cover } from "../../view/Cover/cover";
-// import { Trail } from "../../view/Trail/Trail";
-import { useState } from "react";
 import { Button, Modal } from "antd";
 import {PicCenterOutlined} from '@ant-design/icons'
 

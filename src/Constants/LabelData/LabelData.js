@@ -15,13 +15,13 @@ export const LabelData = [
         id : 3,
         title : 'Priority',
         checkboxColor : "#EF7564",
-        cardColor : "#EF7564"
+        cardColor : "#e04d38"
     },
     {
         id : 4,
         title : 'Design tip',
         checkboxColor : "#CD8DE5",
-        cardColor : "#CD8DE5"
+        cardColor : "#a046c2"
     },
     {
         id : 5,
