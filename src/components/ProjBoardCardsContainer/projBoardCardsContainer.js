@@ -12,12 +12,8 @@ import { CgTemplate } from "react-icons/cg";
 import { FiCheckSquare } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FiMoreHorizontal } from "react-icons/fi";
-import { BsThreeDots } from "react-icons/bs";
 
-import {
-  ListItemMenuData,
-  MenuAutomationData,
-} from "../../Constants/MenuData/MenuData";
+
 
 export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
   const [openMore, setOpenMore] = useState(false);
@@ -120,43 +116,11 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
     setIsArchive(false);
   };
 
-  const listItemMenuPopOver = (
-    <div className="list-item-menu-popover-container">
-      <hr />
-      {ListItemMenuData.map((item) => (
-        <p className="menu-content">{item}</p>
-      ))}
-      <hr />
-      <p className="menu-content">Sort by...</p>
-      <hr />
-      <h4 className="menu-title">Automation</h4>
-      {MenuAutomationData.map((item) => (
-        <p className="menu-content">{item}</p>
-      ))}
-      <hr />
-      <p className="menu-content">Move all cards in this list </p>
-      <p className="menu-content">Archivr all cards in this list...</p>
-      <hr />
-      <p className="menu-content">Archive this list</p>
-    </div>
-  );
-
+  
   return (
-    <div>
-      <li className="each-board-list-bg">
-        <div className="board-item-header">
-          <h1 className="project-title">{eachBoardItem.name}</h1>
-          <Popover
-            content={listItemMenuPopOver}
-            title="List actions"
-            trigger="click"
-            placement="rightTop"
-          >
-            <Button className="list-item-top-right-menu-button">
-              <BsThreeDots />
-            </Button>
-          </Popover>
-        </div>
+    <>
+      <li>
+        
         {eachBoardItem.task.map((item, i) => (
           <Draggable key={item.id} draggableId={item.id} index={i}>
             {(provided, snapshot) => {
@@ -291,6 +255,6 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
           </div>
         )}
       </li>
-    </div>
+    </>
   );
 };

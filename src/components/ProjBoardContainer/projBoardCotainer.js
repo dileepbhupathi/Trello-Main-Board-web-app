@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import "./projBoardContainer.scss";
-import { Button } from "antd";
+import { Button, Popover } from "antd";
 import { dummyListData } from "../../Constants/dummyListData";
 import { X } from "react-feather";
 import { ProjBoardCardsContainer } from "../ProjBoardCardsContainer/projBoardCardsContainer";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
+import { BsThreeDots } from "react-icons/bs";
+import {
+  ListItemMenuData,
+  MenuAutomationData,
+} from "../../Constants/MenuData/MenuData";
 
 export const ProjBoardContainer = () => {
   const [columns, setcolumns] = useState(dummyListData);
@@ -13,41 +18,18 @@ export const ProjBoardContainer = () => {
   const [showAddBoard, setShowAddBoard] = useState(false);
   const [boardTitle, setBoardTitle] = useState();
 
-  function sumbission(e){
-    // function getContactById(db, id) {
-  //   const txn = db.transaction('lists', 'readonly');
-  //   const store = txn.objectStore('lists');
+  function sumbission(e) {
+    e.preventDefault();
+    if (boardTitle !== undefined) {
+      dummyListData[uuidv4()] = { name: boardTitle, task: [] };
+    }
 
-  //   let query = store.getAll(id);
-  //   query.onsuccess = (event) => {
-  //       if (!request.result) {
-  //           console.log(`The contact with ${id} not found`);
-  //       } else {
-  //           console.log(event.target.result);
-  //           console.log(event.target.result.task);
-  //       }
-  //   };
-  //   query.onerror = () => {
-  //       console.log(request.errorCode);
-  //   }
-
-  //   txn.oncomplete = function () {
-  //       db.close();
-  //   };
-  // };
-  // request.onsuccess = () => {
-  //   const db = request.result;
-  //   getContactById(db, );
-  // };
-  // const items =  db.transaction(lists).objectStore(lists).getAll()
-
-      e.preventDefault();
-      if (boardTitle !== undefined) {
-        dummyListData[uuidv4()] = { name: boardTitle, task: [] };
-      }
-      setShowAddBoard(false);
+    setShowAddBoard(false);
   }
 
+  // function addNewListToBoard() {
+
+  // }
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -88,11 +70,7 @@ export const ProjBoardContainer = () => {
     }
   };
 
-
-
-  //indexeDB data ............................//
-
-
+  //indexeDB code....................//
 
   const request = indexedDB.open("InitialData", 3);
   request.onerror = (event) => {
@@ -147,16 +125,63 @@ export const ProjBoardContainer = () => {
       Name: "Project Resources",
       task: [
         { id: uuidv4(), content: "Weekly Updates" },
+        { id: uuidv4(), content: "Tasks Done" },
       ],
     });
-   
-   
-   
+    insertContact(db, {
+      uniqueId: uuidv4(),
+      Name: "Pending",
+      task: [
+        { id: uuidv4(), content: "Legal review" },
+        { id: uuidv4(), content: "Social media assets" },
+      ],
+    });
+    insertContact(db, {
+      uniqueId: uuidv4(),
+      Name: "Todo",
+      task: [
+        { id: uuidv4(), content: "Edit email drafts" },
+        { id: uuidv4(), content: "Sketch site banner" },
+      ],
+    });
+    insertContact(db, {
+      uniqueId: uuidv4(),
+      Name: "Blocked",
+      task: [
+        { id: uuidv4(), content: "Freelancer contracts" },
+        { id: uuidv4(), content: "Budget approval" },
+      ],
+    });
+    insertContact(db, {
+      uniqueId: uuidv4(),
+      Name: "Done",
+      task: [
+        { id: uuidv4(), content: "Submite Q1 report" },
+        { id: uuidv4(), content: "Campaign Proposal" },
+      ],
+    });
   };
 
-
-
-
+  const listItemMenuPopOver = (
+    <div className="list-item-menu-popover-container">
+      <hr />
+      {ListItemMenuData.map((item) => (
+        <p className="menu-content">{item}</p>
+      ))}
+      <hr />
+      <p className="menu-content">Sort by...</p>
+      <hr />
+      <h4 className="menu-title">Automation</h4>
+      {MenuAutomationData.map((item) => (
+        <p className="menu-content">{item}</p>
+      ))}
+      <hr />
+      <p className="menu-content">Move all cards in this list </p>
+      <p className="menu-content">Archivr all cards in this list...</p>
+      <hr />
+      <p className="menu-content">Archive this list</p>
+    </div>
+  );
 
   return (
     <div className="entire-board-bg">
@@ -179,11 +204,25 @@ export const ProjBoardContainer = () => {
                     // }}
                   >
                     <ul className="list-item">
-                      
-                      <ProjBoardCardsContainer
-                        eachBoardItem={column}
-                        key={columnId}
-                      />
+                      <li className="each-board-list-bg">
+                        <div className="board-item-header">
+                          <h1 className="project-title">{column.name}</h1>
+                          <Popover
+                            content={listItemMenuPopOver}
+                            title="List actions"
+                            trigger="click"
+                            placement="rightTop"
+                          >
+                            <Button className="list-item-top-right-menu-button">
+                              <BsThreeDots />
+                            </Button>
+                          </Popover>
+                        </div>
+                        <ProjBoardCardsContainer
+                          eachBoardItem={column}
+                          key={columnId}
+                        />
+                      </li>
                     </ul>
                     {provided.placeholder}
                   </div>
@@ -203,11 +242,7 @@ export const ProjBoardContainer = () => {
                   autoFocus
                 />
                 <div className="add-card-container">
-                  <Button
-                    htmlType="submit"
-                    className="add-inner-card"
-                   
-                  >
+                  <Button htmlType="submit" className="add-inner-card">
                     Add List
                   </Button>
                   <X
