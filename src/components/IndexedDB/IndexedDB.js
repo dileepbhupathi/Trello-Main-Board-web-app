@@ -123,5 +123,5 @@ export const IndexDB = () => {
   //   getContactById(db, 18);
   // };
 
-  return <div>Example</div>;
+  return <></>;
 };

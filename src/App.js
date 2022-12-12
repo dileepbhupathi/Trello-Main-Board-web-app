@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.scss";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
-import { IndexDB } from "./components/IndexedDB/IndexedDB";
+// import { IndexDB } from "./components/IndexedDB/IndexedDB";
 import { PrjHeader } from "./components/PrjHeaderComponent/PrjHeader";
 import { ProjBoardContainer } from "./components/ProjBoardContainer/projBoardCotainer";
 
@@ -11,7 +11,7 @@ function App() {
       <ErrorBoundary>
         <PrjHeader />
         <ProjBoardContainer />
-        <IndexDB/>
+        {/* <IndexDB/> */}
       </ErrorBoundary>
     </div>
   );
