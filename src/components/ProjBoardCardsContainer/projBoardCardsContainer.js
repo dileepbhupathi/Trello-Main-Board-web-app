@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Button, Card, Modal, Popover } from "antd";
 import { X } from "react-feather";
-import "./cards.scss";
+import "./projBoardCardsContainer.scss";
 import { Draggable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
-// import { dummyListData } from "../../fixtures/dummyListData";
-// import SelectedListItem from "../SelectedListItem/SelectedListItem";
 import ModalPage from "../ModalPage/ModalPage";
 import { MdOutlineEdit } from "react-icons/md";
 import { GrTextAlignFull } from "react-icons/gr";
@@ -13,31 +11,60 @@ import { AiOutlineEye } from "react-icons/ai";
 import { CgTemplate } from "react-icons/cg";
 import { FiCheckSquare } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
+import { FiMoreHorizontal } from "react-icons/fi";
 import { BsThreeDots } from "react-icons/bs";
+
 import {
   ListItemMenuData,
   MenuAutomationData,
 } from "../../Constants/MenuData/MenuData";
 
-export const CardsContainer = ({ listItem }) => {
-  const [addOption, showAddOption] = useState(false);
-  const [inputValue, setInputValue] = useState();
+export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
+  const [openMore, setOpenMore] = useState(false);
 
-  function submission(e) {
+  const handleOpenChange = (newOpen) => {
+    setOpenMore(newOpen);
+  };
+  const moreDetails = (
+    <div>
+      <hr />
+      <p> Members..</p>
+      <p> Labels..</p>
+      <p> position..</p>
+    </div>
+  );
+
+  const templateDetails = (
+    <>
+      <hr />
+      <Card>
+        <p>m mkl</p>
+      </Card>
+      <Button>
+        
+          <CgTemplate />
+        
+      </Button>
+    </>
+  );
+
+  const [showAddOption, setShowAddOption] = useState(false);
+  const [inputForCard, setInputForCard] = useState();
+
+  function addNewCardDetailsToBoard(e) {
     e.preventDefault();
-    let newCard = { id: uuidv4(), content: `${inputValue}` };
-    //  newCard =! undefined ? listItem.task.push(newCard)
-    if (inputValue !== undefined) {
-      listItem.task.push(newCard);
+    let newCardToTask = { id: uuidv4(), content: `${inputForCard}` };
+
+    if (inputForCard !== undefined) {
+      eachBoardItem.task.push(newCardToTask);
     }
-    showAddOption(false);
+    setShowAddOption(false);
   }
 
   // drag and drop
 
   // MODAL MAIN POP_UP SANDEEP
   const [resetModal, setResetModal] = useState(false);
-
   const [isWatch, setIsWatch] = useState(false);
 
   const changesToWatch = () => {
@@ -49,7 +76,6 @@ export const CardsContainer = ({ listItem }) => {
   };
 
   const [isTemplate, setIsTemplate] = useState(false);
-
   const [isHideFromList, setIsHideFromList] = useState();
 
   const hideFromList = () => {
@@ -65,9 +91,7 @@ export const CardsContainer = ({ listItem }) => {
   };
 
   const [isDelete, setIsDelete] = useState(false);
-
   const [isArchive, setIsArchive] = useState(false);
-
   const [isSendToBoard, setIsSendToBoard] = useState(false);
 
   const sendToBoard = () => {
@@ -119,21 +143,21 @@ export const CardsContainer = ({ listItem }) => {
 
   return (
     <div>
-      <li className="list-bg">
-        <div className="list-item-header">
-          <h1 className="project-title">{listItem.name}</h1>
+      <li className="each-board-list-bg">
+        <div className="board-item-header">
+          <h1 className="project-title">{eachBoardItem.name}</h1>
           <Popover
             content={listItemMenuPopOver}
             title="List actions"
             trigger="click"
             placement="rightTop"
           >
-            <Button className="list-item-menu-button">
+            <Button className="list-item-top-right-menu-button">
               <BsThreeDots />
             </Button>
           </Popover>
         </div>
-        {listItem.task.map((item, i) => (
+        {eachBoardItem.task.map((item, i) => (
           <Draggable key={item.id} draggableId={item.id} index={i}>
             {(provided, snapshot) => {
               return (
@@ -210,31 +234,61 @@ export const CardsContainer = ({ listItem }) => {
             }}
           </Draggable>
         ))}
-        {addOption ? (
-          <form onSubmit={submission}>
-            <input
-              type="text"
-              placeholder="Enter a Title for this card"
-              className="add-card-input"
-              onChange={(event) => setInputValue(event.target.value)}
-              autoFocus
-            />
+        {showAddOption ? (
+          <form onSubmit={addNewCardDetailsToBoard}>
+            <Card className="add-new-card-input-space">
+              <input
+                type="text"
+                placeholder="Enter a Title for this card"
+                className="add-card-input"
+                onChange={(event) => setInputForCard(event.target.value)}
+                autoFocus
+              />
+            </Card>
             <div className="add-card-container">
-              <Button htmlType="submit" className="add-inner-card">
-                Add Card
-              </Button>
-              <X onClick={() => showAddOption(false)} className="cancelIcon" />
+              <div className="add-card-and-cancel-icon">
+                <Button htmlType="submit" className="add-inner-card">
+                  Add Card
+                </Button>
+                <X
+                  onClick={() => setShowAddOption(false)}
+                  className="cancel-icon-in-addcard"
+                />
+              </div>
+              <div>
+                <Popover
+                  content={moreDetails}
+                  title="Options"
+                  trigger="click"
+                  open={openMore}
+                  onOpenChange={handleOpenChange}
+                >
+                  <FiMoreHorizontal className="add-more-icon" />
+                </Popover>
+              </div>
             </div>
           </form>
         ) : (
-          <Button
-            size="large"
-            className="add-card-btn"
-            onClick={() => showAddOption(true)}
-          >
-            <AiOutlinePlus className="card-checkbox-icon" />
-            Add Card
-          </Button>
+          <div>
+            <Button
+              size="large"
+              className="add-card-btn"
+              onClick={() => setShowAddOption(true)}
+            >
+              <AiOutlinePlus className="card-checkbox-icon" />
+              Add Card
+            </Button>
+            <Popover
+              style={{ backgroundColor: "gray" }}
+              content={templateDetails}
+              title="Card Templates"
+              trigger="click"
+              open={openMore}
+              onOpenChange={handleOpenChange}
+            >
+              <CgTemplate className="template-icon-beside-addcard-btn" />
+            </Popover>
+          </div>
         )}
       </li>
     </div>
