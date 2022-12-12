@@ -49,14 +49,15 @@
 
 
 .title-container{
-    width: 19%;
-    margin-right: 0.5%;
+    width: 21%;
+    // margin-right: 0.5%;
 }
 
 .title {
     color: white;
     font-weight: 700;
     font-size: 1.125em;
+    margin-right: 2%;
 }
 
 .workspace-container {
@@ -82,8 +83,8 @@
 }
 
 .board-container {
-    margin-left: 0.5%;
-    width: 42%;
+    // margin-left: 0.5%;
+    width: 46%;
 }
 
 .board-icon {
@@ -104,9 +105,9 @@
     margin-left: 1%;
     background-color: #ffffff33;
     color: white;
-    padding:0% 1.5% 0% 1%;
+    padding:0% 2.9% 0% 1%;
+    border : 0px;
 }
-
 .calender-icon {
     color: white;
     font-size: 1.125em;
@@ -142,6 +143,7 @@
 .share-button {
     padding: 0% 15%;
     margin-left: 0.5%;
+    border: 0px;
 }
 
 .person-icon {
@@ -156,5 +158,6 @@
     color: white;
     font-size: 1.1em;
     margin-right: 1%;
+    border: 0px;
 }
 
