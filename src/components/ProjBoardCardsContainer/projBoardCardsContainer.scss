@@ -1,0 +1,209 @@
+.each-board-list-bg {
+  background-color: #eaeaea;
+  padding: 10px;
+  border-radius: 0.25em;
+  width: 300px;
+  list-style-type: none;
+}
+.project-title {
+  font-family: "sans-serif";
+  font-size: 14px;
+  color: rgb(12, 12, 51);
+}
+.card-bg {
+  background-color: #ffff;
+}
+// .ant-card {
+//   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+//   .ant-card-body {
+//     padding: 5px;
+//   }
+// }
+
+.add-card-btn {
+  margin-top: 15px;
+}
+.add-card-input {
+  background-color: white;
+  padding: 10px;
+  outline: 0;
+  border: 0;
+  margin-top: 10px;
+}
+.add-inner-card {
+  background-color: rgb(43, 43, 238);
+  color: white;
+  font-family: "sans-serif";
+  font-weight: 500;
+  font-size: 12px;
+}
+.add-card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+}
+.inserted-card {
+  margin-top: 15px;
+  color: #172b4d;
+  box-shadow: none;
+  border-color: transparent;
+  border-bottom: 1.5px solid rgb(196, 193, 193);
+}
+.add-new-card-input-space {
+  border-color: transparent;
+  border-bottom: 1.5px solid rgb(196, 193, 193);
+}
+
+.inserted-card:hover {
+  background-color: rgba(177, 157, 157, 0.094);
+}
+.add-more-icon {
+  color: black;
+  font-size: 28px;
+  margin-left: 160px;
+  cursor: pointer;
+}
+.inserted-card:hover .card-edit-button {
+  visibility: visible;
+}
+.template-icon-beside-addcard-btn {
+  color: gray;
+}
+.pop-over-bg{
+    background-color: gray;
+}
+
+.template-icon-beside-addcard-btn:hover {
+  cursor: pointer;
+}
+
+.add-card-and-cancel-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cancel-icon-in-addcard {
+  color: black;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.modalpage {
+  .ant-modal .ant-modal-content {
+    background-color: rgb(243, 243, 243);
+  }
+}
+
+.card-label-edit-container {
+  display: flex;
+  height: 2vh;
+  justify-content: space-between;
+}
+
+.card-edit-button {
+  border: 0px solid;
+  box-shadow: none;
+  color: grey;
+  visibility: hidden;
+  background-color: transparent;
+  transition: 0ms;
+}
+
+.card-edit-button:hover {
+  background-color: rgba(243, 248, 249, 0.932);
+}
+
+.card-template-container {
+  background-color: #e4f0f6;
+  color: #172b4d;
+  padding: 2%;
+  border-radius: 0.25em;
+  margin-right: 5%;
+  font-weight: 400;
+}
+
+.card-description {
+  margin: 8% 0% 0%;
+}
+
+.card-icons {
+  color: grey;
+  margin-right: 7%;
+  margin-top: 5%;
+}
+
+.card-template-icon {
+  color: #172b4d;
+  margin-right: 2%;
+}
+
+.card-checkbox-container {
+  color: grey;
+}
+
+.card-checkbox-icon {
+  margin-right: 3%;
+  color: grey;
+  margin-top: 7%;
+}
+
+.add-card-btn {
+  color: grey;
+  background-color: transparent;
+  border: 0px;
+  box-shadow: none;
+  text-align: left;
+  margin: 2% 0%;
+  width: 90%;
+}
+
+// .add-card-btn:hover {
+//     background-color: rgb(213, 222, 224);
+// }
+
+.board-item-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-item-top-right-menu-button {
+  background-color: transparent;
+  border: 0px;
+  box-shadow: none;
+  color: gray;
+}
+
+hr {
+  color: grey;
+}
+
+.list-item-menu-popover-container {
+  width: 250px;
+  overflow-y: auto;
+  height: 90vh;
+}
+
+.list-item-menu-button:hover {
+  background-color: rgba(243, 248, 249, 0.932);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d0d4d9;
+  border-radius: 5px;
+}
+
+.menu-content {
+  color: rgb(103, 103, 103);
+}
+
+.menu-title {
+  color: grey;
+  font-weight: 500;
+}
