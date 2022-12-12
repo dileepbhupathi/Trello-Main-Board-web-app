@@ -33,9 +33,8 @@ export default {
   component: IconButton,
   argTypes: {
     icon: {
-      options: [undefined, ...Object.keys(iconsMap)],
+      options: [...Object.keys(iconsMap)],
       mapping: {
-        undefined,
         ...iconsMap,
       },
     },
