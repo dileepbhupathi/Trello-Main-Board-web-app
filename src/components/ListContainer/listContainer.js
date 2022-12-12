@@ -9,12 +9,14 @@ import { v4 as uuidv4 } from "uuid";
 
 
 export const ListContainer = () => {
+
   const [columns, setcolumns] = useState(dummyListData);
   
   const [addBoard, setAddBoard] = useState(false);
+
   const [boardTitle, setBoardTitle] = useState();
+
   function addList() {
-   
 
     if(boardTitle !== undefined) {
       dummyListData[uuidv4()] = { name: boardTitle, task: [] };
@@ -23,22 +25,31 @@ export const ListContainer = () => {
     setAddBoard(false);
     console.log("new", dummyListData);
   }
+
   const onDragEnd = (result, columns, setColumns) => {
+
     console.log("columns", columns);
+
     console.log("result", result);
 
     if (!result.destination) return;
+
     const { source, destination } = result;
 
     if (source.droppableId !== destination.droppableId) {
+
       const sourceColumn = columns[source.droppableId];
 
       const destColumn = columns[destination.droppableId];
 
       const sourceItems = [...sourceColumn.task];
+
       const destItems = [...destColumn.task];
+
       const [removed] = sourceItems.splice(source.index, 1);
+
       destItems.splice(destination.index, 0, removed);
+
       setColumns({
         ...columns,
         [source.droppableId]: {
@@ -64,6 +75,7 @@ export const ListContainer = () => {
       });
     }
   };
+
   return (
     <div className="list-container-bg">
      
@@ -73,10 +85,9 @@ export const ListContainer = () => {
         <div className="list-items">
           {Object.entries(columns).map(([columnId, column], index) => (
           
-          
             <Droppable droppableId={columnId} key={columnId}>
               {(provided, snapshot) => {
-                
+              
                 return (
                   <div
                     {...provided.droppableProps}

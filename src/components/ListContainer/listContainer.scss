@@ -19,6 +19,7 @@
 .list-items{
     display: flex;
     width: 100%;
+    overflow-x: scroll;
 }
 
 .list-item {

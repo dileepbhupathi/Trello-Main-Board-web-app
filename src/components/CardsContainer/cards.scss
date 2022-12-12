@@ -98,7 +98,7 @@
 }
 
 .card-edit-button:hover {
-    background-color: rgba(243, 248, 249, 0.932);
+    background-color: #091e4214;
 }
 
 .card-template-container {
@@ -173,7 +173,8 @@ hr {
 }
 
 .list-item-menu-button:hover {
-    background-color: rgba(243, 248, 249, 0.932);
+    background-color: #091e4214;
+    color: black;
 }
 
 ::-webkit-scrollbar {
@@ -187,11 +188,11 @@ hr {
 
 
 .menu-content {
-    color: rgb(103, 103, 103);
+    color: #172b4d;
 }
 
 .menu-title {
-    color: grey;
+    color: #5e6c84;
     font-weight: 500;
 }
 
