@@ -6,9 +6,10 @@
   list-style-type: none;
 }
 .project-title {
-  font-family: "sans-serif";
+  font-family: "system-ui";
   font-size: 14px;
   color: rgb(12, 12, 51);
+  font-weight: 600;
 }
 .card-bg {
   background-color: #ffff;
@@ -34,7 +35,7 @@
 .add-inner-card {
   background-color: rgb(43, 43, 238);
   color: white;
-  font-family: "sans-serif";
+  font-family: "open-sans";
   font-weight: 500;
   font-size: 12px;
 }
