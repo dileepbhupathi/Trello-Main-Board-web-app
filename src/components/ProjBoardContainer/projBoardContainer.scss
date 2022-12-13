@@ -1,12 +1,11 @@
-.list-container-bg{
+.entire-board-bg{
     background-size: cover;
-    height: auto;
-    width: 100%;
+    height: 89.9vh;
     background: linear-gradient(to right, rgb(1, 1, 115),rgb(192, 24, 153));
     color: white;
     padding: 0px 10px;
     box-sizing: border-box;
-    // overflow: scroll;
+    overflow-x: scroll;
 }
 .project-heading{
     color: #ffff;
@@ -16,11 +15,14 @@
     box-sizing: border-box;
 }
 
-.list-items{
+.boards-alignment{
     display: flex;
     width: 100%;
     overflow-x: scroll;
+<<<<<<< HEAD:src/components/ListContainer/listContainer.scss
 
+=======
+>>>>>>> 94182adf89eea90f17fd005aca5cbeb194ab2ae0:src/components/ProjBoardContainer/projBoardContainer.scss
 }
 
 .list-item {

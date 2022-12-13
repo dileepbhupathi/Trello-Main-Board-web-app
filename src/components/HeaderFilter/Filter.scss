@@ -2,12 +2,14 @@
     background-color: white;
     color: black;
     margin-left: 1%;
+    border: 0px;
 }
 
 .no-filter-button {
     margin-left: 1%;
     background-color: #ffffff33;
     color: white;
+    border: 0px;
 }
 
 .filter-container {
@@ -19,8 +21,12 @@
 .filter-popup {
     top: 59px;
     left: 250px;
+    // background-color: white;
 }
+.ant-modal .ant-modal-header {
+    background: rgb(243, 243, 243);
 
+}
 .filter-icon {
     color: black;
     margin-right: 5%;
@@ -40,21 +46,37 @@ li {
 }
 
 
-.icon-container {
-    display: inline;
-    border-radius: 50%;
-    background-color: rgb(230, 235, 240);
-    padding: 1% 1.5%;
-    margin-right: 2%;
-    width: 100%;
+// .icon-container {
+//     display: inline;
+//     border-radius: 50%;
+//     background-color: rgb(230, 235, 240);
+//     padding: 1% 1%;
+//     margin-right: 2%;
     
+// }
+
+// .person-icon {
+//     color: grey;
+//     font-size: 1em;
+
+// }
+
+.filter-caption {
+    margin-bottom: 1.5%;
+    color: #5e6c84;
+    font-size: 13px;
+    font-weight: 500;
 }
 
-.person-icon {
+.Filter-description {
     color: grey;
-    font-size: 1em;
+    font-size: 12px;
+    margin-top: 1.5%;
 }
 
+.filter-members {
+    margin-top: 3%;
+}
 .cards-assigned-container {
     background-color: rgb(103, 61, 221);
     text-align: center;

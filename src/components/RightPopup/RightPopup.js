@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./RightPopup.scss";
 import { ContentComponent } from "../ContentComponents/Content";
 import { Members } from "../../view/Members/members";
@@ -7,10 +7,14 @@ import { Checklist } from "../../view/Checklist/checklist";
 import { Dates } from "../../view/Dates/Date";
 import { Attachment } from "../../view/Attachment/attachment";
 import { Cover } from "../../view/Cover/cover";
-import { Trail } from "../../view/Trail/Trail";
+import { Button, Modal } from "antd";
+import {PicCenterOutlined} from '@ant-design/icons'
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 94182adf89eea90f17fd005aca5cbeb194ab2ae0
 function RightPopup({
   isWatch,
   changesToWatch,
