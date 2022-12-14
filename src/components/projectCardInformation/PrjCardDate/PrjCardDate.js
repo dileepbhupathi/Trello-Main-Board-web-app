@@ -3,13 +3,13 @@ import "./PrjCardDate.scss";
 import { DatePicker, Card } from "antd";
 import dayjs from "dayjs";
 import moment from "moment";
-import { v4 as uuid } from "uuid";
+// import { v4 as uuid } from "uuid";
 
 const PrjCardDate = ({ dateChecked }) => {
   const [duration, setDuration] = useState();
   const [timeLeft, setTimeLeft] = useState(0);
 
-  let id = uuid().slice(0, 3);
+  // let id = uuid().slice(0, 3);
 
   function dateDiffInDays(a, b) {
     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -26,46 +26,46 @@ const PrjCardDate = ({ dateChecked }) => {
     setTimeLeft(difference);
     console.log("date selected :", dateString);
 
-    const request = indexedDB.open("PrjCardInforation", 2);
+    // const request = indexedDB.open("PrjCardInforation", 2);
 
-    const Adddate = (db, date) => {
-      const tx = db.transaction(["date"], "readwrite");
-      const store = tx.objectStore("date");
-      let query = store.add(date);
-      query.onsuccess = function (event) {
-        console.log(event);
-      };
+    // const Adddate = (db, date) => {
+    //   const tx = db.transaction(["date"], "readwrite");
+    //   const store = tx.objectStore("date");
+    //   let query = store.add(date);
+    //   query.onsuccess = function (event) {
+    //     console.log(event);
+    //   };
 
-      tx.oncomplete = function () {
-        db.close();
-      };
-    };
+    //   tx.oncomplete = function () {
+    //     db.close();
+    //   };
+    // };
 
-    request.onupgradeneeded = () => {
-      let db = request.result;
-      let store = db.createObjectStore("date", {
-        keyPath: "index",
-        autoIncrement: true,
-      });
+    // request.onupgradeneeded = () => {
+    //   let db = request.result;
+    //   let store = db.createObjectStore("date", {
+    //     keyPath: "index",
+    //     autoIncrement: true,
+    //   });
 
-      // let index = store.createIndex("Content", "Content", {
-      //   keyPath: "content",
-      //   unique: true,
-      // });
-      // console.log("index");
-    };
+    //   // let index = store.createIndex("Content", "Content", {
+    //   //   keyPath: "content",
+    //   //   unique: true,
+    //   // });
+    //   // console.log("index");
+    // };
 
-    request.onsuccess = () => {
-      const db = request.result;
-      Adddate(db, { id: id, date: dateString });
-      let items = db
-        .transaction(["date"], "readwrite")
-        .objectStore("date")
-        .getAll();
-      items.onsuccess = function (event) {
-        console.log("item success");
-      };
-    };
+    // request.onsuccess = () => {
+    //   const db = request.result;
+    //   Adddate(db, { id: id, date: dateString });
+    //   let items = db
+    //     .transaction(["date"], "readwrite")
+    //     .objectStore("date")
+    //     .getAll();
+    //   items.onsuccess = function (event) {
+    //     console.log("item success");
+    //   };
+    // };
   };
 
   return (
