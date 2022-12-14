@@ -2,10 +2,6 @@ import "./ModalLabel.scss";
 import React from "react";
 import PropTypes from "prop-types";
 import { Typography } from "antd";
-<<<<<<< HEAD
-// import { Labels } from "../Labels/labels";
-=======
->>>>>>> 94182adf89eea90f17fd005aca5cbeb194ab2ae0
 import { Labels } from "../../view/Labels/labels";
 
 const ModalLabel = ({ label }) => {
