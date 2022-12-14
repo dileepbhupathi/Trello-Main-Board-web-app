@@ -1,0 +1,30 @@
+.project-activity-form {
+    display: flex;
+    margin-top: 1%;
+    margin-right: 1%;
+}
+
+.activity-submit-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.activity-icon-container {
+    margin-right: 1%;
+
+    .member {
+
+        width: 30px;
+        height: 30px;
+        line-height: 25px;
+        border-radius: 50%;
+        font-size: 20px;
+        color: white;
+        text-align: center;
+        background: rgb(3, 94, 3)
+    }
+}
+
+.activity-form-section {
+    width: 100%;
+}
