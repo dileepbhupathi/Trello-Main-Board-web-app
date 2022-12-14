@@ -3,7 +3,7 @@ import ModalTitle from "../../components/ModalTitle/ModalTitle";
 import ModalDescription from "../../components/ModalDescription/ModalDescription";
 import ModalActivity from "../../components/ModalActivity/ModalActivity";
 import ModalCheckbox from "../../components/ModalCheckbox/ModalCheckbox";
-import ModalAttachment from "../../components/ModalAttachment/ModalAttachment";
+// import ModalAttachment from "../../components/ModalAttachment/ModalAttachment";
 import RightPopup from "../RightPopup/RightPopup";
 
 const modaltitle = "This is the description of the clicked card";
@@ -35,7 +35,7 @@ const ModalPage = ({
           modaldescription={modaldescription}
         />
         <ModalDescription description={description} />
-        <ModalAttachment />
+        {/* <ModalAttachment /> */}
         <ModalCheckbox />
         <ModalActivity />
       </div>

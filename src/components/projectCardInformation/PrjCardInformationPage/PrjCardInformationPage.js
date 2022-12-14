@@ -16,7 +16,21 @@ const projectCardHeaederDescriptionLink = "projectCardHeaederDescriptionLink";
 const header = "in list";
 const projectCardDescription = "projectCardDescription";
 
-const PrjCardInformationPage = () => {
+const PrjCardInformationPage = ({isWatch,
+  changesToWatch,
+  removeWatch,
+  isTemplate,
+  changesToTemplate,
+  removesTemplate,
+  isHideFromList,
+  isShowInList,
+  hideFromList,
+  showInList,
+  isDelete,
+  isArchive,
+  isSendToBoard,
+  sendToBoard,
+  sendToArchive,}) => {
   return (
     <div className="card-information-body">
       <div className="card-information-header">
@@ -37,7 +51,21 @@ const PrjCardInformationPage = () => {
             <PrjCardCheckbox />
             <PrjCardActivity />
           </div>
-          <div className="card-right-information"><RightPopup/></div>
+          <div className="card-right-information"><RightPopup isWatch={isWatch}
+          changesToWatch={changesToWatch}
+          removeWatch={removeWatch}
+          isTemplate={isTemplate}
+          changesToTemplate={changesToTemplate}
+          removesTemplate={removesTemplate}
+          isHideFromList={isHideFromList}
+          hideFromList={hideFromList}
+          isShowInList={isShowInList}
+          showInList={showInList}
+          isDelete={isDelete}
+          isArchive={isArchive}
+          isSendToBoard={isSendToBoard}
+          sendToBoard={sendToBoard}
+          sendToArchive={sendToArchive}/></div>
         </div>
       </div>
     </div>

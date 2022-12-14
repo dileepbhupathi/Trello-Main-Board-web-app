@@ -4,7 +4,6 @@ import { X } from "react-feather";
 import "./projBoardCardsContainer.scss";
 import { Draggable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
-import ModalPage from "../ModalPage/ModalPage";
 import { MdOutlineEdit } from "react-icons/md";
 import { GrTextAlignFull } from "react-icons/gr";
 import { AiOutlineEye } from "react-icons/ai";
@@ -12,6 +11,7 @@ import { CgTemplate } from "react-icons/cg";
 import { FiCheckSquare } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FiMoreHorizontal } from "react-icons/fi";
+import PrjCardInformationPage from "../projectCardInformation/PrjCardInformationPage/PrjCardInformationPage";
 
 
 
@@ -166,16 +166,16 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
                     centered
                     width={800}
                     footer={null}
+                    className='project-card-information'
                     open={resetModal}
                     onOk={() => setResetModal(false)}
                     onCancel={() => setResetModal(false)}
-                    className="modalpage"
                     style={{
                       top: 50,
                       borderRadius: "0px",
                     }}
                   >
-                    <ModalPage
+                    <PrjCardInformationPage
                       isWatch={isWatch}
                       changesToWatch={changesToWatch}
                       removeWatch={removeWatch}
