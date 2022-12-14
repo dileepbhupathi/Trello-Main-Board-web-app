@@ -144,11 +144,7 @@ export const ProjBoardContainer = () => {
     };
 
   }
-
-  // function addNewListToBoard() {
-
-  // }
-
+  // console.log("data",data);
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
@@ -205,7 +201,7 @@ export const ProjBoardContainer = () => {
       ))}
       <hr />
       <p className="menu-content">Move all cards in this list </p>
-      <p className="menu-content">Archivr all cards in this list...</p>
+      <p className="menu-content">Archive all cards in this list...</p>
       <hr />
       <p className="menu-content">Archive this list</p>
     </div>
