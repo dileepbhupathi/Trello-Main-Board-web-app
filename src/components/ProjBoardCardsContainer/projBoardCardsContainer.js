@@ -119,9 +119,7 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
   
   return (
     <>
-      <li>
-        
-        {eachBoardItem.task.map((item, i) => (
+        {eachBoardItem.task.map((item,i) => (
           <Draggable key={item.id} draggableId={item.id} index={i}>
             {(provided, snapshot) => {
               return (
@@ -140,6 +138,7 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
                       borderRadius: "0.25em",
                       ...provided.draggableProps.style,
                     }}
+                    key = {item.id}
                   >
                     <div className="card-label-edit-container">
                       <div className="card-label-container">labels</div>
@@ -254,7 +253,6 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
             </Popover>
           </div>
         )}
-      </li>
     </>
   );
 };
