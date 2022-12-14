@@ -9,7 +9,6 @@ import { Attachment } from "../../view/Attachment/attachment";
 import { Cover } from "../../view/Cover/cover";
 
 
-
 function RightPopup({
   isWatch,
   changesToWatch,
@@ -39,7 +38,6 @@ function RightPopup({
         <Dates />
         <Attachment />
         <Cover />
-       
         <ContentComponent
           isWatch={isWatch}
           changesToWatch={changesToWatch}

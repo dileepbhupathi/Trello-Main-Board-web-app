@@ -26,7 +26,7 @@ class ErrorBoundary extends React.Component {
         // You can render any custom fallback UI
         return <h1>Oops!! No data found</h1>;
       }
-  
+      
       return this.props.children; 
     }
   }

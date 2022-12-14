@@ -13,23 +13,23 @@ export const dummyListData = {
     name: "Project Resource",
     task: [
       { id: uuidv4(), content: "Trello Tip: Card labels! What do they mean? (Click for more info)" },
-      { id: uuidv4(), content: 'Project "Teamwork Dream Work" Launch Timeline' },
+      // { id: uuidv4(), content: 'Project "Teamwork Dream Work" Launch Timeline' },
     ],
   },
-  [uuidv4()]:{ 
+  // [uuidv4()]:{ 
     
-    name: "Questions For Next Meeting",
-    task: [
-      { id: uuidv4(), content: "Trello Tip: 🌊Slide your Q's into this handy list so your team keeps on flowing." },
-      { id: uuidv4(), content: "Who's the best person to fix my HTML snag?" },
-    ],
-  },
-  [uuidv4()]:{
+  //   name: "Questions For Next Meeting",
+  //   task: [
+  //     { id: uuidv4(), content: "Trello Tip: 🌊Slide your Q's into this handy list so your team keeps on flowing." },
+  //     { id: uuidv4(), content: "Who's the best person to fix my HTML snag?" },
+  //   ],
+  // },
+  // [uuidv4()]:{
      
-    name: "Pending",
-    task: [
-      { id: uuidv4(), content: "Trello Tip: This is where assigned tasks live so that your team can see who's working on what and when it's due." },
-      { id: uuidv4(), content: "Sketch site banner" },
-    ],
-  },
+  //   name: "Pending",
+  //   task: [
+  //     { id: uuidv4(), content: "Trello Tip: This is where assigned tasks live so that your team can see who's working on what and when it's due." },
+  //     { id: uuidv4(), content: "Sketch site banner" },
+  //   ],
+  // },
 };
