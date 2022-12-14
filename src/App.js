@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import "./App.scss";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
@@ -9,6 +11,7 @@ function App() {
   return (
     <div className="App">
       <ErrorBoundary>
+
         <PrjHeader />
         <ProjBoardContainer />
         {/* <IndexDB/> */}

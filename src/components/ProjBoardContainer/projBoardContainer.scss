@@ -1,0 +1,50 @@
+.entire-board-bg{
+    background-size: cover;
+    height: 89.9vh;
+    background: linear-gradient(to right, rgb(1, 1, 115),rgb(192, 24, 153));
+    color: white;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    overflow-x: scroll;
+}
+.project-heading{
+    color: #ffff;
+    font-family: 'Bree-serif';
+    font-size: 27px;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.boards-alignment{
+    display: flex;
+    width: 100%;
+    overflow-x: scroll;
+<<<<<<< HEAD:src/components/ListContainer/listContainer.scss
+
+=======
+>>>>>>> 94182adf89eea90f17fd005aca5cbeb194ab2ae0:src/components/ProjBoardContainer/projBoardContainer.scss
+}
+
+.list-item {
+    width: 100%;
+}
+
+.cancel-icon{
+    color: black;
+}
+.add-list-button{
+    margin-top: 25px;
+    margin-left: 30px;
+    background-color: #ffffff33;
+    color: #ffffff;
+    border:none;
+    border-radius:0;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+.add-list-container{
+    background-color: white;
+}
+
+

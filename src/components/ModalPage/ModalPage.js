@@ -8,9 +8,25 @@ import RightPopup from "../RightPopup/RightPopup";
 
 const modaltitle = "This is the description of the clicked card";
 const modaldescription = "This is the title of the cliked card listitem";
-const description = 'This will be the existing description';
+const description = "This will be the existing description";
+const ModalPage = ({
+  isWatch,
+  changesToWatch,
+  removeWatch,
+  isTemplate,
+  changesToTemplate,
+  removesTemplate,
+  isHideFromList,
+  isShowInList,
+  hideFromList,
+  showInList,
+  isDelete,
+  isArchive,
+  isSendToBoard,
+  sendToBoard,
+  sendToArchive,
+}) => {
 
-const ModalPage = () => {
   return (
     <div className="modal-main">
       <div className="modal-page-left">
@@ -24,8 +40,24 @@ const ModalPage = () => {
         <ModalActivity />
       </div>
       <div className="modal-page-right">
-        <RightPopup />
-        </div>
+        <RightPopup
+          isWatch={isWatch}
+          changesToWatch={changesToWatch}
+          removeWatch={removeWatch}
+          isTemplate={isTemplate}
+          changesToTemplate={changesToTemplate}
+          removesTemplate={removesTemplate}
+          isHideFromList={isHideFromList}
+          hideFromList={hideFromList}
+          isShowInList={isShowInList}
+          showInList={showInList}
+          isDelete={isDelete}
+          isArchive={isArchive}
+          isSendToBoard={isSendToBoard}
+          sendToBoard={sendToBoard}
+          sendToArchive={sendToArchive}
+        />
+      </div>
     </div>
   );
 };
