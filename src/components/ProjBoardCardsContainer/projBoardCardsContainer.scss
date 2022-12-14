@@ -4,6 +4,7 @@
   border-radius: 0.25em;
   width: 300px;
   list-style-type: none;
+  margin-right: 1%;
 }
 .project-title {
   font-family: "system-ui";
@@ -208,3 +209,9 @@ hr {
   color: grey;
   font-weight: 500;
 }
+
+
+.ant-modal .ant-modal-content{
+  background-color: rgb(243, 243, 243);
+}
+

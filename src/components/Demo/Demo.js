@@ -8,7 +8,7 @@ export const Demo = () => {
 // }
 
 
- const request = indexedDB.open("InitialData",3);
+ const request = indexedDB.open("DemoData",3);
  request.onerror = (event) => {
   console.log(`database error: ${event.target.errorCode}`);
  };
@@ -23,7 +23,7 @@ export const Demo = () => {
 
   // create the Contacts object store 
   // with auto-increment id
-  let store = db.createObjectStore('lists', {keyPath:"uniqueId",
+  let store = db.createObjectStore('demolists', {keyPath:"index",
       autoIncrement: true
   });
 
@@ -31,24 +31,20 @@ export const Demo = () => {
   let index = store.createIndex('Name', 'Name', {
       unique: true
   });
-//    let taskindex = store.createIndex('task', 'task', {
-//     unique: true
-// });
   
   
  console.log("index",index);
-//  console.log("index",taskindex);
 
 };
 
-function insertContact(db, lists) {
+function insertContact(db, demolists) {
   // create a new transaction
-  const txn = db.transaction(['lists'], 'readwrite');
+  const txn = db.transaction(['demolists'], 'readwrite');
   
   // get the Contacts object store
-  const store = txn.objectStore('lists');
+  const store = txn.objectStore('demolists');
   //
-  let query = store.add(lists);
+  let query = store.add(demolists);
 
   // handle success case
   query.onsuccess = function (event) {
@@ -104,11 +100,26 @@ request.onsuccess = () => {
     uniqueId: uuidv4(),
     Name: "Done",
     task: [
-      { id: uuidv4(), content: "Submite Q1 report" },
+      { id: uuidv4(), content: "Submit Q1 report" },
       { id: uuidv4(), content: "Campaign Proposal" },
     ],
   },);
-
+  insertContact(db, {  
+    uniqueId: uuidv4(),
+    Name: "UnDone",
+    task: [
+      { id: uuidv4(), content: "Submit Q1 " },
+      { id: uuidv4(), content: "Campaign " },
+    ],
+  },);
+  insertContact(db, {  
+    uniqueId: uuidv4(),
+    Name: "Status",
+    task: [
+      { id: uuidv4(), content: "Completed" },
+      { id: uuidv4(), content: "Completed Proposal" },
+    ],
+  },);
 };
 
 // function getContactById(db, id) {

@@ -1,0 +1,40 @@
+.activity-status {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+
+    .activity-icon-container {
+        margin-right: 1%;
+
+        .member {
+
+            width: 30px;
+            height: 30px;
+            line-height: 25px;
+            border-radius: 50%;
+            font-size: 20px;
+            color: white;
+            text-align: center;
+            background: rgb(3, 94, 3)
+        }
+    }
+
+    .activity-status-content {
+        width: 90%;
+        .activity-status-options-section {
+            display: flex;
+            text-align: center;
+            align-items: center;
+
+
+            .activity-status-options-icons {
+                font-size: 11px;
+
+            }
+        }
+    }
+    .deleteButton{
+        cursor: pointer;
+    }
+}

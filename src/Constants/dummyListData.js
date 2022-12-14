@@ -8,13 +8,13 @@ import { v4 as uuidv4 } from "uuid";
 // ];
 
 export const dummyListData = {
-  [uuidv4()]:{
+  // [uuidv4()]:{
     
-    name: "Project Resource",
-    task: [
-      { id: uuidv4(), content: "Trello Tip: Card labels! What do they mean? (Click for more info)" },
-      { id: uuidv4(), content: 'Project "Teamwork Dream Work" Launch Timeline' },
-    ],
-  },
+  //   name: "Project Resource",
+  //   task: [
+  //     { id: uuidv4(), content: "Trello Tip: Card labels! What do they mean? (Click for more info)" },
+  //     // { id: uuidv4(), content: 'Project "Teamwork Dream Work" Launch Timeline' },
+  //   ],
+  // },
  
 };

@@ -5,7 +5,7 @@
     color: white;
     padding: 0px 10px;
     box-sizing: border-box;
-    overflow-x: scroll;
+    overflow: scroll;
 }
 .project-heading{
     color: #ffff;
@@ -18,12 +18,12 @@
 .boards-alignment{
     display: flex;
     width: 100%;
-    // overflow-x: scroll;
 }
 
 .list-item {
     width: 100%;
     display: flex;
+    // margin-right: 5%;
 }
 
 .cancel-icon{
