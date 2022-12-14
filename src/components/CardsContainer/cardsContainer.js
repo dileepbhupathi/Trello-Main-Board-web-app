@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 // import { dummyListData } from "../../fixtures/dummyListData";
 // import SelectedListItem from "../SelectedListItem/SelectedListItem";
 import ModalPage from "../ModalPage/ModalPage";
+import PrjCardInformationPage from "../projectCardInformation/PrjCardInformationPage/PrjCardInformationPage";
 export const CardsContainer = ({ listItem }) => {
   const [addOption, showAddOption] = useState(false);
   const [inputValue, setInputValue] = useState();
@@ -69,7 +70,7 @@ export const CardsContainer = ({ listItem }) => {
                       borderRadius: "0px",
                     }}
                   >
-                    <ModalPage />
+                    <PrjCardInformationPage/>
                   </Modal>
                 </>
               );

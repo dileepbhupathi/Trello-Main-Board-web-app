@@ -1,4 +1,4 @@
-import "./ModalAttachment.scss";
+import "./PrjCardAttachment.scss";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Typography, Button, Modal } from "antd";
@@ -10,23 +10,29 @@ const ModalAttachment = ({ label }) => {
   return (
     <>
       <div className="attachment-section">
-        <div className="attachment-icon-section">
-          <SwitcherOutlined style={{ fontSize: "30px" }} />
-        </div>
-        <div className="attachment-content-section">
+        <div className="attachment-header-section">
+          <div className="attachment-icon-section">
+            <SwitcherOutlined style={{ fontSize: "30px" }} />
+          </div>
+          <div className="header">
           <Title level={4}>{label}</Title>
+          </div>
+          
+        </div>
+
+        <div className="attachment-content-section">
           <div className="link-section">
             <div className="link-image">LINK</div>
             <div className="link-matter">
               <p className="attachment-link">
                 link http://antd_wesite
                 <span>
-                  {" "}
+                  
                   <TfiArrowTopRight />
                 </span>
               </p>
               <p>
-                Added 43 minutes go - <a href="/">Comment</a> -{" "}
+                Added 43 minutes go - <a href="/">Comment</a> -
                 <a href="/">Remove</a> - <a href="/">Edit</a>
               </p>
             </div>

@@ -1,0 +1,26 @@
+.card-information-body {
+    width: 100%;
+    background-color: #554e4e3d;
+    // border: 1px solid red;
+
+    .card-information-header {
+        box-sizing: border-box;
+        width: 100%;
+        overflow: hidden;
+        // border: 1px solid red;
+
+    }
+
+    .card-content-information {
+        display: flex;
+        // border: 1px solid red;
+
+    }
+
+    .card-left-information {
+        width: 70%;
+        border: 1px solid red;
+
+    }
+
+}
