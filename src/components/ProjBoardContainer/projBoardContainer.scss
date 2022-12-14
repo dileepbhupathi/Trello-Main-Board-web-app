@@ -18,11 +18,12 @@
 .boards-alignment{
     display: flex;
     width: 100%;
-    overflow-x: scroll;
+    // overflow-x: scroll;
 }
 
 .list-item {
     width: 100%;
+    display: flex;
 }
 
 .cancel-icon{

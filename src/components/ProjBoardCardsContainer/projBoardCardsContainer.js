@@ -16,6 +16,7 @@ import { FiMoreHorizontal } from "react-icons/fi";
 
 
 export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
+  console.log("eachBoarddItems",eachBoardItem.Name)
   const [openMore, setOpenMore] = useState(false);
 
   const handleOpenChange = (newOpen) => {
@@ -48,14 +49,29 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
   const [inputForCard, setInputForCard] = useState();
 
   function addNewCardDetailsToBoard(e) {
+
     e.preventDefault();
     let newCardToTask = { id: uuidv4(), content: `${inputForCard}` };
+
+
 
     if (inputForCard !== undefined) {
       eachBoardItem.task.push(newCardToTask);
     }
     setShowAddOption(false);
+    
+ 
   }
+    
+
+    
+   
+   
+
+   
+
+    
+
 
   // drag and drop
 
@@ -119,7 +135,7 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
   
   return (
     <>
-      <li>
+      
         
         {eachBoardItem.task.map((item, i) => (
           <Draggable key={item.id} draggableId={item.id} index={i}>
@@ -254,7 +270,7 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
             </Popover>
           </div>
         )}
-      </li>
+    
     </>
   );
 };
