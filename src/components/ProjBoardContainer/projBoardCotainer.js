@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import "./projBoardContainer.scss";
 import { Button, Popover } from "antd";
-import { dummyListData } from "../../Constants/dummyListData";
+// import { dummyListData } from "../../Constants/dummyListData";
 import { X } from "react-feather";
 import { ProjBoardCardsContainer } from "../ProjBoardCardsContainer/projBoardCardsContainer";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
@@ -13,18 +13,136 @@ import {
 } from "../../Constants/MenuData/MenuData";
 
 export const ProjBoardContainer = () => {
-  const [columns, setcolumns] = useState(dummyListData);
+
+
+  const [columns, setcolumns] = useState([]);
 
   const [showAddBoard, setShowAddBoard] = useState(false);
+
   const [boardTitle, setBoardTitle] = useState();
+
 
   function sumbission(e) {
     e.preventDefault();
-    if (boardTitle !== undefined) {
-      dummyListData[uuidv4()] = { name: boardTitle, task: [] };
-    }
 
     setShowAddBoard(false);
+
+    const request = indexedDB.open("InitialData", 2);
+
+    // request.onerror = (event) => {
+    //   console.log(`database error: ${event.target.errorCode}`);
+    // };
+    // request.onsuccess = () => {
+    //   console.log("success");
+    // };
+
+    // -------------------
+
+    //  create the Contacts object store and indexes
+    
+    function insertContact(db, lists) {
+      // create a new transaction
+      const txn = db.transaction(["lists"], "readwrite"); // get the Contacts object store
+      const store = txn.objectStore("lists"); //
+      let query = store.add(lists); // handle success case
+
+      query.onsuccess = function (event) {
+        console.log(event);
+      }; // handle the error case
+
+      // query.onerror = function () {
+      //   // console.log(event.target.errorCode);
+      // }; // close the database once the // transaction completes
+
+      txn.oncomplete = function () {
+        db.close();
+      };
+    }
+
+    request.onupgradeneeded = () => {
+
+      let db = request.result;
+
+      // console.log("db", db); // create the Contacts object store // with auto-increment id
+
+      let store = db.createObjectStore("lists", {
+        keyPath: "index",
+        autoIncrement: true,
+      }); // create an index on the email property
+
+      let index = store.createIndex("Name", "Name", {keyPath:'name',
+        unique: true,
+      });
+      //    let taskindex = store.createIndex('task', 'task', {
+      //     unique: true
+      // });
+      console.log("index", index);
+      //  console.log("index",taskindex);
+    };
+
+    request.onsuccess = () => {
+
+      const db = request.result;
+      
+
+      insertContact(db, {
+        uniqueId: uuidv4(),
+        Name: boardTitle,
+        task: [
+          // { id: uuidv4(), content: "Weekly Updates" },
+          // { id: uuidv4(), content: "Tasks Done" },
+        ],
+      });
+
+
+      let items = db.transaction(["lists"], "readwrite").objectStore("lists").getAll()
+      
+      items.onsuccess = function (event) {
+
+        const indexedDBData = event.target.result;
+
+        setcolumns(indexedDBData);
+
+        // if (boardTitle !== undefined) {
+        //   indexedDBData[uuidv4()] = { name: boardTitle, task: [] };
+        // }
+      };
+
+      // console.log("items are : ", items);
+      // insertContact(db, {
+      //   uniqueId: uuidv4(),
+      //   Name: "Pending",
+      //   task: [
+      //     { id: uuidv4(), content: "Legal review" },
+      //     { id: uuidv4(), content: "Social media assets" },
+      //   ],
+      // });
+      // insertContact(db, {
+      //   uniqueId: uuidv4(),
+      //   Name: "Todo",
+      //   task: [
+      //     { id: uuidv4(), content: "Edit email drafts" },
+      //     { id: uuidv4(), content: "Sketch site banner" },
+      //   ],
+      // });
+      // insertContact(db, {
+      //   uniqueId: uuidv4(),
+      //   Name: "Blocked",
+      //   task: [
+      //     { id: uuidv4(), content: "Freelancer contracts" },
+      //     { id: uuidv4(), content: "Budget approval" },
+      //   ],
+      // });
+      // insertContact(db, {
+      //   uniqueId: uuidv4(),
+      //   Name: "Done",
+      //   task: [
+      //     { id: uuidv4(), content: "Submite Q1 report" },
+      //     { id: uuidv4(), content: "Campaign Proposal" },
+      //   ],
+      // });
+    };
+
   }
 
   // function addNewListToBoard() {
@@ -72,96 +190,6 @@ export const ProjBoardContainer = () => {
 
   //indexeDB code....................//
 
-  const request = indexedDB.open("InitialData", 3);
-  request.onerror = (event) => {
-    console.log(`database error: ${event.target.errorCode}`);
-  };
-  request.onsuccess = () => {
-    console.log("success");
-  };
-
-  //  create the Contacts object store and indexes
-  request.onupgradeneeded = () => {
-    let db = request.result;
-    console.log("db", db); // create the Contacts object store // with auto-increment id
-
-    let store = db.createObjectStore("lists", {
-      keyPath: "index",
-      autoIncrement: true,
-    }); // create an index on the email property
-
-    let index = store.createIndex("Name", "Name", {
-      unique: true,
-    });
-    //    let taskindex = store.createIndex('task', 'task', {
-    //     unique: true
-    // });
-    console.log("index", index);
-    //  console.log("index",taskindex);
-  };
-
-  function insertContact(db, lists) {
-    // create a new transaction
-    const txn = db.transaction(["lists"], "readwrite"); // get the Contacts object store
-    const store = txn.objectStore("lists"); //
-    let query = store.add(lists); // handle success case
-
-    query.onsuccess = function (event) {
-      console.log(event);
-    }; // handle the error case
-
-    query.onerror = function () {
-      // console.log(event.target.errorCode);
-    }; // close the database once the // transaction completes
-
-    txn.oncomplete = function () {
-      db.close();
-    };
-  }
-  request.onsuccess = () => {
-    const db = request.result;
-    insertContact(db, {
-      uniqueId: uuidv4(),
-      Name: "Project Resources",
-      task: [
-        { id: uuidv4(), content: "Weekly Updates" },
-        { id: uuidv4(), content: "Tasks Done" },
-      ],
-    });
-    insertContact(db, {
-      uniqueId: uuidv4(),
-      Name: "Pending",
-      task: [
-        { id: uuidv4(), content: "Legal review" },
-        { id: uuidv4(), content: "Social media assets" },
-      ],
-    });
-    insertContact(db, {
-      uniqueId: uuidv4(),
-      Name: "Todo",
-      task: [
-        { id: uuidv4(), content: "Edit email drafts" },
-        { id: uuidv4(), content: "Sketch site banner" },
-      ],
-    });
-    insertContact(db, {
-      uniqueId: uuidv4(),
-      Name: "Blocked",
-      task: [
-        { id: uuidv4(), content: "Freelancer contracts" },
-        { id: uuidv4(), content: "Budget approval" },
-      ],
-    });
-    insertContact(db, {
-      uniqueId: uuidv4(),
-      Name: "Done",
-      task: [
-        { id: uuidv4(), content: "Submite Q1 report" },
-        { id: uuidv4(), content: "Campaign Proposal" },
-      ],
-    });
-  };
-
   const listItemMenuPopOver = (
     <div className="list-item-menu-popover-container">
       <hr />
@@ -183,15 +211,16 @@ export const ProjBoardContainer = () => {
     </div>
   );
 
+
   return (
     <div className="entire-board-bg">
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setcolumns)}
       >
         <div className="boards-alignment">
-          {Object.entries(columns).map(([columnId, column], index) => (
+          {Object.entries(columns).map(([columnId, column]) => (
             <Droppable droppableId={columnId} key={columnId}>
-              {(provided, snapshot) => {
+              {(provided) => {
                 return (
                   <div
                     {...provided.droppableProps}
@@ -204,25 +233,26 @@ export const ProjBoardContainer = () => {
                     // }}
                   >
                     <ul className="list-item">
-                      <li className="each-board-list-bg">
-                        <div className="board-item-header">
-                          <h1 className="project-title">{column.name}</h1>
-                          <Popover
-                            content={listItemMenuPopOver}
-                            title="List actions"
-                            trigger="click"
-                            placement="rightTop"
-                          >
-                            <Button className="list-item-top-right-menu-button">
-                              <BsThreeDots />
-                            </Button>
-                          </Popover>
-                        </div>
-                        <ProjBoardCardsContainer
-                          eachBoardItem={column}
-                          key={columnId}
-                        />
-                      </li>
+                        <li className="each-board-list-bg" key={column.uniqueId}>
+                          
+                          <div className="board-item-header">
+                            <h1 className="project-title">{column.Name}</h1>
+                            <Popover
+                              content={listItemMenuPopOver}
+                              title="List actions"
+                              trigger="click"
+                              placement="rightTop"
+                            >
+                              <Button className="list-item-top-right-menu-button">
+                                <BsThreeDots />
+                              </Button>
+                            </Popover>
+                          </div>
+                          <ProjBoardCardsContainer
+                            eachBoardItem={column}
+                            key={columnId}
+                          />
+                        </li>
                     </ul>
                     {provided.placeholder}
                   </div>
