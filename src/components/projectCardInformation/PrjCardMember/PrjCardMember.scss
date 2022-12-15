@@ -1,13 +1,16 @@
-.Project-catd-member-section {
+.Project-card-member-section {
     margin-top: 2%;
     display: flex;
     flex-direction: column;
-    margin-left: 5%;
+    margin-left: 7%;
+    // border: 1px solid red;
 
     .ant-typography {
         margin: 0%;
+       
+        
     }
-
+   
     .member-list {
         padding-top: 8%;
     }

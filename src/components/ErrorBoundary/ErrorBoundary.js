@@ -1,5 +1,4 @@
 import React from 'react';
-// import FooterComp from '../FooterComp/index';
 
 class ErrorBoundary extends React.Component {
     constructor(props) {
@@ -8,7 +7,6 @@ class ErrorBoundary extends React.Component {
     }
   
     static getDerivedStateFromError(error) {
-      // Update state so the next render will show the fallback UI.
       return { hasError: true };
     }
   
@@ -17,13 +15,10 @@ class ErrorBoundary extends React.Component {
             error: error,
             errorInfo: errorInfo
           })
-      // You can also log the error to an error reporting service
-    //   logErrorToMyService(error, errorInfo);
     }
   
     render() {
       if (this.state.hasError) {
-        // You can render any custom fallback UI
         return <h1>Oops!! No data found</h1>;
       }
       

@@ -1,15 +1,24 @@
 .project-card-checkbox-container {
     display: flex;
     margin-top: 2%;
-    
+
+    .icon {
+        margin-top: 12%;
+        font-size: 1.4em;
+       
+    }
 
     .checkbox-content-section {
+        margin-left: 1%;
+
         .ant-typography {
             margin: 0%;
         }
-        .header{
+
+        .header {
             margin-left: 1%;
         }
+
         display: flex;
         justify-content: space-between;
         width: 100%;
