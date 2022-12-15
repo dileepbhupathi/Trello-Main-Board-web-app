@@ -10,11 +10,17 @@
 
     .card-content-information {
         display: flex;
-
+       
     }
 
     .card-left-information {
         width: 70%;
+        .blur-header{
+            color: #818b9c;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
 
     }
     .card-right-information{

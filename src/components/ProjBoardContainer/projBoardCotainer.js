@@ -230,7 +230,6 @@ export const ProjBoardContainer = () => {
                   >
                     <ul className="list-item">
                         <li className="each-board-list-bg" key={column.uniqueId}>
-                          
                           <div className="board-item-header">
                             <h1 className="project-title">{column.Name}</h1>
                             <Popover

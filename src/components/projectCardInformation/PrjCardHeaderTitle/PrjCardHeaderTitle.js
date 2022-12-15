@@ -8,7 +8,7 @@ const PrjCardHeaderTitle = ({projectCardHeaderTitle,icon}) => {
   return (
     <div className="project-catd-title-container">
       <Space align="top" direction="horizontal">
-        <span style={{fontSize:'30px'}}>{icon}</span>
+        <span className='icon'>{icon}</span>
         <Title level={3}>{projectCardHeaderTitle}</Title>
       </Space>
     </div>

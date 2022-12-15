@@ -34,7 +34,7 @@ const PrjCardActivity = () => {
     <>
       <div className="project-activity-container">
         <div className="activity-icon-container">
-          <UnorderedListOutlined style={{ fontSize: "30px" }} />
+          <UnorderedListOutlined className="icon" />
         </div>
         <div className="activity-header-container">
           <Title level={4}>Activity</Title>

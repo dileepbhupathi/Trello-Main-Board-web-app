@@ -63,7 +63,7 @@ const PrjCardCheckList = ({ header }) => {
     <>
       <div className="project-card-checkbox-container">
         <div className="checkbox-icon-container">
-          <CheckSquareOutlined style={{ fontSize: "30px" }} />
+          <CheckSquareOutlined className="icon" />
         </div>
         <div className="checkbox-content-section">
           <div className='header'>

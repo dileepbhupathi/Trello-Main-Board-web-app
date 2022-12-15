@@ -20,7 +20,7 @@ const PrjCardDateCheckbox = ({header}) => {
   return (
     <>
       <div className="project-date-checkbox-section">
-        <Title level={5} type="secondary">{header}</Title>
+        <Title level={5} className='blur-header' type="secondary">{header}</Title>
         <Checkbox onChange={onChangeDateCheckBox} className='project-date-checkbox'>
          <PrjCardDate dateChecked={dateChecked}/>
         </Checkbox>

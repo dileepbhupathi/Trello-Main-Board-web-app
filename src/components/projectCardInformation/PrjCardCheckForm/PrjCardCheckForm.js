@@ -62,7 +62,7 @@ const PrjCardCheckForm = ({
               </Button>
             </Space>
 
-            <div>
+            {/* <div>
               <Space>
                 <Button type="text">
                   @<a href="/">Assign</a>
@@ -73,7 +73,7 @@ const PrjCardCheckForm = ({
                 <Button type="text">@</Button>
                 <Button type="text">@</Button>
               </Space>
-            </div>
+            </div> */}
           </div>
         </Form.Item>
       </Form>
