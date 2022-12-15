@@ -1,0 +1,25 @@
+.card-information-body {
+    width: 100%;
+    background-color: rgb(243, 243, 243);
+
+    .card-information-header {
+        width: 100%;
+        overflow: hidden;
+
+    }
+
+    .card-content-information {
+        display: flex;
+
+    }
+
+    .card-left-information {
+        width: 70%;
+
+    }
+    .card-right-information{
+        padding-right: 3%;
+        width: 28%;
+    }
+
+}

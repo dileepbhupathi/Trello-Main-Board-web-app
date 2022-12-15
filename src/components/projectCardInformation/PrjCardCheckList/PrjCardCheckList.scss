@@ -1,0 +1,26 @@
+.project-card-checkbox-container {
+    display: flex;
+    margin-top: 2%;
+    
+
+    .checkbox-content-section {
+        .ant-typography {
+            margin: 0%;
+        }
+        .header{
+            margin-left: 1%;
+        }
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .prj-hide-show-delete-container {
+        display: flex;
+
+    }
+}
+
+.AddChecklistButton {
+    margin-left: 5%;
+}
