@@ -146,6 +146,46 @@ export const ProjBoardContainer = () => {
 
   }
   // console.log("data",data);
+
+  // const onDragEnd = (result, columns, setColumns) => {
+  //   if (!result.destination) return;
+  //   const { source, destination } = result;
+
+  //   if (source.droppableId !== destination.droppableId) {
+  //     const sourceColumn = columns[source.droppableId];
+
+  //     const destColumn = columns[destination.droppableId];
+
+  //     const sourceItems = [...sourceColumn.task];
+  //     const destItems = [...destColumn.task];
+  //     const [removed] = sourceItems.splice(source.index, 1);
+  //     destItems.splice(destination.index, 0, removed);
+  //     setColumns({
+  //       ...columns,
+  //       [source.droppableId]: {
+  //         ...sourceColumn,
+  //         task: sourceItems,
+  //       },
+  //       [destination.droppableId]: {
+  //         ...destColumn,
+  //         task: destItems,
+  //       },
+  //     });
+  //   } else {
+  //     const column = columns[source.droppableId];
+  //     const copiedItems = [...column.task];
+  //     const [removed] = copiedItems.splice(source.index, 1);
+  //     copiedItems.splice(destination.index, 0, removed);
+  //     setColumns({
+  //       ...columns,
+  //       [source.droppableId]: {
+  //         ...column,
+  //         task: copiedItems,
+  //       },
+  //     });
+  //   }
+  // };
+
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
@@ -154,11 +194,57 @@ export const ProjBoardContainer = () => {
       const sourceColumn = columns[source.droppableId];
 
       const destColumn = columns[destination.droppableId];
-
+     
       const sourceItems = [...sourceColumn.task];
       const destItems = [...destColumn.task];
       const [removed] = sourceItems.splice(source.index, 1);
+     
+      // let idOfRemovingItem = removed.id;
+
+      const UpdateIndexDbRequest = indexedDB.open("InitialData", 2);
+
+      UpdateIndexDbRequest.onsuccess = () => {
+
+        // let taskToBeRemovedIndex;
+
+        const dataBase = UpdateIndexDbRequest.result;
+
+        let totalColumns = dataBase
+          .transaction(["lists"], "readwrite")
+          .objectStore("lists");
+
+        let columnCardToBeRemoved = totalColumns.get(sourceColumn.index);
+
+        columnCardToBeRemoved.onsuccess = (event) => {
+
+          let sourceValueColumn = event.target.result;
+
+          sourceValueColumn.task.splice(source.index, 1);
+
+          totalColumns.put(sourceValueColumn);
+        };
+
+        let columnToBeAdded = totalColumns.get(destColumn.index);
+
+        columnToBeAdded.onsuccess = (event) => {
+
+          const destValueColumn = event.target.result;
+
+          console.log("got destColumn", destValueColumn);
+
+          destValueColumn.task.splice(destination.index, 0, removed);
+
+          console.log("added array", destValueColumn);
+
+          totalColumns.put(destValueColumn);
+        };
+      };
+
       destItems.splice(destination.index, 0, removed);
+
+      // console.log("destItems", destItems);
+      // console.log("destcolumn", destColumn);
+
       setColumns({
         ...columns,
         [source.droppableId]: {
@@ -170,10 +256,45 @@ export const ProjBoardContainer = () => {
           task: destItems,
         },
       });
-    } else {
+    } 
+    // else {
+    //   const column = columns[source.droppableId];
+    //   const copiedItems = [...column.task];
+    //   const [removed] = copiedItems.splice(source.index, 1);
+    //   copiedItems.splice(destination.index, 0, removed);
+    //   setColumns({
+    //     ...columns,
+    //     [source.droppableId]: {
+    //       ...column,
+    //       task: copiedItems,
+    //     },
+    //   });
+    // }
+    else {
       const column = columns[source.droppableId];
       const copiedItems = [...column.task];
       const [removed] = copiedItems.splice(source.index, 1);
+      const updateDbWithInTheColumn = indexedDB.open("InitialData", 2);
+      updateDbWithInTheColumn.onsuccess = () =>{
+
+        const dataBase = updateDbWithInTheColumn.result;
+
+        let totalColumns = dataBase
+          .transaction(["lists"], "readwrite")
+          .objectStore("lists");
+        let ChangesWithInTheColumn = totalColumns.get(column.index);
+        console.log("changes with in the column",ChangesWithInTheColumn )
+        ChangesWithInTheColumn.onsuccess = (event) =>{
+          const sameColumnValue = event.target.result;
+          sameColumnValue.task.splice(source.index,1);
+          sameColumnValue.task.splice(destination.index,0 , removed)
+          totalColumns.put(sameColumnValue)
+
+        }
+
+
+      }
+
       copiedItems.splice(destination.index, 0, removed);
       setColumns({
         ...columns,
