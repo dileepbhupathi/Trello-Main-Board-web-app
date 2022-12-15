@@ -84,6 +84,7 @@ export const ProjBoardContainer = () => {
 
       const db = request.result;
       
+      console.log(db)
 
       insertContact(db, {
         uniqueId: uuidv4(),

@@ -48,13 +48,45 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
   const [inputForCard, setInputForCard] = useState();
 
   function addNewCardDetailsToBoard(e) {
-    e.preventDefault();
-    let newCardToTask = { id: uuidv4(), content: `${inputForCard}` };
 
-    if (inputForCard !== undefined) {
-      eachBoardItem.task.push(newCardToTask);
-    }
+    e.preventDefault();
+  
+
+
+
+    // if (inputForCard !== undefined) {
+    //   eachBoardItem.task.push(newCardToTask);
+    // }
     setShowAddOption(false);
+
+    const request = indexedDB.open("InitialData", 2);
+    
+
+     function updateDBData () {
+      const db = request.result;
+      const transaction = db.transaction(['lists'], 'readwrite');
+      const objectStore = transaction.objectStore('lists');
+      console.log(objectStore)
+  }
+  let newCardToTask= ({ id: uuidv4(), content: `${inputForCard}` });
+    eachBoardItem.task.push(newCardToTask)
+    request.onsuccess = () =>{
+      const db = request.result;
+      // let newCardToTask=[];
+      let items = db.transaction(["lists"], "readwrite").objectStore("lists")
+      let getItem = items.get(eachBoardItem.index)
+      getItem.onsuccess = (event)=>{
+        let value = event.target.result;
+        value.task.push(newCardToTask);
+        console.log("value task", value.task)
+        items.put(value)
+      }
+
+      updateDBData(db,{
+
+      })
+
+    }
   }
 
   // drag and drop
