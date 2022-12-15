@@ -9,7 +9,7 @@ const moment = require("moment-timezone");
 
 const PrjCardActivityForm = ({ getNewActivity,allActivityData }) => {
   const [activityForm] = Form.useForm();
-  
+  let id = uuid().slice(0, 3)
   const activitySubmitHandler = (e) => {
     let now = moment(new Date());
     let timestamps = now.tz("Asia/Kolkata").format("hh:mm A");
@@ -21,6 +21,47 @@ const PrjCardActivityForm = ({ getNewActivity,allActivityData }) => {
     });
     getNewActivity(newactivitydata);
     activityForm.resetFields();
+const request = indexedDB.open("PrjCardInforation", 4);
+
+    const AddActivity = (db, activity) => {
+      const tx = db.transaction(["activity"], "readwrite");
+      const store = tx.objectStore("activity");
+      let query = store.add(activity);
+      query.onsuccess = function (event) {
+        console.log(event);
+      };
+
+      tx.oncomplete = function () {
+        db.close();
+      };
+    };
+
+    request.onupgradeneeded = () => {
+      let db = request.result;
+      let store = db.createObjectStore("activity", {
+        keyPath: "index",
+        autoIncrement: true,
+      });
+
+      // let index = store.createIndex("Content", "Content", {
+      //   keyPath: "content",
+      //   unique: true,
+      // });
+      // console.log("index");
+    };
+
+    request.onsuccess = () => {
+      const db = request.result;
+      AddActivity(db, { id: id, activity: newactivitydata});
+      let items = db
+        .transaction(["activity"], "readwrite")
+        .objectStore("activity")
+        .getAll();
+      items.onsuccess = function (event) {
+        console.log("item success");
+      };
+    };
+    
     
   };
   return (

@@ -27,8 +27,8 @@ const PrjCardMember = ({ header, icon }) => {
   const { Text } = Typography;
   const [memberForm] = Form.useForm();
   return (
-    <div className="Project-catd-member-section">
-      <Text level={5} type="secondary">
+    <div className="Project-card-member-section">
+      <Text level={5} className='blur-header' type="secondary">
         {header}
       </Text>
       <Space>

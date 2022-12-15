@@ -26,7 +26,7 @@ const PrjCardDescription = ({
   return (
     <div className="project-card-description">
       <div className="description-icon-container">
-        <AlignLeftOutlined style={{ fontSize: "30px" }} />
+        <AlignLeftOutlined className='icon' />
       </div>
       <div className="description-content-container">
         <div className="description-header-container">

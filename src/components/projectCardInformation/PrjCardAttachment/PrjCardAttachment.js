@@ -12,7 +12,7 @@ const ModalAttachment = ({ label }) => {
       <div className="attachment-section">
         <div className="attachment-header-section">
           <div className="attachment-icon-section">
-            <SwitcherOutlined style={{ fontSize: "30px" }} />
+            <SwitcherOutlined className="icon" />
           </div>
           <div className="header">
           <Title level={4}>{label}</Title>
