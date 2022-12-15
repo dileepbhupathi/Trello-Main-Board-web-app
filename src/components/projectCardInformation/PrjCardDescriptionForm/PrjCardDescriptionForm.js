@@ -24,7 +24,7 @@ const PrjCardDescriptionForm = ({
   const onFinishDescriptionHandler = (e) => {
     setDescriptionData(e.data);
     setEnableEditMode(!enableEditMode);
-    console.log('description submitted :',e.data)
+    console.log('description submitted : ',e.data)
 
 
     const request = indexedDB.open("PrjCardInforation", 3);
