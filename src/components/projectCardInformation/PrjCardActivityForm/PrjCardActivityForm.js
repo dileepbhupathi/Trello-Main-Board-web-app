@@ -21,7 +21,7 @@ const PrjCardActivityForm = ({ getNewActivity,allActivityData }) => {
     });
     getNewActivity(newactivitydata);
     activityForm.resetFields();
-const request = indexedDB.open("PrjCardInforation", 4);
+    const request = indexedDB.open("PrjCardInforation", 4);
 
     const AddActivity = (db, activity) => {
       const tx = db.transaction(["activity"], "readwrite");
@@ -61,8 +61,6 @@ const request = indexedDB.open("PrjCardInforation", 4);
         console.log("item success");
       };
     };
-    
-    
   };
   return (
     <div className="project-activity-form">

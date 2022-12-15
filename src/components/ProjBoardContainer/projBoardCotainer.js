@@ -29,123 +29,49 @@ export const ProjBoardContainer = () => {
 
     const request = indexedDB.open("InitialData", 2);
 
-    // request.onerror = (event) => {
-    //   console.log(`database error: ${event.target.errorCode}`);
-    // };
-    // request.onsuccess = () => {
-    //   console.log("success");
-    // };
-
-    // -------------------
-
-    //  create the Contacts object store and indexes
     
     function insertContact(db, lists) {
-      // create a new transaction
-      const txn = db.transaction(["lists"], "readwrite"); // get the Contacts object store
+      const txn = db.transaction(["lists"], "readwrite"); 
       const store = txn.objectStore("lists"); //
-      let query = store.add(lists); // handle success case
-
+      let query = store.add(lists);
       query.onsuccess = function (event) {
         console.log(event);
-      }; // handle the error case
-
-      // query.onerror = function () {
-      //   // console.log(event.target.errorCode);
-      // }; // close the database once the // transaction completes
-
+      }; 
       txn.oncomplete = function () {
         db.close();
       };
     }
 
     request.onupgradeneeded = () => {
-
       let db = request.result;
-
-      // console.log("db", db); // create the Contacts object store // with auto-increment id
-
       let store = db.createObjectStore("lists", {
         keyPath: "index",
         autoIncrement: true,
-      }); // create an index on the email property
-
+      });
       let index = store.createIndex("Name", "Name", {keyPath:'name',
         unique: true,
       });
-      //    let taskindex = store.createIndex('task', 'task', {
-      //     unique: true
-      // });
       console.log("index", index);
-      //  console.log("index",taskindex);
     };
 
     request.onsuccess = () => {
-
       const db = request.result;
-      
       console.log(db)
-
       insertContact(db, {
         uniqueId: uuidv4(),
         Name: boardTitle,
         task: [
-          // { id: uuidv4(), content: "Weekly Updates" },
-          // { id: uuidv4(), content: "Tasks Done" },
         ],
       });
-
-
       let items = db.transaction(["lists"], "readwrite").objectStore("lists").getAll()
-      
       items.onsuccess = function (event) {
-
         const indexedDBData = event.target.result;
-
         setcolumns(indexedDBData);
-
-        // if (boardTitle !== undefined) {
-        //   indexedDBData[uuidv4()] = { name: boardTitle, task: [] };
-        // }
       };
-
-      // console.log("items are : ", items);
-      // insertContact(db, {
-      //   uniqueId: uuidv4(),
-      //   Name: "Pending",
-      //   task: [
-      //     { id: uuidv4(), content: "Legal review" },
-      //     { id: uuidv4(), content: "Social media assets" },
-      //   ],
-      // });
-      // insertContact(db, {
-      //   uniqueId: uuidv4(),
-      //   Name: "Todo",
-      //   task: [
-      //     { id: uuidv4(), content: "Edit email drafts" },
-      //     { id: uuidv4(), content: "Sketch site banner" },
-      //   ],
-      // });
-      // insertContact(db, {
-      //   uniqueId: uuidv4(),
-      //   Name: "Blocked",
-      //   task: [
-      //     { id: uuidv4(), content: "Freelancer contracts" },
-      //     { id: uuidv4(), content: "Budget approval" },
-      //   ],
-      // });
-      // insertContact(db, {
-      //   uniqueId: uuidv4(),
-      //   Name: "Done",
-      //   task: [
-      //     { id: uuidv4(), content: "Submite Q1 report" },
-      //     { id: uuidv4(), content: "Campaign Proposal" },
-      //   ],
-      // });
     };
 
   }
-  // console.log("data",data);
+
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;

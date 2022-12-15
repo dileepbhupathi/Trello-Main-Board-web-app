@@ -25,7 +25,8 @@ const PrjCardCheckForm = ({
     checklistform.resetFields();
     setCheckboxData(newCheckData);
     getNewCheckboxData(newCheckData);
-  const request = indexedDB.open("PrjCardInforation", 3);
+    
+    const request = indexedDB.open("PrjCardInforation", 3);
 
     const AddCheckbox = (db, checkbox) => {
       const tx = db.transaction(["checkbox"], "readwrite");
@@ -56,7 +57,7 @@ const PrjCardCheckForm = ({
 
     request.onsuccess = () => {
       const db = request.result;
-      AddCheckbox(db, { id: id, checkbox: newCheckData });
+      AddCheckbox(db, { id: id, checkbox: newCheckData});
       let items = db
         .transaction(["checkbox"], "readwrite")
         .objectStore("checkbox")

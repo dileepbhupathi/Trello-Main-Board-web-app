@@ -50,15 +50,10 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
   function addNewCardDetailsToBoard(e) {
 
     e.preventDefault();
-  
-
-
-
-    // if (inputForCard !== undefined) {
-    //   eachBoardItem.task.push(newCardToTask);
-    // }
     setShowAddOption(false);
 
+
+    
     const request = indexedDB.open("InitialData", 2);
     
 
@@ -70,6 +65,7 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
   }
   let newCardToTask= ({ id: uuidv4(), content: `${inputForCard}` });
     eachBoardItem.task.push(newCardToTask)
+    
     request.onsuccess = () =>{
       const db = request.result;
       // let newCardToTask=[];
