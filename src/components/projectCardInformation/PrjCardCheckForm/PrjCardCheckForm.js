@@ -13,6 +13,8 @@ const PrjCardCheckForm = ({
   const [checklistform] = Form.useForm();
   const [checkboxData, setCheckboxData] = useState([]);
 
+ let id = uuid().slice(0, 3);
+
   const checklistSubmitHandler = (e) => {
     const newCheckData = [...checkboxData];
     newCheckData.push({
@@ -23,7 +25,46 @@ const PrjCardCheckForm = ({
     checklistform.resetFields();
     setCheckboxData(newCheckData);
     getNewCheckboxData(newCheckData);
-  
+  const request = indexedDB.open("PrjCardInforation", 3);
+
+    const AddCheckbox = (db, checkbox) => {
+      const tx = db.transaction(["checkbox"], "readwrite");
+      const store = tx.objectStore("checkbox");
+      let query = store.add(checkbox);
+      query.onsuccess = function (event) {
+        console.log(event);
+      };
+
+      tx.oncomplete = function () {
+        db.close();
+      };
+    };
+
+    request.onupgradeneeded = () => {
+      let db = request.result;
+      let store = db.createObjectStore("checkbox", {
+        keyPath: "index",
+        autoIncrement: true,
+      });
+
+      // let index = store.createIndex("Content", "Content", {
+      //   keyPath: "content",
+      //   unique: true,
+      // });
+      // console.log("index");
+    };
+
+    request.onsuccess = () => {
+      const db = request.result;
+      AddCheckbox(db, { id: id, checkbox: newCheckData });
+      let items = db
+        .transaction(["checkbox"], "readwrite")
+        .objectStore("checkbox")
+        .getAll();
+      items.onsuccess = function (event) {
+        console.log("item success");
+      };
+    };
   };
   
 

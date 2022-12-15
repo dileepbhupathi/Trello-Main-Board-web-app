@@ -5,12 +5,10 @@
     .card-information-header {
         width: 100%;
         overflow: hidden;
-
     }
 
     .card-content-information {
         display: flex;
-       
     }
 
     .card-left-information {
@@ -20,8 +18,10 @@
             font-size: 12px;
             font-weight: 700;
         }
+        // .ant-btn{
+        //     background-color: #d6dbe4;
+        //         }
         
-
     }
     .card-right-information{
         padding-right: 3%;
