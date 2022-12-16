@@ -6,7 +6,6 @@ export const FilterSelect = () => {
 
   const { Text } = Typography;
 
-
     const handleChange = (value) => {
         console.log(`selected ${value}`);
       };
