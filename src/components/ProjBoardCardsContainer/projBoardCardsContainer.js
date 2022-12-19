@@ -39,34 +39,24 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
       </Button>
     </>
   );
-
+  const id = uuidv4().slice(0, 3);
   const [showAddOption, setShowAddOption] = useState(false);
   const [inputForCard, setInputForCard] = useState();
 
   function addNewCardDetailsToBoard(e) {
     e.preventDefault();
-
-    // if (inputForCard !== undefined) {
-    //   eachBoardItem.task.push(newCardToTask);
-    // }
-
     setShowAddOption(false);
 
-
-    
     const request = indexedDB.open("InitialData", 2);
-
-    let newCardToTask = { id: uuidv4(), content: `${inputForCard}` };
+    let newCardToTask = { id: id, content: `${inputForCard}` };
     eachBoardItem.task.push(newCardToTask);
     request.onsuccess = () => {
       const db = request.result;
-      // let newCardToTask=[];
       let items = db.transaction(["lists"], "readwrite").objectStore("lists");
       let getItem = items.get(eachBoardItem.index);
       getItem.onsuccess = (event) => {
         let value = event.target.result;
         value.task.push(newCardToTask);
-        console.log("value task", value.task);
         items.put(value);
       };
     };
@@ -130,6 +120,12 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
     setIsDelete(false);
     setIsArchive(false);
   };
+  const [selectedCardId, setSelectedCardId] = useState('');
+  const onClickCardHandler = (i) => {
+    setResetModal(!resetModal);
+    console.log("clicked Card id :", i.id);
+    setSelectedCardId(i);
+  };
 
   return (
     <>
@@ -139,7 +135,7 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
             return (
               <>
                 <Card
-                  onClick={() => setResetModal(!resetModal)}
+                  onClick={(e) => onClickCardHandler(item)}
                   className="inserted-card"
                   ref={provided.innerRef}
                   {...provided.draggableProps}
@@ -189,6 +185,9 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
                   }}
                 >
                   <PrjCardInformationPage
+                    selectedCardId={selectedCardId}
+                    eachBoardItem={eachBoardItem}
+
                     isWatch={isWatch}
                     changesToWatch={changesToWatch}
                     removeWatch={removeWatch}

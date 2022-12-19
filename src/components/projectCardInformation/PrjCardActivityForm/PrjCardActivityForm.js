@@ -7,9 +7,14 @@ import { FaRegAddressCard } from "react-icons/fa";
 import { v4 as uuid } from "uuid";
 const moment = require("moment-timezone");
 
-const PrjCardActivityForm = ({ getNewActivity,allActivityData }) => {
+const PrjCardActivityForm = ({
+  getNewActivity,
+  allActivityData,
+  selectedCardId,
+  eachBoardItem,
+}) => {
   const [activityForm] = Form.useForm();
-  let id = uuid().slice(0, 3)
+
   const activitySubmitHandler = (e) => {
     let now = moment(new Date());
     let timestamps = now.tz("Asia/Kolkata").format("hh:mm A");
@@ -21,44 +26,27 @@ const PrjCardActivityForm = ({ getNewActivity,allActivityData }) => {
     });
     getNewActivity(newactivitydata);
     activityForm.resetFields();
-    const request = indexedDB.open("PrjCardInforation", 4);
 
-    const AddActivity = (db, activity) => {
-      const tx = db.transaction(["activity"], "readwrite");
-      const store = tx.objectStore("activity");
-      let query = store.add(activity);
-      query.onsuccess = function (event) {
-        console.log(event);
-      };
-
-      tx.oncomplete = function () {
-        db.close();
-      };
-    };
-
-    request.onupgradeneeded = () => {
-      let db = request.result;
-      let store = db.createObjectStore("activity", {
-        keyPath: "index",
-        autoIncrement: true,
-      });
-
-      // let index = store.createIndex("Content", "Content", {
-      //   keyPath: "content",
-      //   unique: true,
-      // });
-      // console.log("index");
-    };
-
+    const request = window.indexedDB.open("InitialData", 2);
     request.onsuccess = () => {
       const db = request.result;
-      AddActivity(db, { id: id, activity: newactivitydata});
-      let items = db
-        .transaction(["activity"], "readwrite")
-        .objectStore("activity")
-        .getAll();
-      items.onsuccess = function (event) {
-        console.log("item success");
+      const totaListsData = db
+        .transaction(["lists"], "readwrite")
+        .objectStore("lists");
+      let indexOfClickedCard = eachBoardItem.task.findIndex(function (
+        eachCard
+      ) {
+        if (eachCard.id === selectedCardId.id) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      let getColumnToAddActivity = totaListsData.get(eachBoardItem.index);
+      getColumnToAddActivity.onsuccess = (event) => {
+        let cardToBeAdded = event.target.result;
+        cardToBeAdded.task[indexOfClickedCard].activity = newactivitydata;
+        totaListsData.put(cardToBeAdded);
       };
     };
   };
@@ -67,7 +55,11 @@ const PrjCardActivityForm = ({ getNewActivity,allActivityData }) => {
       <div className="activity-icon-container">
         <div className="member">s</div>
       </div>
-      <Form className="activity-form-section" form={activityForm} onFinish={(e) => activitySubmitHandler(e)}>
+      <Form
+        className="activity-form-section"
+        form={activityForm}
+        onFinish={(e) => activitySubmitHandler(e)}
+      >
         <Form.Item name="activityInputData">
           <Input placeholder="Write a comment..." />
         </Form.Item>

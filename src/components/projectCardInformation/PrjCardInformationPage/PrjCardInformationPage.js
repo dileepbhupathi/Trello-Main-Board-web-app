@@ -10,13 +10,14 @@ import PrjCardCheckbox from "../PrjCardCheckList/PrjCardCheckList";
 import PrjCardAttachment from "../PrjCardAttachment/PrjCardAttachment";
 import RightPopup from "../../RightPopup/RightPopup";
 
-const projectCardHeaderTitle = "projectCardHeaderTitle";
-const projectCardHeaderDescription = "projectCardHeaderDescription";
+
 const projectCardHeaederDescriptionLink = "projectCardHeaederDescriptionLink";
 const header = "in list";
-const projectCardDescription = "projectCardDescription";
 
-const PrjCardInformationPage = ({isWatch,
+const PrjCardInformationPage = ({
+  selectedCardId,
+  eachBoardItem,
+  isWatch,
   changesToWatch,
   removeWatch,
   isTemplate,
@@ -30,42 +31,57 @@ const PrjCardInformationPage = ({isWatch,
   isArchive,
   isSendToBoard,
   sendToBoard,
-  sendToArchive,}) => {
+  sendToArchive,
+}) => {
   return (
     <div className="card-information-body">
       <div className="card-information-header">
-        <PrjCardHeaderTitle projectCardHeaderTitle={projectCardHeaderTitle} />
+        <PrjCardHeaderTitle projectCardHeaderTitle={selectedCardId.content} />
         <PrjCardHeaderDescription
-          projectCardHeaderDescription={projectCardHeaderDescription}
+          projectCardHeaderDescription={eachBoardItem.Name}
           projectCardHeaederDescriptionLink={projectCardHeaederDescriptionLink}
           header={header}
         />
         <div className="card-content-information">
           <div className="card-left-information">
             <PrjCardMember />
-            <PrjCardDateCheckbox />
+            <PrjCardDateCheckbox
+              selectedCardId={selectedCardId}
+              eachBoardItem={eachBoardItem}
+            />
             <PrjCardDescription
-              projectCardDescription={projectCardDescription}
+              selectedCardId={selectedCardId}
+              eachBoardItem={eachBoardItem}
             />
             <PrjCardAttachment />
-            <PrjCardCheckbox />
-            <PrjCardActivity />
+            <PrjCardCheckbox
+              eachBoardItem={eachBoardItem}
+              selectedCardId={selectedCardId}
+            />
+            <PrjCardActivity
+              eachBoardItem={eachBoardItem}
+              selectedCardId={selectedCardId}
+            />
           </div>
-          <div className="card-right-information"><RightPopup isWatch={isWatch}
-          changesToWatch={changesToWatch}
-          removeWatch={removeWatch}
-          isTemplate={isTemplate}
-          changesToTemplate={changesToTemplate}
-          removesTemplate={removesTemplate}
-          isHideFromList={isHideFromList}
-          hideFromList={hideFromList}
-          isShowInList={isShowInList}
-          showInList={showInList}
-          isDelete={isDelete}
-          isArchive={isArchive}
-          isSendToBoard={isSendToBoard}
-          sendToBoard={sendToBoard}
-          sendToArchive={sendToArchive}/></div>
+          <div className="card-right-information">
+            <RightPopup
+              isWatch={isWatch}
+              changesToWatch={changesToWatch}
+              removeWatch={removeWatch}
+              isTemplate={isTemplate}
+              changesToTemplate={changesToTemplate}
+              removesTemplate={removesTemplate}
+              isHideFromList={isHideFromList}
+              hideFromList={hideFromList}
+              isShowInList={isShowInList}
+              showInList={showInList}
+              isDelete={isDelete}
+              isArchive={isArchive}
+              isSendToBoard={isSendToBoard}
+              sendToBoard={sendToBoard}
+              sendToArchive={sendToArchive}
+            />
+          </div>
         </div>
       </div>
     </div>

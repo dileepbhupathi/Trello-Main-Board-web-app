@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import "./projBoardContainer.scss";
 import { Button, Popover } from "antd";
 // import { dummyListData } from "../../Constants/dummyListData";
@@ -13,14 +13,11 @@ import {
 } from "../../Constants/MenuData/MenuData";
 
 export const ProjBoardContainer = () => {
-
-
   const [columns, setcolumns] = useState([]);
 
   const [showAddBoard, setShowAddBoard] = useState(false);
 
   const [boardTitle, setBoardTitle] = useState();
-
 
   function sumbission(e) {
     e.preventDefault();
@@ -29,14 +26,13 @@ export const ProjBoardContainer = () => {
 
     const request = indexedDB.open("InitialData", 2);
 
-    
     function insertContact(db, lists) {
-      const txn = db.transaction(["lists"], "readwrite"); 
+      const txn = db.transaction(["lists"], "readwrite");
       const store = txn.objectStore("lists"); //
       let query = store.add(lists);
       query.onsuccess = function (event) {
         console.log(event);
-      }; 
+      };
       txn.oncomplete = function () {
         db.close();
       };
@@ -48,7 +44,8 @@ export const ProjBoardContainer = () => {
         keyPath: "index",
         autoIncrement: true,
       });
-      let index = store.createIndex("Name", "Name", {keyPath:'name',
+      let index = store.createIndex("Name", "Name", {
+        keyPath: "name",
         unique: true,
       });
       console.log("index", index);
@@ -56,20 +53,21 @@ export const ProjBoardContainer = () => {
 
     request.onsuccess = () => {
       const db = request.result;
-      console.log(db)
+      console.log(db);
       insertContact(db, {
-        uniqueId: uuidv4(),
+        uniqueId: uuidv4().slice(0,3),
         Name: boardTitle,
-        task: [
-        ],
+        task: [],
       });
-      let items = db.transaction(["lists"], "readwrite").objectStore("lists").getAll()
+      let items = db
+        .transaction(["lists"], "readwrite")
+        .objectStore("lists")
+        .getAll();
       items.onsuccess = function (event) {
         const indexedDBData = event.target.result;
         setcolumns(indexedDBData);
       };
     };
-
   }
   // console.log("data",data);
 
@@ -120,17 +118,16 @@ export const ProjBoardContainer = () => {
       const sourceColumn = columns[source.droppableId];
 
       const destColumn = columns[destination.droppableId];
-     
+
       const sourceItems = [...sourceColumn.task];
       const destItems = [...destColumn.task];
       const [removed] = sourceItems.splice(source.index, 1);
-     
+
       // let idOfRemovingItem = removed.id;
 
       const UpdateIndexDbRequest = indexedDB.open("InitialData", 2);
 
       UpdateIndexDbRequest.onsuccess = () => {
-
         // let taskToBeRemovedIndex;
 
         const dataBase = UpdateIndexDbRequest.result;
@@ -142,7 +139,6 @@ export const ProjBoardContainer = () => {
         let columnCardToBeRemoved = totalColumns.get(sourceColumn.index);
 
         columnCardToBeRemoved.onsuccess = (event) => {
-
           let sourceValueColumn = event.target.result;
 
           sourceValueColumn.task.splice(source.index, 1);
@@ -153,7 +149,6 @@ export const ProjBoardContainer = () => {
         let columnToBeAdded = totalColumns.get(destColumn.index);
 
         columnToBeAdded.onsuccess = (event) => {
-
           const destValueColumn = event.target.result;
 
           console.log("got destColumn", destValueColumn);
@@ -182,7 +177,7 @@ export const ProjBoardContainer = () => {
           task: destItems,
         },
       });
-    } 
+    }
     // else {
     //   const column = columns[source.droppableId];
     //   const copiedItems = [...column.task];
@@ -201,25 +196,21 @@ export const ProjBoardContainer = () => {
       const copiedItems = [...column.task];
       const [removed] = copiedItems.splice(source.index, 1);
       const updateDbWithInTheColumn = indexedDB.open("InitialData", 2);
-      updateDbWithInTheColumn.onsuccess = () =>{
-
+      updateDbWithInTheColumn.onsuccess = () => {
         const dataBase = updateDbWithInTheColumn.result;
 
         let totalColumns = dataBase
           .transaction(["lists"], "readwrite")
           .objectStore("lists");
         let ChangesWithInTheColumn = totalColumns.get(column.index);
-        console.log("changes with in the column",ChangesWithInTheColumn )
-        ChangesWithInTheColumn.onsuccess = (event) =>{
+        console.log("changes with in the column", ChangesWithInTheColumn);
+        ChangesWithInTheColumn.onsuccess = (event) => {
           const sameColumnValue = event.target.result;
-          sameColumnValue.task.splice(source.index,1);
-          sameColumnValue.task.splice(destination.index,0 , removed)
-          totalColumns.put(sameColumnValue)
-
-        }
-
-
-      }
+          sameColumnValue.task.splice(source.index, 1);
+          sameColumnValue.task.splice(destination.index, 0, removed);
+          totalColumns.put(sameColumnValue);
+        };
+      };
 
       copiedItems.splice(destination.index, 0, removed);
       setColumns({
@@ -255,7 +246,6 @@ export const ProjBoardContainer = () => {
     </div>
   );
 
-
   return (
     <div className="entire-board-bg">
       <DragDropContext
@@ -277,25 +267,25 @@ export const ProjBoardContainer = () => {
                     // }}
                   >
                     <ul className="list-item">
-                        <li className="each-board-list-bg" key={column.uniqueId}>
-                          <div className="board-item-header">
-                            <h1 className="project-title">{column.Name}</h1>
-                            <Popover
-                              content={listItemMenuPopOver}
-                              title="List actions"
-                              trigger="click"
-                              placement="rightTop"
-                            >
-                              <Button className="list-item-top-right-menu-button">
-                                <BsThreeDots />
-                              </Button>
-                            </Popover>
-                          </div>
-                          <ProjBoardCardsContainer
-                            eachBoardItem={column}
-                            key={columnId}
-                          />
-                        </li>
+                      <li className="each-board-list-bg" key={column.uniqueId}>
+                        <div className="board-item-header">
+                          <h1 className="project-title">{column.Name}</h1>
+                          <Popover
+                            content={listItemMenuPopOver}
+                            title="List actions"
+                            trigger="click"
+                            placement="rightTop"
+                          >
+                            <Button className="list-item-top-right-menu-button">
+                              <BsThreeDots />
+                            </Button>
+                          </Popover>
+                        </div>
+                        <ProjBoardCardsContainer
+                          eachBoardItem={column}
+                          key={columnId}
+                        />
+                      </li>
                     </ul>
                     {provided.placeholder}
                   </div>
