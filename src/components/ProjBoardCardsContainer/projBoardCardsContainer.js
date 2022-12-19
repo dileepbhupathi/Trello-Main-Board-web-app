@@ -39,7 +39,6 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
 
     const request = indexedDB.open("InitialData", 3);
     let newCardToTask = { id: id, content: `${inputForCard}` };
-    eachBoardItem.task.push(newCardToTask);
     request.onsuccess = () => {
       const db = request.result;
       let items = db.transaction(["projectBoard"], "readwrite").objectStore("projectBoard");
@@ -50,6 +49,8 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
         items.put(value);
       };
     };
+    eachBoardItem.task.push(newCardToTask);
+
   }
 
   // drag and drop
@@ -130,14 +131,7 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
                   ref={provided.innerRef}
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
-                  style={{
-                    userSelect: "none",
-                    padding: 4,
-                    margin: "0 0 8px 0",
-                    minHeight: "50px",
-                    borderRadius: "0.25em",
-                    ...provided.draggableProps.style,
-                  }}
+                  
                   key={item.id}
                 >
                   <div className="card-label-edit-container">
@@ -169,10 +163,7 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
                   open={resetModal}
                   onOk={() => setResetModal(false)}
                   onCancel={() => setResetModal(false)}
-                  style={{
-                    top: 50,
-                    borderRadius: "0px",
-                  }}
+                 
                 >
                   <PrjCardInformationPage
                     selectedCardId={selectedCardId}
