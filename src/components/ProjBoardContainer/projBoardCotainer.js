@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./projBoardContainer.scss";
 import { Button, Popover } from "antd";
-// import { dummyListData } from "../../Constants/dummyListData";
 import { X } from "react-feather";
 import { ProjBoardCardsContainer } from "../ProjBoardCardsContainer/projBoardCardsContainer";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
@@ -19,96 +18,69 @@ export const ProjBoardContainer = () => {
 
   const [boardTitle, setBoardTitle] = useState();
 
-  function sumbission(e) {
+  function settingNewBoardToIndexDB(e) {
     e.preventDefault();
 
     setShowAddBoard(false);
+    const request = indexedDB.open("InitialData", 3);
 
-    const request = indexedDB.open("InitialData", 2);
+    //  create the Contacts object store and indexes
 
-    function insertContact(db, lists) {
-      const txn = db.transaction(["lists"], "readwrite");
-      const store = txn.objectStore("lists"); //
-      let query = store.add(lists);
-      query.onsuccess = function (event) {
-        console.log(event);
-      };
+    function insertBoard(db, projectBoard) {
+      // create a new transaction
+      const txn = db.transaction(["projectBoard"], "readwrite"); // get the Contacts object store
+      const store = txn.objectStore("projectBoard"); 
+     let  query = store.add(projectBoard)
+     
+    query.onsuccess=function (event){
+      console.log(event);
+    }
+      // handle the error case
+
       txn.oncomplete = function () {
         db.close();
       };
     }
+    request.onupgradeneeded=()=>{
+        let db = request.result;
 
-    request.onupgradeneeded = () => {
-      let db = request.result;
-      let store = db.createObjectStore("lists", {
-        keyPath: "index",
-        autoIncrement: true,
-      });
-      let index = store.createIndex("Name", "Name", {
-        keyPath: "name",
-        unique: true,
-      });
-      console.log("index", index);
+    console.log("db", db); // create the Contacts object store // with auto-increment id
+
+    let store = db.createObjectStore("projectBoard", {
+      keyPath: "index",
+      autoIncrement: true,
+    }); // create an index on the email property
+
+    let index = store.createIndex("Name", "Name", {
+      keyPath: "name",
+      unique: true,
+    });
+    console.log("index", index);
     };
+    
+    
 
     request.onsuccess = () => {
       const db = request.result;
-      console.log(db);
-      insertContact(db, {
-        uniqueId: uuidv4().slice(0,3),
+
+      insertBoard(db, {
+        uniqueId: uuidv4(),
         Name: boardTitle,
         task: [],
       });
-      let items = db
-        .transaction(["lists"], "readwrite")
-        .objectStore("lists")
+
+      let gettingBoardsData = db
+        .transaction(["projectBoard"], "readwrite")
+        .objectStore("projectBoard")
         .getAll();
-      items.onsuccess = function (event) {
-        const indexedDBData = event.target.result;
-        setcolumns(indexedDBData);
+
+      gettingBoardsData.onsuccess = function (event) {
+        const boardsDatafromLocalStorage = event.target.result;
+
+        setcolumns(boardsDatafromLocalStorage);
       };
     };
   }
-  // console.log("data",data);
-
-  // const onDragEnd = (result, columns, setColumns) => {
-  //   if (!result.destination) return;
-  //   const { source, destination } = result;
-
-  //   if (source.droppableId !== destination.droppableId) {
-  //     const sourceColumn = columns[source.droppableId];
-
-  //     const destColumn = columns[destination.droppableId];
-
-  //     const sourceItems = [...sourceColumn.task];
-  //     const destItems = [...destColumn.task];
-  //     const [removed] = sourceItems.splice(source.index, 1);
-  //     destItems.splice(destination.index, 0, removed);
-  //     setColumns({
-  //       ...columns,
-  //       [source.droppableId]: {
-  //         ...sourceColumn,
-  //         task: sourceItems,
-  //       },
-  //       [destination.droppableId]: {
-  //         ...destColumn,
-  //         task: destItems,
-  //       },
-  //     });
-  //   } else {
-  //     const column = columns[source.droppableId];
-  //     const copiedItems = [...column.task];
-  //     const [removed] = copiedItems.splice(source.index, 1);
-  //     copiedItems.splice(destination.index, 0, removed);
-  //     setColumns({
-  //       ...columns,
-  //       [source.droppableId]: {
-  //         ...column,
-  //         task: copiedItems,
-  //       },
-  //     });
-  //   }
-  // };
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -123,22 +95,18 @@ export const ProjBoardContainer = () => {
       const destItems = [...destColumn.task];
       const [removed] = sourceItems.splice(source.index, 1);
 
-      // let idOfRemovingItem = removed.id;
-
-      const UpdateIndexDbRequest = indexedDB.open("InitialData", 2);
+      const UpdateIndexDbRequest = indexedDB.open("InitialData", 3);
 
       UpdateIndexDbRequest.onsuccess = () => {
-        // let taskToBeRemovedIndex;
-
         const dataBase = UpdateIndexDbRequest.result;
 
         let totalColumns = dataBase
-          .transaction(["lists"], "readwrite")
-          .objectStore("lists");
+          .transaction(["projectBoard"], "readwrite")
+          .objectStore("projectBoard");
 
-        let columnCardToBeRemoved = totalColumns.get(sourceColumn.index);
+        let getColumnToBeRemoved = totalColumns.get(sourceColumn.index);
 
-        columnCardToBeRemoved.onsuccess = (event) => {
+        getColumnToBeRemoved.onsuccess = (event) => {
           let sourceValueColumn = event.target.result;
 
           sourceValueColumn.task.splice(source.index, 1);
@@ -146,25 +114,16 @@ export const ProjBoardContainer = () => {
           totalColumns.put(sourceValueColumn);
         };
 
-        let columnToBeAdded = totalColumns.get(destColumn.index);
-
-        columnToBeAdded.onsuccess = (event) => {
+        let destColumnToGetAdded = totalColumns.get(destColumn.index);
+        destColumnToGetAdded.onsuccess = (event) => {
           const destValueColumn = event.target.result;
 
-          console.log("got destColumn", destValueColumn);
-
           destValueColumn.task.splice(destination.index, 0, removed);
-
-          console.log("added array", destValueColumn);
-
           totalColumns.put(destValueColumn);
         };
       };
 
       destItems.splice(destination.index, 0, removed);
-
-      // console.log("destItems", destItems);
-      // console.log("destcolumn", destColumn);
 
       setColumns({
         ...columns,
@@ -200,10 +159,11 @@ export const ProjBoardContainer = () => {
         const dataBase = updateDbWithInTheColumn.result;
 
         let totalColumns = dataBase
-          .transaction(["lists"], "readwrite")
-          .objectStore("lists");
+          .transaction(["projectBoard"], "readwrite")
+          .objectStore("projectBoard");
+
         let ChangesWithInTheColumn = totalColumns.get(column.index);
-        console.log("changes with in the column", ChangesWithInTheColumn);
+
         ChangesWithInTheColumn.onsuccess = (event) => {
           const sameColumnValue = event.target.result;
           sameColumnValue.task.splice(source.index, 1);
@@ -222,8 +182,6 @@ export const ProjBoardContainer = () => {
       });
     }
   };
-
-  //indexeDB code....................//
 
   const listItemMenuPopOver = (
     <div className="list-item-menu-popover-container">
@@ -256,16 +214,7 @@ export const ProjBoardContainer = () => {
             <Droppable droppableId={columnId} key={columnId}>
               {(provided) => {
                 return (
-                  <div
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                    // style={{
-                    //   background: snapshot.isDraggingOver ? "" : "",
-                    //   padding: 4,
-                    //   width: 330,
-                    //   minHeight: 500,
-                    // }}
-                  >
+                  <div {...provided.droppableProps} ref={provided.innerRef}>
                     <ul className="list-item">
                       <li className="each-board-list-bg" key={column.uniqueId}>
                         <div className="board-item-header">
@@ -295,7 +244,7 @@ export const ProjBoardContainer = () => {
           ))}
 
           {showAddBoard ? (
-            <form onSubmit={sumbission}>
+            <form onSubmit={settingNewBoardToIndexDB}>
               <div className="add-list-container">
                 <input
                   type="text"

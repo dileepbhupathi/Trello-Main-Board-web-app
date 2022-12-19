@@ -29,17 +29,7 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
     </div>
   );
 
-  const templateDetails = (
-    <>
-      <hr />
-      <Card>
-        <p>m mkl</p>
-      </Card>
-      <Button>
-        <CgTemplate />
-      </Button>
-    </>
-  );
+  
   const id = uuidv4().slice(0, 3);
   const [showAddOption, setShowAddOption] = useState(false);
   const [inputForCard, setInputForCard] = useState();
@@ -48,12 +38,12 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
     e.preventDefault();
     setShowAddOption(false);
 
-    const request = indexedDB.open("InitialData", 2);
+    const request = indexedDB.open("InitialData", 3);
     let newCardToTask = { id: id, content: `${inputForCard}` };
     eachBoardItem.task.push(newCardToTask);
     request.onsuccess = () => {
       const db = request.result;
-      let items = db.transaction(["lists"], "readwrite").objectStore("lists");
+      let items = db.transaction(["projectBoard"], "readwrite").objectStore("projectBoard");
       let getItem = items.get(eachBoardItem.index);
       getItem.onsuccess = (event) => {
         let value = event.target.result;
@@ -255,16 +245,6 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
             <AiOutlinePlus className="card-checkbox-icon" />
             Add Card
           </Button>
-          <Popover
-            style={{ backgroundColor: "gray" }}
-            content={templateDetails}
-            title="Card Templates"
-            trigger="click"
-            open={openMore}
-            onOpenChange={handleOpenChange}
-          >
-            <CgTemplate className="template-icon-beside-addcard-btn" />
-          </Popover>
         </div>
       )}
     </>
