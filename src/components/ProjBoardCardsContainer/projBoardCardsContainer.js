@@ -120,11 +120,15 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
     setIsDelete(false);
     setIsArchive(false);
   };
-  const [selectedCardId, setSelectedCardId] = useState('');
+  const [selectedCardId, setSelectedCardId] = useState("");
   const onClickCardHandler = (i) => {
     setResetModal(!resetModal);
     console.log("clicked Card id :", i.id);
     setSelectedCardId(i);
+  };
+ 
+  const closeModal = () => {
+    setResetModal(false);
   };
 
   return (
@@ -178,16 +182,11 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
                   className="project-card-information"
                   open={resetModal}
                   onOk={() => setResetModal(false)}
-                  onCancel={() => setResetModal(false)}
-                  style={{
-                    top: 50,
-                    borderRadius: "0px",
-                  }}
+                  onCancel={closeModal}
                 >
                   <PrjCardInformationPage
                     selectedCardId={selectedCardId}
                     eachBoardItem={eachBoardItem}
-
                     isWatch={isWatch}
                     changesToWatch={changesToWatch}
                     removeWatch={removeWatch}

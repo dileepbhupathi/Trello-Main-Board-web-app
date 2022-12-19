@@ -35,19 +35,16 @@ const PrjCardActivity = ({ eachBoardItem, selectedCardId }) => {
     eachBoardItem.task.forEach((element) => {
       if (selectedCardId.id === element.id) {
         if (element.activity) {
-          console.log("element-id : ", element.id);
-          console.log("selected Id :", selectedCardId.id);
           setAllActivityData(element.activity);
-          console.log("getting updated data success");
+        } else {
+          setAllActivityData([]);
         }
-      } else {
       }
     });
   };
 
   useEffect(() => {
     getExistingDataFromDb(eachBoardItem);
-    console.log('fun is executing')
   }, []);
 
   return (
