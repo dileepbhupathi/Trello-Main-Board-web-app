@@ -25,10 +25,10 @@ const PrjCardCheckForm = ({
     checklistform.resetFields();
     getNewCheckboxData(newCheckData);
     
-    const request = window.indexedDB.open("InitialData", 2);
+    const request = window.indexedDB.open("InitialData", 3);
     request.onsuccess = () => {
       const db = request.result;
-      const totaListsData = db.transaction(["lists"], "readwrite").objectStore("lists");
+      const totaListsData = db.transaction(["projectBoard"], "readwrite").objectStore("projectBoard");
       let indexOfClickedCard = eachBoardItem.task.findIndex(function(eachCard){
         if (eachCard.id === selectedCardId.id){
                 return true;
