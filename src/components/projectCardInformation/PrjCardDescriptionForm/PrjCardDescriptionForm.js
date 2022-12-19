@@ -29,12 +29,12 @@ const PrjCardDescriptionForm = ({
     console.log("description submitted : ", e.data);
     const descriptionDataValue = e.data;
 
-    const request = window.indexedDB.open("InitialData", 2);
+    const request = window.indexedDB.open("InitialData", 3);
     request.onsuccess = () => {
       const db = request.result;
       const totaListsData = db
-        .transaction(["lists"], "readwrite")
-        .objectStore("lists");
+        .transaction(["projectBoard"], "readwrite")
+        .objectStore("projectBoard");
       let indexOfClickedCard = eachBoardItem.task.findIndex(function (
         eachCard
       ) {
