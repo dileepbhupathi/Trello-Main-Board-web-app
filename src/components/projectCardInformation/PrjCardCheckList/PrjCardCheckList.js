@@ -1,5 +1,5 @@
 import "./PrjCardCheckList.scss";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import PropTypes from "prop-types";
 import { CheckSquareOutlined } from "@ant-design/icons";
 import { Typography, Button } from "antd";
@@ -9,13 +9,13 @@ import PrjCardProgress from "../PrjCardProgress/PrjCardProgress";
 import PrjCardCheckboxList from "../PrjCardCheckboxList/PrjCardCheckboxList";
 import PrjCardCheckForm from "../PrjCardCheckForm/PrjCardCheckForm";
 import PrjCardHideChecklist from "../PrjCardHideChecklist/PrjCardHideChecklist";
-const PrjCardCheckList = ({ header }) => {
+const PrjCardCheckList = ({ header ,eachBoardItem,selectedCardId}) => {
   const { Title } = Typography;
   const [showForm, setShowForm] = useState(false);
   const [hideAddButton, setHideAddButton] = useState(false);
   const [newCheckboxdata, setNewCheckboxData] = useState([]);
   const [percent, setPercent] = useState(newCheckboxdata.length);
-  const [showChecklistData, setShowChecklistData] = useState(false);
+  const [showChecklistData, setShowChecklistData] = useState(true);
   const [hide, setHide] = useState(false);
   const [fullData, setFullData] = useState([]);
   const [check, setCheck] = useState(false);
@@ -38,6 +38,7 @@ const PrjCardCheckList = ({ header }) => {
     });
     let percentageCalculation =
       (boxcheckedData.length / newCheckboxdata.length) * 100;
+      
     setPercent(percentageCalculation);
   };
 
@@ -59,6 +60,23 @@ const PrjCardCheckList = ({ header }) => {
     setNewCheckboxData(fullData);
     setCheck(!check);
   };
+
+  // Data From past indexedDb
+ const getExistingDataFromDb = (eachBoardItem) => {
+  eachBoardItem.task.forEach((element) => {
+    if (element.id === selectedCardId.id) {
+      if(element.checkbox){
+        console.log("check :", element.checkbox);
+        setNewCheckboxData(element.checkbox)
+      }
+      
+    }
+  });
+};
+useEffect(() => {
+  getExistingDataFromDb(eachBoardItem);
+  
+},[])
   return (
     <>
       <div className="project-card-checkbox-container">
@@ -104,6 +122,9 @@ const PrjCardCheckList = ({ header }) => {
       {showForm === true ? (
         <div>
           <PrjCardCheckForm
+          newCheckboxdata={newCheckboxdata}
+          selectedCardId={selectedCardId}
+          eachBoardItem={eachBoardItem}
             setShowForm={setShowForm}
             setHideAddButton={setHideAddButton}
             getNewCheckboxData={getNewCheckboxData}

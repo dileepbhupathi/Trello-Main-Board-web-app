@@ -4,6 +4,7 @@ import "./PrjCardHeaderTitle.scss";
 import { PicCenterOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 const PrjCardHeaderTitle = ({projectCardHeaderTitle,icon}) => {
+  // let selectedCardTitle = projectCardHeaderTitle.content
   const { Title} = Typography;
   return (
     <div className="project-catd-title-container">

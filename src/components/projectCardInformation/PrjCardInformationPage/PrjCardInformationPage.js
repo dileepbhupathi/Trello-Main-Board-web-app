@@ -10,13 +10,13 @@ import PrjCardCheckbox from "../PrjCardCheckList/PrjCardCheckList";
 import PrjCardAttachment from "../PrjCardAttachment/PrjCardAttachment";
 import RightPopup from "../../RightPopup/RightPopup";
 
-const projectCardHeaderTitle = "projectCardHeaderTitle";
-const projectCardHeaderDescription = "projectCardHeaderDescription";
+
 const projectCardHeaederDescriptionLink = "projectCardHeaederDescriptionLink";
 const header = "in list";
-const projectCardDescription = "projectCardDescription";
 
 const PrjCardInformationPage = ({
+  selectedCardId,
+  eachBoardItem,
   isWatch,
   changesToWatch,
   removeWatch,
@@ -36,22 +36,32 @@ const PrjCardInformationPage = ({
   return (
     <div className="card-information-body">
       <div className="card-information-header">
-        <PrjCardHeaderTitle projectCardHeaderTitle={projectCardHeaderTitle} />
+        <PrjCardHeaderTitle projectCardHeaderTitle={selectedCardId.content} />
         <PrjCardHeaderDescription
-          projectCardHeaderDescription={projectCardHeaderDescription}
+          projectCardHeaderDescription={eachBoardItem.Name}
           projectCardHeaederDescriptionLink={projectCardHeaederDescriptionLink}
           header={header}
         />
         <div className="card-content-information">
           <div className="card-left-information">
             <PrjCardMember />
-            <PrjCardDateCheckbox />
+            <PrjCardDateCheckbox
+              selectedCardId={selectedCardId}
+              eachBoardItem={eachBoardItem}
+            />
             <PrjCardDescription
-              projectCardDescription={projectCardDescription}
+              selectedCardId={selectedCardId}
+              eachBoardItem={eachBoardItem}
             />
             <PrjCardAttachment />
-            <PrjCardCheckbox />
-            <PrjCardActivity />
+            <PrjCardCheckbox
+              eachBoardItem={eachBoardItem}
+              selectedCardId={selectedCardId}
+            />
+            <PrjCardActivity
+              eachBoardItem={eachBoardItem}
+              selectedCardId={selectedCardId}
+            />
           </div>
           <div className="card-right-information">
             <RightPopup
