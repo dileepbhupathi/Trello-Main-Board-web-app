@@ -8,16 +8,32 @@ import { ProjBoardContainer } from "./components/ProjBoardContainer/projBoardCot
 // import { TrelloContext } from "./components/TrelloContext/TrelloContext";
 
 function App() {
+  // useEffect(() => {
+  //   const IndexedDBData = indexedDB.open("InitialData", 2);
+
+  //   IndexedDBData.onsuccess = () => {
+  //     const db = IndexedDBData.result;
+  //     const updatedIndexedDBData = db
+  //       .transaction(["lists"], "readwrite")
+  //       .objectStore("lists")
+  //       .getAll();
+
+  //     updatedIndexedDBData.onsuccess = (event) => {
+  //       const FinalOtput = event.target.result;
+  //       console.log("final data", FinalOtput);
+
+  //       // CompleteIndexedDBData = FinalOtput
+  //       // console.log('CompleteIndexedDBData',CompleteIndexedDBData)
+  //     };
+  //   };
+  // },[]);
 
   return (
     <div className="App">
       <ErrorBoundary>
         <PrjHeader />
- 
         <ProjBoardContainer />
-     
-        {/* <IndexDB/> */}
-      </ErrorBoundary>
+        </ErrorBoundary>
     </div>
   );
 }

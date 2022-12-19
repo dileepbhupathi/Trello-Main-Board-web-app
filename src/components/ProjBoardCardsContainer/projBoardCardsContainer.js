@@ -12,11 +12,10 @@ import { FiCheckSquare } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FiMoreHorizontal } from "react-icons/fi";
 import PrjCardInformationPage from "../projectCardInformation/PrjCardInformationPage/PrjCardInformationPage";
-
-
+import { Members } from "../../view/Members/members";
+import { Labels } from "../../view/Labels/labels";
 
 export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
-  console.log("eachBoarddItems",eachBoardItem.Name)
   const [openMore, setOpenMore] = useState(false);
 
   const handleOpenChange = (newOpen) => {
@@ -25,56 +24,44 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
   const moreDetails = (
     <div>
       <hr />
-      <p> Members..</p>
-      <p> Labels..</p>
-      <p> position..</p>
+      {/* <p onClick={}> Members..</p>
+      <p onClick={}> Labels..</p>
+      <p onClick={}> position..</p> */}
+      <Members/>
+      <Labels/>
     </div>
   );
 
-  const templateDetails = (
-    <>
-      <hr />
-      <Card>
-        <p>m mkl</p>
-      </Card>
-      <Button>
-        
-          <CgTemplate />
-        
-      </Button>
-    </>
-  );
+ 
 
   const [showAddOption, setShowAddOption] = useState(false);
   const [inputForCard, setInputForCard] = useState();
 
   function addNewCardDetailsToBoard(e) {
-
     e.preventDefault();
-    let newCardToTask = { id: uuidv4(), content: `${inputForCard}` };
 
-
-
-    if (inputForCard !== undefined) {
-      eachBoardItem.task.push(newCardToTask);
-    }
+   
     setShowAddOption(false);
-    
- 
+
+    const request = indexedDB.open("InitialData", 3);
+    let newCardToTask = { id: uuidv4(), content: `${inputForCard}` };
+    eachBoardItem.task.push(newCardToTask);
+
+    request.onsuccess = () => {
+      const db = request.result;
+      let items = db
+        .transaction(["projectBoard"], "readwrite")
+        .objectStore("projectBoard");
+      let getItem = items.get(eachBoardItem.index);
+      getItem.onsuccess = (event) => {
+        let value = event.target.result;
+        value.task.push(newCardToTask);
+        items.put(value);
+      };
+    };
   }
-    
 
-    
-   
-   
-
-   
-
-    
-
-
-  // drag and drop
-
+  
   // MODAL MAIN POP_UP SANDEEP
   const [resetModal, setResetModal] = useState(false);
   const [isWatch, setIsWatch] = useState(false);
@@ -132,143 +119,124 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
     setIsArchive(false);
   };
 
-  
   return (
     <>
-        {eachBoardItem.task.map((item,i) => (
-          <Draggable key={item.id} draggableId={item.id} index={i}>
-            {(provided, snapshot) => {
-              return (
-                <>
-                  <Card
-                    onClick={() => setResetModal(!resetModal)}
-                    className="inserted-card"
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    style={{
-                      userSelect: "none",
-                      padding: 4,
-                      margin: "0 0 8px 0",
-                      minHeight: "50px",
-                      borderRadius: "0.25em",
-                      ...provided.draggableProps.style,
-                    }}
-                    key = {item.id}
-                  >
-                    <div className="card-label-edit-container">
-                      <div className="card-label-container">labels</div>
-                      <Button className="card-edit-button">
-                        <MdOutlineEdit />
-                      </Button>
-                    </div>
-                    <p className="card-description">{item.content}</p>
-                    <div>
-                      {isTemplate ? (
-                        <span className="card-template-container">
-                          <CgTemplate className="card-template-icon" />
-                          This card is a template.
-                        </span>
-                      ) : null}
-                      {isWatch ? <AiOutlineEye className="card-icons" /> : null}
-                      <GrTextAlignFull className="card-icons" />
-                      <span className="card-checkbox-container">
-                        <FiCheckSquare className="card-checkbox-icon" /> 0/6
-                      </span>
-                    </div>
-                  </Card>
-                  <Modal
-                    centered
-                    width={800}
-                    footer={null}
-                    className='project-card-information'
-                    open={resetModal}
-                    onOk={() => setResetModal(false)}
-                    onCancel={() => setResetModal(false)}
-                    style={{
-                      top: 50,
-                      borderRadius: "0px",
-                    }}
-                  >
-                    <PrjCardInformationPage
-                      isWatch={isWatch}
-                      changesToWatch={changesToWatch}
-                      removeWatch={removeWatch}
-                      isTemplate={isTemplate}
-                      changesToTemplate={changesToTemplate}
-                      removesTemplate={removesTemplate}
-                      isHideFromList={isHideFromList}
-                      hideFromList={hideFromList}
-                      isShowInList={isShowInList}
-                      showInList={showInList}
-                      isDelete={isDelete}
-                      isArchive={isArchive}
-                      isSendToBoard={isSendToBoard}
-                      sendToBoard={sendToBoard}
-                      sendToArchive={sendToArchive}
-                    />
-                  </Modal>
-                </>
-              );
-            }}
-          </Draggable>
-        ))}
-        {showAddOption ? (
-          <form onSubmit={addNewCardDetailsToBoard}>
-            <Card className="add-new-card-input-space">
-              <input
-                type="text"
-                placeholder="Enter a Title for this card"
-                className="add-card-input"
-                onChange={(event) => setInputForCard(event.target.value)}
-                autoFocus
-              />
-            </Card>
-            <div className="add-card-container">
-              <div className="add-card-and-cancel-icon">
-                <Button htmlType="submit" className="add-inner-card">
-                  Add Card
-                </Button>
-                <X
-                  onClick={() => setShowAddOption(false)}
-                  className="cancel-icon-in-addcard"
-                />
-              </div>
-              <div>
-                <Popover
-                  content={moreDetails}
-                  title="Options"
-                  trigger="click"
-                  open={openMore}
-                  onOpenChange={handleOpenChange}
+      {eachBoardItem.task.map((eachTask, i) => (
+        <Draggable key={eachTask.id} draggableId={eachTask.id} index={i}>
+          {(provided) => {
+            return (
+              <>
+                <Card
+                  onClick={() => setResetModal(!resetModal)}
+                  className="inserted-card"
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                  key={eachTask.id}
                 >
-                  <FiMoreHorizontal className="add-more-icon" />
-                </Popover>
-              </div>
+                  <div className="card-label-edit-container">
+                    <div className="card-label-container">labels</div>
+                    <Button className="card-edit-button">
+                      <MdOutlineEdit />
+                    </Button>
+                  </div>
+                  <p className="card-description">{eachTask.content}</p>
+                  <div>
+                    {isTemplate ? (
+                      <span className="card-template-container">
+                        <CgTemplate className="card-template-icon" />
+                        This card is a template.
+                      </span>
+                    ) : null}
+                    {isWatch ? <AiOutlineEye className="card-icons" /> : null}
+                    <GrTextAlignFull className="card-icons" />
+                    <span className="card-checkbox-container">
+                      <FiCheckSquare className="card-checkbox-icon" /> 0/6
+                    </span>
+                  </div>
+                </Card>
+                <Modal
+                  centered
+                  width={800}
+                  footer={null}
+                  className="project-card-information"
+                  open={resetModal}
+                  onOk={() => setResetModal(false)}
+                  onCancel={() => setResetModal(false)}
+                 
+                >
+                  <PrjCardInformationPage
+                    isWatch={isWatch}
+                    changesToWatch={changesToWatch}
+                    removeWatch={removeWatch}
+                    isTemplate={isTemplate}
+                    changesToTemplate={changesToTemplate}
+                    removesTemplate={removesTemplate}
+                    isHideFromList={isHideFromList}
+                    hideFromList={hideFromList}
+                    isShowInList={isShowInList}
+                    showInList={showInList}
+                    isDelete={isDelete}
+                    isArchive={isArchive}
+                    isSendToBoard={isSendToBoard}
+                    sendToBoard={sendToBoard}
+                    sendToArchive={sendToArchive}
+                  />
+                </Modal>
+              </>
+            );
+          }}
+        </Draggable>
+      ))}
+      {showAddOption ? (
+        <form onSubmit={addNewCardDetailsToBoard}>
+          <Card className="add-new-card-input-space">
+            <input
+              type="text"
+              placeholder="Enter a Title for this card"
+              className="add-card-input"
+              onChange={(event) => setInputForCard(event.target.value)}
+              autoFocus
+            />
+          </Card>
+          <div className="add-card-container">
+            <div className="add-card-and-cancel-icon">
+              <Button htmlType="submit" className="add-inner-card">
+                Add Card
+              </Button>
+              <X
+                onClick={() => setShowAddOption(false)}
+                className="cancel-icon-in-addcard"
+              />
             </div>
-          </form>
-        ) : (
-          <div>
-            <Button
-              size="large"
-              className="add-card-btn"
-              onClick={() => setShowAddOption(true)}
-            >
-              <AiOutlinePlus className="card-checkbox-icon" />
-              Add Card
-            </Button>
-            <Popover
-              style={{ backgroundColor: "gray" }}
-              content={templateDetails}
-              title="Card Templates"
-              trigger="click"
-              open={openMore}
-              onOpenChange={handleOpenChange}
-            >
-              <CgTemplate className="template-icon-beside-addcard-btn" />
-            </Popover>
+            <div>
+              <Popover
+                content={moreDetails}
+                title="Options"
+                trigger="click"
+                open={openMore}
+                onOpenChange={handleOpenChange}
+              >
+                <FiMoreHorizontal className="add-more-icon" />
+              </Popover>
+            </div>
           </div>
-        )}
+        </form>
+      ) : (
+        <div>
+          <Button
+            size="large"
+            className="add-card-btn"
+            onClick={() => setShowAddOption(true)}
+          >
+            <AiOutlinePlus className="card-checkbox-icon" />
+            Add Card
+          </Button>
+         
+          
+         
+        </div>
+      )}
     </>
   );
 };
