@@ -7,6 +7,7 @@ import { Checklist } from "../../view/Checklist/checklist";
 import { Dates } from "../../view/Dates/Date";
 import { Attachment } from "../../view/Attachment/attachment";
 import { Cover } from "../../view/Cover/cover";
+import { Trail } from "../../view/Trail/Trail";
 
 
 function RightPopup({
@@ -38,6 +39,7 @@ function RightPopup({
         <Dates />
         <Attachment />
         <Cover />
+        <Trail/>
         <ContentComponent
           isWatch={isWatch}
           changesToWatch={changesToWatch}

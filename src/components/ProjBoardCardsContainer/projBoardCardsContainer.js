@@ -16,6 +16,7 @@ import PrjCardInformationPage from "../projectCardInformation/PrjCardInformation
 export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
 
   const [openMore, setOpenMore] = useState(false);
+  // const [newCardData, setNewCardData] = useState([]);
 
   const handleOpenChange = (newOpen) => {
     setOpenMore(newOpen);
