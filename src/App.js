@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <ErrorBoundary>
         <PrjHeader />
-        <ProjBoardContainer />
+        <ProjBoardContainer/>
         {/* <IndexDB/> */}
       </ErrorBoundary>
     </div>

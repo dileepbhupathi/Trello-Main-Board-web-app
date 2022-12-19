@@ -7,9 +7,9 @@ import Calendar from "react-calendar";
 import moment from "moment";
 import "react-calendar/dist/Calendar.css";
 import { FieldTimeOutlined } from "@ant-design/icons";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
-export const Dates = ({ label }) => {
+export const Dates = () => {
 //   const [date, setDate] = useState(new Date());
 
 let startDate = "M/D/YYYY";
@@ -32,7 +32,8 @@ let time = "h:mm A";
   const [isDueDateChecked, setIsDueDateChecked] = useState(false);
 
 
-  const onChange1 = (dates) => {
+  const onChangeCalendar
+   = (dates) => {
     const [start, end] = dates;
     setStartingDate(start);
     setEndDate(end);
@@ -49,7 +50,7 @@ let time = "h:mm A";
   const dates = (
     <div className="right-top-popover-container">
       <hr />
-      <Calendar onChange={onChange1} selected={startingDate} startDate={startingDate} endDate={endDate} selectRange/>
+      <Calendar onChange={onChangeCalendar} selected={startingDate} startDate={startingDate} endDate={endDate} selectRange/>
       <br />
       <label>Start date</label>
       <br />
@@ -126,10 +127,10 @@ let time = "h:mm A";
         ]}
       />
       <p>Reminders will be sent ti all members and watchers of this card.</p>
-      <Button className="bottom-btn" type="primary">
+      <Button className="right-popup-bottom-btn" type="primary">
         Save
       </Button>
-      <Button className="bottom-btn">Remove</Button>
+      <Button className="right-popup-bottom-btn">Remove</Button>
     </div>
   );
 
@@ -137,16 +138,16 @@ let time = "h:mm A";
     <Popover content={dates} trigger="click" title="Dates">
       <Button className="right-container-button">
         <FieldTimeOutlined />
-        {label}
+        Dates
       </Button>
     </Popover>
   );
 };
-Dates.propTypes = {
-  label: PropTypes.string.isRequired,
-  // icon : PropTypes.object.isRequired
-};
+// Dates.propTypes = {
+//   label: PropTypes.string.isRequired,
+//   // icon : PropTypes.object.isRequired
+// };
 
-Dates.defaultProps = {
-  label: "Dates",
-};
+// Dates.defaultProps = {
+//   label: "Dates",
+// };

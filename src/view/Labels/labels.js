@@ -8,11 +8,11 @@ import {
   } from "@ant-design/icons";
 import {dummyData,labelBgColorsData} from "../../Constants/RightPopupData/data";
 // import { useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { LabelListItem } from '../../components/LabelListItem/LabelListItem';
 
 
-export const Labels = ({label}) => {
+export const Labels = () => {
   // const history=useHistory();
   const [data, setData] = useState([]);
   const [eachData, setEachData] = useState({});
@@ -92,7 +92,6 @@ export const Labels = ({label}) => {
         </div>
         <label>Title</label>
         <Input placeholder="Search labels" defaultValue={edit.name} onChange={(event)=>setInputValue(event.target.value)}/>
-        {/* grid={{ column: 3 }} */}
         <div className="cards-list">
           <h5>Select a colour</h5>
           <List
@@ -112,7 +111,7 @@ export const Labels = ({label}) => {
             )}
           />
         </div>
-        <Button className="bottom-btn">
+        <Button className="right-popup-bottom-btn">
           <CloseOutlined />
           Remove colour
         </Button>
@@ -164,28 +163,28 @@ export const Labels = ({label}) => {
                 )}
               />
               <Popover content={labelEdit} title="Add label" trigger="click">
-                <Button className="bottom-btn" onClick={()=>clearEditData()}>Create a new label</Button>
+                <Button className="right-popup-bottom-btn" onClick={()=>clearEditData()}>Create a new label</Button>
               </Popover>
               <hr />
-              <Button className="bottom-btn">
+              <Button className="right-popup-bottom-btn">
                 Enable colorblind friendly mode
               </Button>
-              <Button className="bottom-btn">Give us feedback</Button>
+              <Button className="right-popup-bottom-btn">Give us feedback</Button>
         </div>
       );
   return (
-    <Popover content={labels} trigger='click' title={label}>
+    <Popover content={labels} trigger='click' title="Labels">
       <Button className="right-container-button">
         <TagOutlined />
-        {label}
+        Labels
       </Button>
     </Popover>
   )
 }
-Labels.propTypes = {
-  label : PropTypes.string.isRequired
-  // icon : PropTypes.object.isRequired
-  }
-Labels.defaultProps = {
-label : "Labels",
-}
+// Labels.propTypes = {
+//   label : PropTypes.string.isRequired,
+//   // icon : PropTypes.object.isRequired
+//   }
+// Labels.defaultProps = {
+// label : "Labels",
+// }

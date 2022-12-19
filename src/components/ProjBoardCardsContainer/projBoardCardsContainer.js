@@ -13,10 +13,9 @@ import { FiCheckSquare } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FiMoreHorizontal } from "react-icons/fi";
 
-
-
 export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
   const [openMore, setOpenMore] = useState(false);
+  // const [newCardData, setNewCardData] = useState([]);
 
   const handleOpenChange = (newOpen) => {
     setOpenMore(newOpen);
@@ -37,9 +36,7 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
         <p>m mkl</p>
       </Card>
       <Button>
-        
-          <CgTemplate />
-        
+        <CgTemplate />
       </Button>
     </>
   );
@@ -49,12 +46,30 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
 
   function addNewCardDetailsToBoard(e) {
     e.preventDefault();
-    let newCardToTask = { id: uuidv4(), content: `${inputForCard}` };
 
-    if (inputForCard !== undefined) {
-      eachBoardItem.task.push(newCardToTask);
-    }
+    
+    // if (inputForCard !== undefined) {
+    //   eachBoardItem.task.push(newCardToTask);
+    // }
     setShowAddOption(false);
+
+    const request = indexedDB.open("InitialData", 2);
+    let newCardToTask = { id: uuidv4(), content: `${inputForCard}` };
+    eachBoardItem.task.push(newCardToTask);
+    request.onsuccess = () => {
+      const db = request.result;
+      // let newCardToTask=[];
+      let items = db.transaction(["lists"], "readwrite").objectStore("lists");
+      let getItem = items.get(eachBoardItem.index);
+      getItem.onsuccess = (event) => {
+        let value = event.target.result;
+        value.task.push(newCardToTask);
+        // console.log("value task", value.task);
+        items.put(value);
+      };
+      // setNewCardData(items);
+      // console.log(items);
+    };
   }
 
   // drag and drop
@@ -115,144 +130,142 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
     setIsDelete(false);
     setIsArchive(false);
   };
-
-  
   return (
     <>
-        {eachBoardItem.task.map((item,i) => (
-          <Draggable key={item.id} draggableId={item.id} index={i}>
-            {(provided, snapshot) => {
-              return (
-                <>
-                  <Card
-                    onClick={() => setResetModal(!resetModal)}
-                    className="inserted-card"
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    style={{
-                      userSelect: "none",
-                      padding: 4,
-                      margin: "0 0 8px 0",
-                      minHeight: "50px",
-                      borderRadius: "0.25em",
-                      ...provided.draggableProps.style,
-                    }}
-                    key = {item.id}
-                  >
-                    <div className="card-label-edit-container">
-                      <div className="card-label-container">labels</div>
-                      <Button className="card-edit-button">
-                        <MdOutlineEdit />
-                      </Button>
-                    </div>
-                    <p className="card-description">{item.content}</p>
-                    <div>
-                      {isTemplate ? (
-                        <span className="card-template-container">
-                          <CgTemplate className="card-template-icon" />
-                          This card is a template.
-                        </span>
-                      ) : null}
-                      {isWatch ? <AiOutlineEye className="card-icons" /> : null}
-                      <GrTextAlignFull className="card-icons" />
-                      <span className="card-checkbox-container">
-                        <FiCheckSquare className="card-checkbox-icon" /> 0/6
-                      </span>
-                    </div>
-                  </Card>
-                  <Modal
-                    centered
-                    width={800}
-                    footer={null}
-                    open={resetModal}
-                    onOk={() => setResetModal(false)}
-                    onCancel={() => setResetModal(false)}
-                    className="modalpage"
-                    style={{
-                      top: 50,
-                      borderRadius: "0px",
-                    }}
-                  >
-                    <ModalPage
-                      isWatch={isWatch}
-                      changesToWatch={changesToWatch}
-                      removeWatch={removeWatch}
-                      isTemplate={isTemplate}
-                      changesToTemplate={changesToTemplate}
-                      removesTemplate={removesTemplate}
-                      isHideFromList={isHideFromList}
-                      hideFromList={hideFromList}
-                      isShowInList={isShowInList}
-                      showInList={showInList}
-                      isDelete={isDelete}
-                      isArchive={isArchive}
-                      isSendToBoard={isSendToBoard}
-                      sendToBoard={sendToBoard}
-                      sendToArchive={sendToArchive}
-                    />
-                  </Modal>
-                </>
-              );
-            }}
-          </Draggable>
-        ))}
-        {showAddOption ? (
-          <form onSubmit={addNewCardDetailsToBoard}>
-            <Card className="add-new-card-input-space">
-              <input
-                type="text"
-                placeholder="Enter a Title for this card"
-                className="add-card-input"
-                onChange={(event) => setInputForCard(event.target.value)}
-                autoFocus
-              />
-            </Card>
-            <div className="add-card-container">
-              <div className="add-card-and-cancel-icon">
-                <Button htmlType="submit" className="add-inner-card">
-                  Add Card
-                </Button>
-                <X
-                  onClick={() => setShowAddOption(false)}
-                  className="cancel-icon-in-addcard"
-                />
-              </div>
-              <div>
-                <Popover
-                  content={moreDetails}
-                  title="Options"
-                  trigger="click"
-                  open={openMore}
-                  onOpenChange={handleOpenChange}
+      {eachBoardItem.task.map((item, i) => (
+        <Draggable key={item.id} draggableId={item.id} index={i}>
+          {(provided, snapshot) => {
+            return (
+              <>
+                <Card
+                  onClick={() => setResetModal(!resetModal)}
+                  className="inserted-card"
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                  style={{
+                    userSelect: "none",
+                    padding: 4,
+                    margin: "0 0 8px 0",
+                    minHeight: "50px",
+                    borderRadius: "0.25em",
+                    ...provided.draggableProps.style,
+                  }}
+                  key={item.id}
                 >
-                  <FiMoreHorizontal className="add-more-icon" />
-                </Popover>
-              </div>
+                  <div className="card-label-edit-container">
+                    <div className="card-label-container">labels</div>
+                    <Button className="card-edit-button">
+                      <MdOutlineEdit />
+                    </Button>
+                  </div>
+                  <p className="card-description">{item.content}</p>
+                  <div>
+                    {isTemplate ? (
+                      <span className="card-template-container">
+                        <CgTemplate className="card-template-icon" />
+                        This card is a template.
+                      </span>
+                    ) : null}
+                    {isWatch ? <AiOutlineEye className="card-icons" /> : null}
+                    <GrTextAlignFull className="card-icons" />
+                    <span className="card-checkbox-container">
+                      <FiCheckSquare className="card-checkbox-icon" /> 0/6
+                    </span>
+                  </div>
+                </Card>
+                <Modal
+                  centered
+                  width={800}
+                  footer={null}
+                  open={resetModal}
+                  onOk={() => setResetModal(false)}
+                  onCancel={() => setResetModal(false)}
+                  className="modalpage"
+                  style={{
+                    top: 50,
+                    borderRadius: "0px",
+                  }}
+                >
+                  <ModalPage
+                    isWatch={isWatch}
+                    changesToWatch={changesToWatch}
+                    removeWatch={removeWatch}
+                    isTemplate={isTemplate}
+                    changesToTemplate={changesToTemplate}
+                    removesTemplate={removesTemplate}
+                    isHideFromList={isHideFromList}
+                    hideFromList={hideFromList}
+                    isShowInList={isShowInList}
+                    showInList={showInList}
+                    isDelete={isDelete}
+                    isArchive={isArchive}
+                    isSendToBoard={isSendToBoard}
+                    sendToBoard={sendToBoard}
+                    sendToArchive={sendToArchive}
+                  />
+                </Modal>
+              </>
+            );
+          }}
+        </Draggable>
+      ))}
+      {showAddOption ? (
+        <form onSubmit={addNewCardDetailsToBoard}>
+          <Card className="add-new-card-input-space">
+            <input
+              type="text"
+              placeholder="Enter a Title for this card"
+              className="add-card-input"
+              onChange={(event) => setInputForCard(event.target.value)}
+              autoFocus
+            />
+          </Card>
+          <div className="add-card-container">
+            <div className="add-card-and-cancel-icon">
+              <Button htmlType="submit" className="add-inner-card">
+                Add Card
+              </Button>
+              <X
+                onClick={() => setShowAddOption(false)}
+                className="cancel-icon-in-addcard"
+              />
             </div>
-          </form>
-        ) : (
-          <div>
-            <Button
-              size="large"
-              className="add-card-btn"
-              onClick={() => setShowAddOption(true)}
-            >
-              <AiOutlinePlus className="card-checkbox-icon" />
-              Add Card
-            </Button>
-            <Popover
-              style={{ backgroundColor: "gray" }}
-              content={templateDetails}
-              title="Card Templates"
-              trigger="click"
-              open={openMore}
-              onOpenChange={handleOpenChange}
-            >
-              <CgTemplate className="template-icon-beside-addcard-btn" />
-            </Popover>
+            <div>
+              <Popover
+                content={moreDetails}
+                title="Options"
+                trigger="click"
+                open={openMore}
+                onOpenChange={handleOpenChange}
+              >
+                <FiMoreHorizontal className="add-more-icon" />
+              </Popover>
+            </div>
           </div>
-        )}
+        </form>
+      ) : (
+        <div>
+          <Button
+            size="large"
+            className="add-card-btn"
+            onClick={() => setShowAddOption(true)}
+          >
+            <AiOutlinePlus className="card-checkbox-icon" />
+            Add Card
+          </Button>
+          <Popover
+            style={{ backgroundColor: "gray" }}
+            content={templateDetails}
+            title="Card Templates"
+            trigger="click"
+            open={openMore}
+            onOpenChange={handleOpenChange}
+          >
+            <CgTemplate className="template-icon-beside-addcard-btn" />
+          </Popover>
+        </div>
+      )}
     </>
   );
 };

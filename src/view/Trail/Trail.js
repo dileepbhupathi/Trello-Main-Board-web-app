@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import '../../components/RightPopup/RightPopup.scss';
 import { Button, Modal } from "antd";
 import { PicCenterOutlined,ShopOutlined} from "@ant-design/icons";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-export const Trail = ({label}) => {
+export const Trail = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -21,7 +21,7 @@ export const Trail = ({label}) => {
       <p>Add dropdowns, text fields, dates and more to your cards.</p>
       <Button className="trail-button" onClick={showModal}>
       <ShopOutlined />
-        {label}
+        Start free trail
       </Button>
       <Modal
           mask={false}
@@ -57,11 +57,11 @@ export const Trail = ({label}) => {
     </>
   );
 }
-Trail.propTypes = {
-    label : PropTypes.string.isRequired
-    // icon : PropTypes.object.isRequired
-    }
+// Trail.propTypes = {
+//     label : PropTypes.string.isRequired
+//     // icon : PropTypes.object.isRequired
+//     }
     
-    Trail.defaultProps = {
-  label : "Start free trail",
-  }
+//     Trail.defaultProps = {
+//   label : "Start free trail",
+//   }
