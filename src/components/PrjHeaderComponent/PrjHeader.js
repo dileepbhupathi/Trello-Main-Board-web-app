@@ -33,11 +33,11 @@ export const PrjHeader = () => {
           <div className="title-container">
             <Text className="title">Project Management</Text>
             {isFillStar ? (
-              <Button onClick={removeFavourite} className="button">
+              <Button onClick={removeFavourite} className="transparent-button">
                 <StarFilled className="star-yellow" />
               </Button>
             ) : (
-              <Button onClick={addFavourite} className="button">
+              <Button onClick={addFavourite} className="transparent-button">
                 <StarOutlined className="star-white" />
               </Button>
             )}
@@ -53,11 +53,11 @@ export const PrjHeader = () => {
             <Button className="board-button">
               <MdLeaderboard className="board-icon" /> Board
             </Button>
-            <Button className="button">
+            <Button className="angle-down-button">
               <TfiAngleDown className="angle-down-icon" />
             </Button>
             <Button className="calender-button">
-              <SlCalender className="calender-icon" /> Calender Power-Up
+              <SlCalender className="calender-icon" /> Calendar Power-Up
             </Button>
             <Button className="calender-button">
               <IoIosJet className="calender-icon" /> Power-Ups
@@ -83,7 +83,7 @@ export const PrjHeader = () => {
           </div>
           <div className="line-container">  </div>
           <Button className="more-option-button">
-            <BsThreeDots />
+            <BsThreeDots className="more-option-icon"/>
           </Button>
         </section>
       </nav>
