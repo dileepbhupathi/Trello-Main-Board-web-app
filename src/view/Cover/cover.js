@@ -5,10 +5,10 @@ import {coverCardsBgColor,coverImages} from "../../Constants/RightPopupData/data
 import {
     LaptopOutlined 
   } from "@ant-design/icons";
-  import PropTypes from 'prop-types';
+  // import PropTypes from 'prop-types';
 
 
-export const Cover = ({label}) => {
+export const Cover = () => {
     const [coverData, setCoverData] = useState({});
     const sendBgColorCover=(item)=>{
       setCoverData(item);
@@ -36,8 +36,7 @@ export const Cover = ({label}) => {
               <h4>Size</h4>
               <div className="cover-skeleton-container">    
                 <div className="cover-skeleton" >
-                  <div className="skeleton-top-container" style={{ backgroundColor: coverData.bgColor }}>
-                    
+                  <div className="skeleton-top-container" style={{ backgroundColor: coverData.bgColor }}> 
                   </div>
                   {/* <Skeleton
                       avatar
@@ -63,11 +62,11 @@ export const Cover = ({label}) => {
                   width="100%"
                   grid={{ column: 5 }}
               dataSource={coverCardsBgColor}
-              renderItem={(item)=>(
+              renderItem={(coverCardsEachItem)=>(
                 <List.Item>
-                  <Card onClick={()=>sendBgColorCover(item)}
+                  <Card onClick={()=>sendBgColorCover(coverCardsEachItem)}
                     className="label-card-bgcolor"
-                    style={{ backgroundColor: item.bgColor }}
+                    style={{ backgroundColor: coverCardsEachItem.bgColor }}
                     
                   ></Card>
                 </List.Item>
@@ -81,9 +80,9 @@ export const Cover = ({label}) => {
               <List
                  grid={{ column: 3 }}
                 dataSource={coverImages}
-                renderItem={(item)=>(
+                renderItem={(coverImagesEachItem)=>(
                   <List.Item >
-                    <img className="cover-images" src={item.url} alt="coverImage"/>
+                    <img className="cover-images" src={coverImagesEachItem.url} alt="coverImage"/>
                   </List.Item>
                 )}
               />
@@ -94,16 +93,16 @@ export const Cover = ({label}) => {
     <Popover content={cover} trigger="click" title="Cover">
     <Button className="right-container-button">
     <LaptopOutlined />
-      {label}
+      Cover
     </Button>
     </Popover>
   )
 }
-Cover.propTypes = {
-  label : PropTypes.string.isRequired
-  // icon : PropTypes.object.isRequired
-  }
+// Cover.propTypes = {
+//   label : PropTypes.string.isRequired
+//   // icon : PropTypes.object.isRequired
+//   }
   
-  Cover.defaultProps = {
-label : "Cover",
-}
+//   Cover.defaultProps = {
+// label : "Cover",
+// }

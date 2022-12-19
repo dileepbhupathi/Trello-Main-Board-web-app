@@ -66,7 +66,7 @@
     border-radius: 40px;
     width:20px;
     height: 20px;
-    border: 2px solid red;
+    border: 0;
     margin: 7px;
     align-self: center;
 }
@@ -92,7 +92,7 @@ hr{
     display: flex;
     justify-content:center;
   }
-.bottom-btn{
+.right-popup-bottom-btn{
     width: 100%;
     margin-top: 2%;
     background-color: #0000003d;
@@ -248,7 +248,8 @@ a{
     border-radius: 50%;
     text-align: center;
     background-color: #0079bf;
-    width: 18%;
+    width: 16%;
+    height: 50px;
     justify-content:center;
     // height: auto;
     margin-right: 4%;

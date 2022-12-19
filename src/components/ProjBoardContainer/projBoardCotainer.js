@@ -90,7 +90,7 @@ export const ProjBoardContainer = () => {
       const sourceColumn = columns[source.droppableId];
 
       const destColumn = columns[destination.droppableId];
-
+     
       const sourceItems = [...sourceColumn.task];
       const destItems = [...destColumn.task];
       const [removed] = sourceItems.splice(source.index, 1);
