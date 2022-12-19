@@ -12,8 +12,6 @@ import { FiCheckSquare } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FiMoreHorizontal } from "react-icons/fi";
 import PrjCardInformationPage from "../projectCardInformation/PrjCardInformationPage/PrjCardInformationPage";
-import { Members } from "../../view/Members/members";
-import { Labels } from "../../view/Labels/labels";
 
 export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
   const [openMore, setOpenMore] = useState(false);
@@ -24,51 +22,41 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
   const moreDetails = (
     <div>
       <hr />
-      {/* <p onClick={}> Members..</p>
-      <p onClick={}> Labels..</p>
-      <p onClick={}> position..</p> */}
-      <Members/>
-      <Labels/>
+      <p> Members..</p>
+      <p> Labels..</p>
+      <p> position..</p>
     </div>
   );
 
-  const CardTemplateDetails = (
+  const templateDetails = (
     <>
       <hr />
       <Card>
-        <p>Adding Template here</p>
-        <Button className="card-template-style">
-          <CgTemplate /> Template
-        </Button>
+        <p>m mkl</p>
       </Card>
-
+      <Button>
+        <CgTemplate />
+      </Button>
     </>
   );
-
+  const id = uuidv4().slice(0, 3);
   const [showAddOption, setShowAddOption] = useState(false);
   const [inputForCard, setInputForCard] = useState();
 
   function addNewCardDetailsToBoard(e) {
     e.preventDefault();
-
-    // if (inputForCard !== undefined) {
-    // }
     setShowAddOption(false);
 
-    const request = indexedDB.open("InitialData", 2);
-    let newCardToTask = { id: uuidv4(), content: `${inputForCard}` };
+    const request = indexedDB.open("InitialData", 3);
+    let newCardToTask = { id: id, content: `${inputForCard}` };
     eachBoardItem.task.push(newCardToTask);
-
     request.onsuccess = () => {
       const db = request.result;
-      let items = db
-        .transaction(["projectBoard"], "readwrite")
-        .objectStore("projectBoard");
+      let items = db.transaction(["projectBoard"], "readwrite").objectStore("projectBoard");
       let getItem = items.get(eachBoardItem.index);
       getItem.onsuccess = (event) => {
         let value = event.target.result;
         value.task.push(newCardToTask);
-        console.log("value task", value.task);
         items.put(value);
       };
     };
@@ -132,21 +120,35 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
     setIsDelete(false);
     setIsArchive(false);
   };
+  const [selectedCardId, setSelectedCardId] = useState('');
+  const onClickCardHandler = (i) => {
+    setResetModal(!resetModal);
+    console.log("clicked Card id :", i.id);
+    setSelectedCardId(i);
+  };
 
   return (
     <>
-      {eachBoardItem.task.map((eachTask, i) => (
-        <Draggable key={eachTask.id} draggableId={eachTask.id} index={i}>
-          {(provided) => {
+      {eachBoardItem.task.map((item, i) => (
+        <Draggable key={item.id} draggableId={item.id} index={i}>
+          {(provided, snapshot) => {
             return (
               <>
                 <Card
-                  onClick={() => setResetModal(!resetModal)}
+                  onClick={(e) => onClickCardHandler(item)}
                   className="inserted-card"
                   ref={provided.innerRef}
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
-                  key={eachTask.id}
+                  style={{
+                    userSelect: "none",
+                    padding: 4,
+                    margin: "0 0 8px 0",
+                    minHeight: "50px",
+                    borderRadius: "0.25em",
+                    ...provided.draggableProps.style,
+                  }}
+                  key={item.id}
                 >
                   <div className="card-label-edit-container">
                     <div className="card-label-container">labels</div>
@@ -154,7 +156,7 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
                       <MdOutlineEdit />
                     </Button>
                   </div>
-                  <p className="card-description">{eachTask.content}</p>
+                  <p className="card-description">{item.content}</p>
                   <div>
                     {isTemplate ? (
                       <span className="card-template-container">
@@ -177,9 +179,15 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
                   open={resetModal}
                   onOk={() => setResetModal(false)}
                   onCancel={() => setResetModal(false)}
-                 
+                  style={{
+                    top: 50,
+                    borderRadius: "0px",
+                  }}
                 >
                   <PrjCardInformationPage
+                    selectedCardId={selectedCardId}
+                    eachBoardItem={eachBoardItem}
+
                     isWatch={isWatch}
                     changesToWatch={changesToWatch}
                     removeWatch={removeWatch}
@@ -247,8 +255,8 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
             Add Card
           </Button>
           <Popover
-           
-            content={CardTemplateDetails}
+            style={{ backgroundColor: "gray" }}
+            content={templateDetails}
             title="Card Templates"
             trigger="click"
             open={openMore}
