@@ -33,7 +33,7 @@ function App() {
       <ErrorBoundary>
         <PrjHeader />
         <ProjBoardContainer />
-        </ErrorBoundary>
+      </ErrorBoundary>
     </div>
   );
 }
