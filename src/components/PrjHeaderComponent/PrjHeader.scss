@@ -4,7 +4,7 @@
 }
 
 .header-container {
-    background: linear-gradient(to right, rgb(1, 1, 115),rgb(192, 24, 153));
+    background: linear-gradient(to right, rgba(4, 4, 120, 0.884),rgba(192, 24, 153, 0.92));
     padding: 1% 0% 1% 0.5%;
     display: flex;
     min-width: 100%;
@@ -22,11 +22,14 @@
     font-size: 1.25em;
 }
 
-.button{
+.transparent-button{
     background-color: #ffffff33;
     border-color: transparent;
-    margin-left: 1%;
-
+    margin-left: 0.5%;
+    width: 15%;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 
@@ -49,26 +52,34 @@
 
 
 .title-container{
-    width: 21%;
+    width: 17.5%;
     // margin-right: 0.5%;
+    box-sizing: border-box;
 }
 
 .title {
     color: white;
     font-weight: 700;
-    font-size: 1.125em;
     margin-right: 2%;
+    font-size: 0.86em;
+
 }
 
 .workspace-container {
-    margin-left: 0.5%;
-    margin-right: 0.5%;
+    margin-left: 0.2%;
+    // margin-right: 0.5%;
+    width: 14%;
+    box-sizing: border-box;
 }
 
 .workspace-button {
     background-color: #ffffff33;
     border-color: transparent;
     color: white;
+    width: 96%;
+    padding-left: 5px;
+    box-sizing: border-box;
+    font-size: 0.8em;
 }
 
 // .workspace-button:hover {
@@ -83,8 +94,10 @@
 }
 
 .board-container {
-    // margin-left: 0.5%;
-    width: 46%;
+    margin-left: 0.2%;
+    width: 44%;
+
+    box-sizing: border-box;
 }
 
 .board-icon {
@@ -94,24 +107,41 @@
 
 .board-button {
     border-color: transparent;
+    padding: 0px 10px 0px 5px;
+    margin-right: 0.5%;
+    box-sizing: border-box;
+}
+
+.angle-down-button {
+    background-color: #ffffff33;
+    border-color: transparent;
+    margin-left: 0.5%;
+    width: 8%;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5px;
 }
 
 .angle-down-icon {
-    font-size: 1.25em;
+    font-size: 1.125em;
     color: white;
 }
 
 .calender-button {
-    margin-left: 1%;
+    margin-left: 0.5%;
     background-color: #ffffff33;
     color: white;
-    padding:0% 2.9% 0% 1%;
+    padding:0% 1.5% 0% 2%;
     border : 0px;
+    box-sizing: border-box;
+    font-size: 0.79em;
 }
 .calender-icon {
     color: white;
-    font-size: 1.125em;
-    margin-right: 5%;
+    font-size: 1em;
+        padding: 0px;
+        margin-right: 2%;
 }
 
 .avtar {
@@ -144,6 +174,7 @@
     padding: 0% 15%;
     margin-left: 0.5%;
     border: 0px;
+    font-size: 0.75em;
 }
 
 .person-icon {
@@ -157,7 +188,46 @@
     background-color: #ffffff33;
     color: white;
     font-size: 1.1em;
-    margin-right: 1%;
+    margin-right: 0.5%;
     border: 0px;
+    box-sizing: border-box;
+    padding: 0px 3px;
+    width: 4%;
 }
 
+.more-option-icon {
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+@media only screen and (min-width:1025px) {
+    .title-container{
+        // margin-right: 0.5%;
+        width: 21%;
+    }
+    .title {
+        font-size: 1.25em;
+    }
+    .board-container {
+        // margin-left: 0.5%;
+        width: 46%;
+    }
+    .workspace-icon {
+        font-size: 1em;    
+    }
+    .more-option-button {
+        font-size: 1em;
+    }
+    .calender-icon {
+        font-size: 1.125em;
+    }
+    .filter-icon {
+        font-size: 1.125em;
+    }
+    .angle-down-icon {
+        font-size: 1.125em;
+    }
+    .calender-button {
+        font-size: 1em;
+    }
+}

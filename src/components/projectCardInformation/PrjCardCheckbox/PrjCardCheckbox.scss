@@ -1,0 +1,38 @@
+.project-card-checkbox {
+    width: 100%;
+   
+}
+
+.overlinestyle {
+    text-decoration: line-through;
+
+}
+
+.disableoverline {
+    text-decoration: none;
+}
+
+.checkbox-inner-container {
+   
+    width: 40vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+
+}
+
+.checkbox-matter-container {
+
+    width: 100%;
+}
+
+.checkbox-inner-container:hover .hider {
+    visibility: visible;
+
+}
+
+.hider {
+    visibility: hidden;
+
+}

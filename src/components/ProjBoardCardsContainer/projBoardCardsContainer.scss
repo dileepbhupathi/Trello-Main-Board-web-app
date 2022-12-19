@@ -6,6 +6,10 @@
   list-style-type: none;
   margin-right: 1%;
 }
+.card-template-style{
+  background-color: rgb(168, 163, 163);
+}
+
 .project-title {
   font-family: "system-ui";
   font-size: 14px;
@@ -48,6 +52,7 @@
   margin-top: 10px;
 }
 .inserted-card {
+  border: 1px solid red;
   margin-top: 15px;
   color: #172b4d;
   box-shadow: none;
@@ -57,6 +62,7 @@
 .add-new-card-input-space {
   border-color: transparent;
   border-bottom: 1.5px solid rgb(196, 193, 193);
+  border-radius: 0.25em;
 }
 
 .inserted-card:hover {
@@ -209,3 +215,10 @@ hr {
   color: grey;
   font-weight: 500;
 }
+
+
+.ant-modal .ant-modal-content{
+  background-color: rgb(243, 243, 243);
+  border-radius: 2px;
+}
+
