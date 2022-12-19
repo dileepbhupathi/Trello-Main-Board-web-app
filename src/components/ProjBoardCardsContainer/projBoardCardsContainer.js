@@ -28,17 +28,7 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
     </div>
   );
 
-  const templateDetails = (
-    <>
-      <hr />
-      <Card>
-        <p>m mkl</p>
-      </Card>
-      <Button>
-        <CgTemplate />
-      </Button>
-    </>
-  );
+  
   const id = uuidv4().slice(0, 3);
   const [showAddOption, setShowAddOption] = useState(false);
   const [inputForCard, setInputForCard] = useState();
@@ -254,16 +244,6 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
             <AiOutlinePlus className="card-checkbox-icon" />
             Add Card
           </Button>
-          <Popover
-            style={{ backgroundColor: "gray" }}
-            content={templateDetails}
-            title="Card Templates"
-            trigger="click"
-            open={openMore}
-            onOpenChange={handleOpenChange}
-          >
-            <CgTemplate className="template-icon-beside-addcard-btn" />
-          </Popover>
         </div>
       )}
     </>
