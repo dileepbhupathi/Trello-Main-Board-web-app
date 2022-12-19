@@ -1,7 +1,7 @@
 .entire-board-bg{
     background-size: cover;
     height: 89.9vh;
-    background: linear-gradient(to right, rgb(1, 1, 115),rgb(192, 24, 153));
+    background: linear-gradient(to right, rgba(4, 4, 120, 0.884),rgba(192, 24, 153, 0.92));
     color: white;
     padding: 0px 10px;
     box-sizing: border-box;
@@ -35,7 +35,7 @@
     background-color: #ffffff33;
     color: #ffffff;
     border:none;
-    border-radius:0;
+    border-radius:0.25em;
     padding: 20px;
     display: flex;
     align-items: center;

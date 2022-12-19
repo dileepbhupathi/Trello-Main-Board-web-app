@@ -14,6 +14,7 @@ import { FiMoreHorizontal } from "react-icons/fi";
 import PrjCardInformationPage from "../projectCardInformation/PrjCardInformationPage/PrjCardInformationPage";
 
 export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
+
   const [openMore, setOpenMore] = useState(false);
 
   const handleOpenChange = (newOpen) => {
@@ -121,6 +122,7 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
     setIsArchive(false);
   };
   const [selectedCardId, setSelectedCardId] = useState('');
+  
   const onClickCardHandler = (i) => {
     setResetModal(!resetModal);
     console.log("clicked Card id :", i.id);
@@ -187,7 +189,6 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
                   <PrjCardInformationPage
                     selectedCardId={selectedCardId}
                     eachBoardItem={eachBoardItem}
-
                     isWatch={isWatch}
                     changesToWatch={changesToWatch}
                     removeWatch={removeWatch}
