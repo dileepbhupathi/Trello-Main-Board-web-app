@@ -12,11 +12,11 @@ const PrjCardCheckbox = ({
     if (e.target.checked) {
       checkboxData["checkStatus"] = "checked";
       getPercentValue(newCheckboxdata);
-      console.log('checkbox checked')
+      
     } else {
       checkboxData["checkStatus"] = "unchecked";
       getPercentValue(newCheckboxdata);
-      console.log('checkbox unchecked')
+     
     }
   };
 

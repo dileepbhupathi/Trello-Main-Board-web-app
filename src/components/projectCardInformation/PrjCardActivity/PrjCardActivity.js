@@ -3,8 +3,8 @@ import { UnorderedListOutlined } from "@ant-design/icons";
 import { Button, Typography } from "antd";
 import PrjCardActivityForm from "../PrjCardActivityForm/PrjCardActivityForm";
 import PrjCardActivityList from "../PrjCardActivityList/PrjCardActivityList";
-import { useState } from "react";
-const PrjCardActivity = () => {
+import { useState, useEffect } from "react";
+const PrjCardActivity = ({ eachBoardItem, selectedCardId }) => {
   const [allActivityData, setAllActivityData] = useState([]);
   const [activityButton, setActivityButton] = useState(false);
   const [showActivityData, setShowActivityData] = useState(true);
@@ -12,24 +12,44 @@ const PrjCardActivity = () => {
   const getNewActivity = (data) => {
     setAllActivityData(data);
     setActivityButton(false);
-    console.log('new Activity data : ',data)
   };
   const activityListHandler = () => {
     setActivityButton(!activityButton);
     setShowActivityData(!showActivityData);
-    console.log('activity data status changed')
   };
   const deleteActivityStatus = (item) => {
     let id = item.id;
     allActivityData.forEach((i) => {
       if (i.id === id) {
-        setAllActivityData(allActivityData.filter((activity) => activity.id !== id));
-        console.log('selected data deleted success')
+        setAllActivityData(
+          allActivityData.filter((activity) => activity.id !== id)
+        );
       } else {
         console.log("no such id found");
       }
     });
-  }
+  };
+
+  // Data From past indexedDb
+  const getExistingDataFromDb = (eachBoardItem) => {
+    eachBoardItem.task.forEach((element) => {
+      if (selectedCardId.id === element.id) {
+        if (element.activity) {
+          console.log("element-id : ", element.id);
+          console.log("selected Id :", selectedCardId.id);
+          setAllActivityData(element.activity);
+          console.log("getting updated data success");
+        }
+      } else {
+      }
+    });
+  };
+
+  useEffect(() => {
+    getExistingDataFromDb(eachBoardItem);
+    console.log('fun is executing')
+  }, []);
+
   return (
     <>
       <div className="project-activity-container">
@@ -47,11 +67,18 @@ const PrjCardActivity = () => {
       </div>
       {showActivityData === true ? (
         allActivityData.length > 0 ? (
-          <PrjCardActivityList allActivityData={allActivityData} deleteActivityStatus={deleteActivityStatus} />
+          <PrjCardActivityList
+            allActivityData={allActivityData}
+            deleteActivityStatus={deleteActivityStatus}
+          />
         ) : null
       ) : null}
-
-      <PrjCardActivityForm getNewActivity={getNewActivity} allActivityData={allActivityData}/>
+      <PrjCardActivityForm
+        eachBoardItem={eachBoardItem}
+        selectedCardId={selectedCardId}
+        getNewActivity={getNewActivity}
+        allActivityData={allActivityData}
+      />
     </>
   );
 };
