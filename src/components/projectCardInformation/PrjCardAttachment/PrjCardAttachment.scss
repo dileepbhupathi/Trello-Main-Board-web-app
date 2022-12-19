@@ -1,6 +1,9 @@
 .attachment-header-section {
     display: flex;
-
+.icon{
+    font-size: 1.4em;
+    margin-top: 15%;
+}
     .header {
         margin-left: 1%;
     }
@@ -18,7 +21,10 @@
 
 .attachment-content-section {
     flex-grow: 1;
-    margin-left: 5%;
+    margin-left: 6%;
+    .ant-btn{
+background-color: #d6dbe4;
+    }
 
     .link-section {
         display: flex;

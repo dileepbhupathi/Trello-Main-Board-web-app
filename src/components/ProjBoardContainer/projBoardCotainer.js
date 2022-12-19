@@ -18,6 +18,7 @@ export const ProjBoardContainer = () => {
 
   const [boardTitle, setBoardTitle] = useState();
 
+<<<<<<< HEAD
   function settingNewBoardToIndexDB(e) {
     e.preventDefault();
 
@@ -37,6 +38,22 @@ export const ProjBoardContainer = () => {
     }
       // handle the error case
 
+=======
+  function sumbission(e) {
+    e.preventDefault();
+
+    setShowAddBoard(false);
+
+    const request = indexedDB.open("InitialData", 2);
+
+    function insertContact(db, lists) {
+      const txn = db.transaction(["lists"], "readwrite");
+      const store = txn.objectStore("lists"); //
+      let query = store.add(lists);
+      query.onsuccess = function (event) {
+        console.log(event);
+      };
+>>>>>>> 15d8e6c45cb22f743acabeb8924a4584293c2814
       txn.oncomplete = function () {
         db.close();
       };
@@ -44,6 +61,7 @@ export const ProjBoardContainer = () => {
     request.onupgradeneeded=()=>{
         let db = request.result;
 
+<<<<<<< HEAD
     console.log("db", db); // create the Contacts object store // with auto-increment id
 
     let store = db.createObjectStore("projectBoard", {
@@ -56,12 +74,26 @@ export const ProjBoardContainer = () => {
       unique: true,
     });
     console.log("index", index);
+=======
+    request.onupgradeneeded = () => {
+      let db = request.result;
+      let store = db.createObjectStore("lists", {
+        keyPath: "index",
+        autoIncrement: true,
+      });
+      let index = store.createIndex("Name", "Name", {
+        keyPath: "name",
+        unique: true,
+      });
+      console.log("index", index);
+>>>>>>> 15d8e6c45cb22f743acabeb8924a4584293c2814
     };
     
     
 
     request.onsuccess = () => {
       const db = request.result;
+<<<<<<< HEAD
 
       insertBoard(db, {
         uniqueId: uuidv4(),
@@ -81,6 +113,64 @@ export const ProjBoardContainer = () => {
       };
     };
   }
+=======
+      console.log(db);
+      insertContact(db, {
+        uniqueId: uuidv4().slice(0,3),
+        Name: boardTitle,
+        task: [],
+      });
+      let items = db
+        .transaction(["lists"], "readwrite")
+        .objectStore("lists")
+        .getAll();
+      items.onsuccess = function (event) {
+        const indexedDBData = event.target.result;
+        setcolumns(indexedDBData);
+      };
+    };
+  }
+  // console.log("data",data);
+
+  // const onDragEnd = (result, columns, setColumns) => {
+  //   if (!result.destination) return;
+  //   const { source, destination } = result;
+
+  //   if (source.droppableId !== destination.droppableId) {
+  //     const sourceColumn = columns[source.droppableId];
+
+  //     const destColumn = columns[destination.droppableId];
+
+  //     const sourceItems = [...sourceColumn.task];
+  //     const destItems = [...destColumn.task];
+  //     const [removed] = sourceItems.splice(source.index, 1);
+  //     destItems.splice(destination.index, 0, removed);
+  //     setColumns({
+  //       ...columns,
+  //       [source.droppableId]: {
+  //         ...sourceColumn,
+  //         task: sourceItems,
+  //       },
+  //       [destination.droppableId]: {
+  //         ...destColumn,
+  //         task: destItems,
+  //       },
+  //     });
+  //   } else {
+  //     const column = columns[source.droppableId];
+  //     const copiedItems = [...column.task];
+  //     const [removed] = copiedItems.splice(source.index, 1);
+  //     copiedItems.splice(destination.index, 0, removed);
+  //     setColumns({
+  //       ...columns,
+  //       [source.droppableId]: {
+  //         ...column,
+  //         task: copiedItems,
+  //       },
+  //     });
+  //   }
+  // };
+>>>>>>> 15d8e6c45cb22f743acabeb8924a4584293c2814
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -95,6 +185,7 @@ export const ProjBoardContainer = () => {
       const destItems = [...destColumn.task];
       const [removed] = sourceItems.splice(source.index, 1);
 
+<<<<<<< HEAD
       const UpdateIndexDbRequest = indexedDB.open("InitialData", 3);
 
       UpdateIndexDbRequest.onsuccess = () => {
@@ -107,6 +198,24 @@ export const ProjBoardContainer = () => {
         let getColumnToBeRemoved = totalColumns.get(sourceColumn.index);
 
         getColumnToBeRemoved.onsuccess = (event) => {
+=======
+      // let idOfRemovingItem = removed.id;
+
+      const UpdateIndexDbRequest = indexedDB.open("InitialData", 2);
+
+      UpdateIndexDbRequest.onsuccess = () => {
+        // let taskToBeRemovedIndex;
+
+        const dataBase = UpdateIndexDbRequest.result;
+
+        let totalColumns = dataBase
+          .transaction(["lists"], "readwrite")
+          .objectStore("lists");
+
+        let columnCardToBeRemoved = totalColumns.get(sourceColumn.index);
+
+        columnCardToBeRemoved.onsuccess = (event) => {
+>>>>>>> 15d8e6c45cb22f743acabeb8924a4584293c2814
           let sourceValueColumn = event.target.result;
 
           sourceValueColumn.task.splice(source.index, 1);
@@ -114,17 +223,37 @@ export const ProjBoardContainer = () => {
           totalColumns.put(sourceValueColumn);
         };
 
+<<<<<<< HEAD
         let destColumnToGetAdded = totalColumns.get(destColumn.index);
         destColumnToGetAdded.onsuccess = (event) => {
           const destValueColumn = event.target.result;
 
           destValueColumn.task.splice(destination.index, 0, removed);
+=======
+        let columnToBeAdded = totalColumns.get(destColumn.index);
+
+        columnToBeAdded.onsuccess = (event) => {
+          const destValueColumn = event.target.result;
+
+          console.log("got destColumn", destValueColumn);
+
+          destValueColumn.task.splice(destination.index, 0, removed);
+
+          console.log("added array", destValueColumn);
+
+>>>>>>> 15d8e6c45cb22f743acabeb8924a4584293c2814
           totalColumns.put(destValueColumn);
         };
       };
 
       destItems.splice(destination.index, 0, removed);
 
+<<<<<<< HEAD
+=======
+      // console.log("destItems", destItems);
+      // console.log("destcolumn", destColumn);
+
+>>>>>>> 15d8e6c45cb22f743acabeb8924a4584293c2814
       setColumns({
         ...columns,
         [source.droppableId]: {
@@ -136,7 +265,21 @@ export const ProjBoardContainer = () => {
           task: destItems,
         },
       });
-    } else {
+    }
+    // else {
+    //   const column = columns[source.droppableId];
+    //   const copiedItems = [...column.task];
+    //   const [removed] = copiedItems.splice(source.index, 1);
+    //   copiedItems.splice(destination.index, 0, removed);
+    //   setColumns({
+    //     ...columns,
+    //     [source.droppableId]: {
+    //       ...column,
+    //       task: copiedItems,
+    //     },
+    //   });
+    // }
+    else {
       const column = columns[source.droppableId];
       const copiedItems = [...column.task];
       const [removed] = copiedItems.splice(source.index, 1);
@@ -145,11 +288,18 @@ export const ProjBoardContainer = () => {
         const dataBase = updateDbWithInTheColumn.result;
 
         let totalColumns = dataBase
+<<<<<<< HEAD
           .transaction(["projectBoard"], "readwrite")
           .objectStore("projectBoard");
 
         let ChangesWithInTheColumn = totalColumns.get(column.index);
 
+=======
+          .transaction(["lists"], "readwrite")
+          .objectStore("lists");
+        let ChangesWithInTheColumn = totalColumns.get(column.index);
+        console.log("changes with in the column", ChangesWithInTheColumn);
+>>>>>>> 15d8e6c45cb22f743acabeb8924a4584293c2814
         ChangesWithInTheColumn.onsuccess = (event) => {
           const sameColumnValue = event.target.result;
           sameColumnValue.task.splice(source.index, 1);

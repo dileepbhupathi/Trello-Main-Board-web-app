@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./PrjCardDate.scss";
 import { DatePicker, Card } from "antd";
 import dayjs from "dayjs";
 import moment from "moment";
 // import { v4 as uuid } from "uuid";
 
-const PrjCardDate = ({ dateChecked }) => {
-  const [duration, setDuration] = useState();
+const PrjCardDate = ({ dateChecked, eachBoardItem, selectedCardId }) => {
+  const [duration, setDuration] = useState("");
   const [timeLeft, setTimeLeft] = useState(0);
 
-  // let id = uuid().slice(0, 3);
+  // Data From past indexedDb
+  const getExistingDataFromDb = (eachBoardItem) => {
+    eachBoardItem.task.forEach((element) => {
+      if (element.id === selectedCardId.id) {
+        if (element.date) {
+          setDuration(element.date);
+        } else {
+          setDuration(Date);
+        }
+      }
+    });
+  };
+  useEffect(() => {
+    getExistingDataFromDb(eachBoardItem);
+  }, []);
 
   function dateDiffInDays(a, b) {
     const _MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -18,63 +32,49 @@ const PrjCardDate = ({ dateChecked }) => {
     return Math.floor((utc1 - utc2) / _MS_PER_DAY);
   }
 
+  // const dateFormat = "YYYY-MM-DD";
+
   const onChangeDatePicker = (date, dateString) => {
-    setDuration(date, dateString);
     let a = new Date(moment(dateString)._i);
     let b = new Date(moment(new Date()).format("YYYY-MM-DD"));
     const difference = dateDiffInDays(a, b);
     setTimeLeft(difference);
-    console.log("date selected :", dateString);
-
-    // const request = indexedDB.open("PrjCardInforation", 2);
-
-    // const Adddate = (db, date) => {
-    //   const tx = db.transaction(["date"], "readwrite");
-    //   const store = tx.objectStore("date");
-    //   let query = store.add(date);
-    //   query.onsuccess = function (event) {
-    //     console.log(event);
-    //   };
-
-    //   tx.oncomplete = function () {
-    //     db.close();
-    //   };
-    // };
-
-    // request.onupgradeneeded = () => {
-    //   let db = request.result;
-    //   let store = db.createObjectStore("date", {
-    //     keyPath: "index",
-    //     autoIncrement: true,
-    //   });
-
-    //   // let index = store.createIndex("Content", "Content", {
-    //   //   keyPath: "content",
-    //   //   unique: true,
-    //   // });
-    //   // console.log("index");
-    // };
-
-    // request.onsuccess = () => {
-    //   const db = request.result;
-    //   Adddate(db, { id: id, date: dateString });
-    //   let items = db
-    //     .transaction(["date"], "readwrite")
-    //     .objectStore("date")
-    //     .getAll();
-    //   items.onsuccess = function (event) {
-    //     console.log("item success");
-    //   };
-    // };
+    let newDate = dateString;
+    setDuration(dateString);
+    const request = window.indexedDB.open("InitialData", 2);
+    request.onsuccess = () => {
+      const db = request.result;
+      const totaListsData = db
+        .transaction(["lists"], "readwrite")
+        .objectStore("lists");
+      let indexOfClickedCard = eachBoardItem.task.findIndex(function (
+        eachCard
+      ) {
+        if (eachCard.id === selectedCardId.id) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      let getColumnToAddDate = totaListsData.get(eachBoardItem.index);
+      getColumnToAddDate.onsuccess = (event) => {
+        let cardToBeAdded = event.target.result;
+        cardToBeAdded.task[indexOfClickedCard].date = newDate;
+        totaListsData.put(cardToBeAdded);
+      };
+    };
   };
 
   return (
     <div className="Project-card-date-section">
       <div className="date-message-section">
         <Card>
-          <DatePicker onChange={onChangeDatePicker} className="date-picker">
-            {dayjs(duration)}
-          </DatePicker>
+          <DatePicker
+            onChange={onChangeDatePicker}
+            className="date-picker"
+            placeholder=""
+            value={dayjs(duration)}
+          ></DatePicker>
           <span>
             {duration ? (
               dateChecked === false ? (

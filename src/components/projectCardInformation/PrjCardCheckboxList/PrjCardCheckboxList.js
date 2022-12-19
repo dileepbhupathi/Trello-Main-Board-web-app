@@ -9,7 +9,7 @@ const PrjCardCheckboxList = ({ newCheckboxdata, getPercentValue }) => {
           itemLayout="horizontal"
           dataSource={newCheckboxdata}
           renderItem={(item) => (
-            <List.Item className="checkbox-list-item">
+            <List.Item className="checkbox-list-item" key={item.id}>
               <PrjCardCheckbox
                 checkboxData={item}
                 newCheckboxdata={newCheckboxdata}

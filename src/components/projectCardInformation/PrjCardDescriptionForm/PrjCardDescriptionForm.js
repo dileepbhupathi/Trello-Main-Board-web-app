@@ -2,9 +2,10 @@ import React from "react";
 import "./PrjCardDescriptionForm.scss";
 import TextArea from "antd/es/input/TextArea";
 import { Form, Space, Button } from "antd";
-// import { v4 as uuid } from "uuid";
 
 const PrjCardDescriptionForm = ({
+  eachBoardItem,
+  selectedCardId,
   setbtndisabled,
   btndisabled,
   setDescriptionData,
@@ -13,7 +14,6 @@ const PrjCardDescriptionForm = ({
   descriptionData,
   CancleButtonLabel,
 }) => {
-  // let id = uuid().slice(0, 3)
   const onValuesChange = (allValues) => {
     if (allValues.data !== undefined && allValues.data !== "") {
       setbtndisabled(false);
@@ -21,53 +21,41 @@ const PrjCardDescriptionForm = ({
       setbtndisabled(true);
     }
   };
+  
+
   const onFinishDescriptionHandler = (e) => {
     setDescriptionData(e.data);
     setEnableEditMode(!enableEditMode);
-    console.log('description submitted :',e.data)
+    console.log("description submitted : ", e.data);
+    const descriptionDataValue = e.data;
 
-
-    // const request = indexedDB.open("PrjCardInforation", 3);
-
-    // const AddDescriptionIntoDb= (db, description) => {
-    //   const tx = db.transaction(["description"], "readwrite");
-    //   const store = tx.objectStore("description");
-    //   let query = store.add(description);
-    //   query.onsuccess = function (event) {
-    //     console.log(event);
-    //   };
-
-    //   tx.oncomplete = function () {
-    //     db.close();
-    //   };
-    // };
-
-    // request.onupgradeneeded = () => {
-    //   let db = request.result;
-    //   let store = db.createObjectStore("description", {
-    //     keyPath: "index",
-    //     autoIncrement: true,
-    //   });
-
-    //   // let index = store.createIndex("Content", "Content", {
-    //   //   keyPath: "content",
-    //   //   unique: true,
-    //   // });
-    //   // console.log("index");
-    // };
-
-    // request.onsuccess = () => {
-    //   const db = request.result;
-    //   AddDescriptionIntoDb(db, { id: id, description: e.data });
-    //   let items = db
-    //     .transaction(["description"], "readwrite")
-    //     .objectStore("description")
-    //     .getAll();
-    //   items.onsuccess = function (event) {
-    //     console.log("item success");
-    //   };
-    // };
+    const request = window.indexedDB.open("InitialData", 2);
+    request.onsuccess = () => {
+      const db = request.result;
+      const totaListsData = db
+        .transaction(["lists"], "readwrite")
+        .objectStore("lists");
+      let indexOfClickedCard = eachBoardItem.task.findIndex(function (
+        eachCard
+      ) {
+        if (eachCard.id === selectedCardId.id) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      let getColumnToAddDescription = totaListsData.get(eachBoardItem.index);
+      getColumnToAddDescription.onsuccess = (event) => {
+        let cardToBeAdded = event.target.result;
+        cardToBeAdded.task[indexOfClickedCard].description =
+          descriptionDataValue;
+        console.log("is changed or not", cardToBeAdded);
+        totaListsData.put(cardToBeAdded);
+      };
+      console.log("indexOfClickedCard", indexOfClickedCard);
+    };
   };
+
   const descriptionEditMode = () => {
     setEnableEditMode(!enableEditMode);
     setbtndisabled(!btndisabled);

@@ -32,7 +32,18 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
     </div>
   );
 
- 
+  const CardTemplateDetails = (
+    <>
+      <hr />
+      <Card>
+        <p>Adding Template here</p>
+        <Button className="card-template-style">
+          <CgTemplate /> Template
+        </Button>
+      </Card>
+
+    </>
+  );
 
   const [showAddOption, setShowAddOption] = useState(false);
   const [inputForCard, setInputForCard] = useState();
@@ -40,10 +51,11 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
   function addNewCardDetailsToBoard(e) {
     e.preventDefault();
 
-   
+    // if (inputForCard !== undefined) {
+    // }
     setShowAddOption(false);
 
-    const request = indexedDB.open("InitialData", 3);
+    const request = indexedDB.open("InitialData", 2);
     let newCardToTask = { id: uuidv4(), content: `${inputForCard}` };
     eachBoardItem.task.push(newCardToTask);
 
@@ -56,12 +68,14 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
       getItem.onsuccess = (event) => {
         let value = event.target.result;
         value.task.push(newCardToTask);
+        console.log("value task", value.task);
         items.put(value);
       };
     };
   }
 
-  
+  // drag and drop
+
   // MODAL MAIN POP_UP SANDEEP
   const [resetModal, setResetModal] = useState(false);
   const [isWatch, setIsWatch] = useState(false);
@@ -232,9 +246,16 @@ export const ProjBoardCardsContainer = ({ eachBoardItem }) => {
             <AiOutlinePlus className="card-checkbox-icon" />
             Add Card
           </Button>
-         
-          
-         
+          <Popover
+           
+            content={CardTemplateDetails}
+            title="Card Templates"
+            trigger="click"
+            open={openMore}
+            onOpenChange={handleOpenChange}
+          >
+            <CgTemplate className="template-icon-beside-addcard-btn" />
+          </Popover>
         </div>
       )}
     </>

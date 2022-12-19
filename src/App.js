@@ -2,7 +2,6 @@ import React from "react";
 import "./App.scss";
 
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
-// import { IndexDB } from "./components/IndexedDB/IndexedDB";
 import { PrjHeader } from "./components/PrjHeaderComponent/PrjHeader";
 import { ProjBoardContainer } from "./components/ProjBoardContainer/projBoardCotainer";
 // import { TrelloContext } from "./components/TrelloContext/TrelloContext";

@@ -1,37 +1,59 @@
 import "./PrjCardCheckForm.scss";
-import React, { useState } from "react";
 import { Form, Button, Space } from "antd";
 import { v4 as uuid } from "uuid";
 import TextArea from "antd/es/input/TextArea";
 
 const PrjCardCheckForm = ({
+  selectedCardId,
   setShowForm,
   setHideAddButton,
   getNewCheckboxData,
+  eachBoardItem,
   newCheckboxdata
 }) => {
   const [checklistform] = Form.useForm();
-  const [checkboxData, setCheckboxData] = useState([]);
+ 
+ 
 
   const checklistSubmitHandler = (e) => {
-    const newCheckData = [...checkboxData];
+    const newCheckData = [...newCheckboxdata];
     newCheckData.push({
       id: uuid().slice(0, 3),
       checkItem: e.checkItem,
       checkStatus: "unchecked",
     });
     checklistform.resetFields();
-    setCheckboxData(newCheckData);
     getNewCheckboxData(newCheckData);
-  
+    
+    const request = window.indexedDB.open("InitialData", 2);
+    request.onsuccess = () => {
+      const db = request.result;
+      const totaListsData = db.transaction(["lists"], "readwrite").objectStore("lists");
+      let indexOfClickedCard = eachBoardItem.task.findIndex(function(eachCard){
+        if (eachCard.id === selectedCardId.id){
+                return true;
+        }else{
+          return false;
+        }
+
+      });
+      let getColumnToAddCheckbox = totaListsData.get(eachBoardItem.index);
+
+      getColumnToAddCheckbox.onsuccess = (event) =>{
+          let cardToBeAdded = event.target.result;
+          cardToBeAdded.task[indexOfClickedCard].checkbox = newCheckData;
+
+          totaListsData.put(cardToBeAdded)
+        }
+        
   };
-  
+}
 
   const hideFormHandler = () => {
     setShowForm(false);
     setHideAddButton(false);
   };
-
+  
   return (
     <div className="project-card-checklist-form">
       <Form
@@ -62,18 +84,7 @@ const PrjCardCheckForm = ({
               </Button>
             </Space>
 
-            <div>
-              <Space>
-                <Button type="text">
-                  @<a href="/">Assign</a>
-                </Button>
-                <Button type="text">
-                  @<a href="/">Due Date</a>
-                </Button>
-                <Button type="text">@</Button>
-                <Button type="text">@</Button>
-              </Space>
-            </div>
+           
           </div>
         </Form.Item>
       </Form>
