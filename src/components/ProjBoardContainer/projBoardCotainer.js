@@ -21,6 +21,7 @@ export const ProjBoardContainer = () => {
   function settingNewBoardToIndexDB(e) {
     e.preventDefault();
 
+    
     setShowAddBoard(false);
     const request = indexedDB.open("InitialData", 3);
 

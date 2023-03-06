@@ -10,7 +10,7 @@ function App() {
   // useEffect(() => {
   //   const IndexedDBData = indexedDB.open("InitialData", 2);
 
-  //   IndexedDBData.onsuccess = () => {
+  //   IndexedDBData.onsucc..ess = () => {
   //     const db = IndexedDBData.result;
   //     const updatedIndexedDBData = db
   //       .transaction(["lists"], "readwrite")
