@@ -15,11 +15,13 @@ import { LabelListItem } from '../../components/LabelListItem/LabelListItem';
 export const Labels = () => {
   // const history=useHistory();
   const [data, setData] = useState([]);
-  const [eachData, setEachData] = useState({});
-  const [inputValue,setInputValue]=useState({});
-  const [addCardColor,setAddCardColor]=useState();
   const [filteredData, setFilteredData] = useState([]);
   const [input, setInput] = useState("");
+
+  const [eachData, setEachData] = useState({});
+  const [addCardColor,setAddCardColor]=useState();
+  const [inputValue,setInputValue]=useState({});
+
   
   useEffect(() => {
     setData(dummyData);
